@@ -17,7 +17,7 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
         <sub><b>김민채</b></sub>
       </a>
       <br />
-      리모델링 영향 분석<br />
+      리모델링-집값 영향 분석<br />
       역할2<br />
       역할3
     </td>
@@ -28,7 +28,7 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
         <sub><b>박수현</b></sub>
       </a>
       <br />
-      집값 요인 분석<br />
+      집값 영향 요인 분석<br />
       역할2<br />
       역할3
     </td>
@@ -36,22 +36,22 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
       <a href="https://github.com/ParkHansl">
         <img src="https://github.com/ParkHansl.png" width="100px;" alt="ParkHansl"/>
         <br />
-        <sub><b>박한슬</b></sub>
+        <sub><b>박한슬 (발표)</b></sub>
       </a>
       <br />
-      <strong>발표</strong><br />
       동네별 선호하는 주택 분석<br />
+      역할2<br />
       역할3
     </td>
     <td align="center">
       <a href="https://github.com/leechanghyuk">
         <img src="https://github.com/leechanghyuk.png" width="100px;" alt="leechanghyuk"/>
         <br />
-        <sub><b>이창혁</b></sub>
+        <sub><b>이창혁 (조장/발표)</b></sub>
       </a>
       <br />
-      <strong>조장/발표</strong><br />
       가성비 좋은 주택 분석<br />
+      역할2</strong><br />
       역할3
     </td>
   </tr>
