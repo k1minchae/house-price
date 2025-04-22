@@ -17,7 +17,7 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
         <sub><b>김민채</b></sub>
       </a>
       <br />
-      역할1<br />
+      리모델링 영향 분석<br />
       역할2<br />
       역할3
     </td>
@@ -28,7 +28,7 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
         <sub><b>박수현</b></sub>
       </a>
       <br />
-      역할1<br />
+      집값 요인 분석<br />
       역할2<br />
       역할3
     </td>
@@ -40,7 +40,7 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
       </a>
       <br />
       <strong>발표</strong><br />
-      역할2<br />
+      동네별 선호하는 주택 분석<br />
       역할3
     </td>
     <td align="center">
@@ -50,8 +50,8 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
         <sub><b>이창혁</b></sub>
       </a>
       <br />
-      <strong>조장</strong><br />
-      <strong>발표</strong><br />
+      <strong>조장/발표</strong><br />
+      가성비 좋은 주택 분석<br />
       역할3
     </td>
   </tr>
