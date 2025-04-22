@@ -50,8 +50,8 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
         <sub><b>이창혁</b></sub>
       </a>
       <br />
-      역할1<br />
-      역할2<br />
+      **조장**<br />
+      **발표**<br />
       역할3
     </td>
   </tr>
