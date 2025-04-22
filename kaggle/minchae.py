@@ -20,7 +20,7 @@ numeric_features = df_all.select_dtypes(include=[np.number]).columns.tolist()
 categorical_features = df_all.select_dtypes(include=['object']).columns.tolist()
 
 # 4. 결측치 처리
-df_all[numeric_features] = df_all[numeric_features].fillna(df_all[numeric_features].mean())
+df_all[numeric_features] = df_all[numeric_features].fillna(df_all[numeric_features].median())
 df_all[categorical_features] = df_all[categorical_features].fillna("-")
 
 # 5. 더미 변수 처리
@@ -37,7 +37,7 @@ y_train = train_encoded["SalePrice"]
 # 8. 라쏘 회귀 학습
 lasso_pipeline = make_pipeline(
     StandardScaler(),
-    LassoCV(cv=5, random_state=42)
+    LassoCV(cv=5, random_state=42, max_iter=10000)
 )
 
 lasso_pipeline.fit(X_train, y_train)
@@ -52,6 +52,7 @@ y_pred = lasso_pipeline.predict(test_encoded)
 # 10. 제출파일 생성
 submit = pd.read_csv("sample_submission.csv")
 submit["SalePrice"] = y_pred
-submit.to_csv("lasso_baseline.csv", index=False)
+submit.to_csv("lasso_minchae.csv", index=False)
 
 print("lasso_baseline.csv 저장 완료!")
+# 0.14046
