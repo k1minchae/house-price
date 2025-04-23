@@ -1,0 +1,45 @@
+---
+title: "신입 교육자료"
+---
+
+# 1
+
+<div style="height: 2000px !important; width:100% !important; display: flex; justify-content: space-around;">
+
+<div style="overflow-y:auto;">
+<h3>데이터 불러오기</h3>
+
+```{python}
+#|eval: true
+#|echo: true
+import pandas as pd
+
+# 데이터 불러오기
+load_df = pd.read_csv('../kaggle/ames.csv')
+load_df.info(max_cols=10)
+```
+
+- 행 
+- 열
+
+</div>
+
+<div>
+
+
+결측치확인
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+# 2
+
+
+# 3

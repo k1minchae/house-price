@@ -1,54 +1,87 @@
----
-title: "대시보드"
-project:
-  type: website
-  output-dir: docs
-format: "dashboard"
----
+<img src="assets/banner.png" style="margin-left:auto; margin-right: auto;"/>
 
-# 페이지1
-페이지1
+<p style="font-weight: bold; font-size: 32px; text-align:center; margin-top: 3rem;">고객 응대용 자료</p>
 
-## Row {height="70%"}
+<a href="https://k1minchae.github.io/house-price/customer" style="text-decoration: none; color: inherit;">
+<div style="width:100%; 
+          display:flex !important; 
+          flex-wrap:wrap; 
+          flex-direction: row;
+          justify-content: space-around !important;">
 
-```python
-a = 1
-print(a)
-```
+<div style="width:40%; margin-right: 3rem;">
+  <img src="assets/customer.png" style="width:100%;"/>
+</div>
 
+<div style="width:40%; font-size: 28px;">
 
-## Row {height="30%"}
-
-### part 1
-
-```python
-b = 1
-print(b)
-```
-
-### part2 {.tabset}
-
-```{python}
-#| title: Chart 2
-#| echo: true
-#| eval: true
-c = 1
-print(c)
-```
-
-```{python}
-#| title: Chart 3
-e = 1
-print(e)
-```
-
-### part3
-row 안이 세개로 쪼개지네요 
+<strong>🧭 고객 응대, 더 이상 막막하지 않도록</strong>
 
 
-::: {.card title="제목"}
-Card text
-마크다운만 입력된 패널을 추가할 수 있습니다.
-:::
+<li style="margin-top: 2.6rem !important;"> 💰 <strong>가성비</strong>를 따지는 고객에겐? </li>
+
+"합리적인 선택을 돕는 데이터 기반 추천"
 
 
+
+<li style="margin-top: 2.6rem !important"> 🔧 <strong>리모델링</strong>을 고려하는 고객에겐? </li>
+
+"리모델링 전후의 가치를 비교해 설득하세요"
+
+
+
+<li style="margin-top: 2.6rem !important"> 📍 <strong>선호하는 동네</strong>가 있는 고객에겐? </li>
+
+"지역별 특징과 매물을 연결해 신뢰를 쌓으세요"
+
+</div>
+
+</div>
+</a>
+
+
+
+
+
+
+<hr style = "margin-top: 4rem; margin-bottom: 2.5rem;"/>
+
+<p style="font-weight: bold; font-size: 32px; text-align:center;">신입사원 교육자료</p>
+
+
+<a href="https://k1minchae.github.io/house-price/study" style="text-decoration: none; color: inherit;">
+<div style="width:100%; 
+          display:flex !important; 
+          flex-wrap:wrap; 
+          flex-direction: row;
+          justify-content: space-around !important;">
+
+<div style="width:40%; margin-right: 3rem;">
+  <img src="assets/study.png" style="width:100%;"/>
+</div>
+
+<div style="width:40%; font-size: 28px;">
+
+<strong>💻 데이터 기반 Ames 시 부동산 교육 자료</strong>
+
+
+<li style="margin-top: 2.6rem !important;"> 📊 <strong>데이터</strong> 설명 </li>
+
+"데이터를 통해 Ames시 주택에 대해 이해"
+
+
+
+<li style="margin-top: 2.6rem !important"> 🏙️ Ames 시의 <strong>특징</strong></li>
+
+"지역 특성부터 도시를 입체적으로 이해"
+
+
+
+<li style="margin-top: 2.6rem !important"> 💡 집값에 영향을 주는 <strong>요인 분석</strong></li>
+
+"가격의 이면을 파악해 더 똑똑한 상담으로 연결하세요"
+
+</div>
+
+</div>
+</a>
