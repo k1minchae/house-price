@@ -54,6 +54,46 @@ format:
 
 </div>
 
+<hr style = "margin-top: 4rem; margin-bottom: 2.5rem;"/>
+
+<p style="font-weight: bold; font-size: 32px; text-align:center;">신입사원 교육자료</p>
+
+
+<div style="width:100%; 
+          display:flex !important; 
+          flex-wrap:wrap; 
+          flex-direction: row;
+          justify-content: space-around !important;">
+
+<div style="width:40%; margin-right: 3rem;">
+  <img src="assets/study.png" style="width:100%;"/>
+</div>
+
+<div style="width:40%; font-size: 28px;">
+
+<strong>💻 데이터 기반 Ames 시 부동산 교육 자료</strong>
+
+
+<li style="margin-top: 2.6rem !important;"> 📊 <strong>데이터</strong> 설명 </li>
+
+"데이터를 통해 Ames시 주택에 대해 이해"
+
+
+
+<li style="margin-top: 2.6rem !important"> 🏙️ Ames 시의 <strong>특징</strong></li>
+
+"지역 특성부터 도시를 입체적으로 이해"
+
+
+
+<li style="margin-top: 2.6rem !important"> 💡 집값에 영향을 주는 <strong>요인 분석</strong></li>
+
+"가격의 이면을 파악해 더 똑똑한 상담으로 연결하세요"
+
+</div>
+
+</div>
+
 
 
 
