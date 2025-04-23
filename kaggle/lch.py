@@ -63,28 +63,28 @@ plt.tight_layout()
 
 
 
-# 
+### 
 ames = pd.read_csv('ames.csv')
 ames.head()
 ames.shape
 
 # 파생 변수 만들기
-ames['PricePerSqft'] = ames['SalePrice'] / ames['GrLivArea']  # 평당 가격
-ames['QualPriceRatio'] = ames['SalePrice'] / ames['OverallQual']  # 품질당 가격
-ames['YearAdjPrice'] = ames['SalePrice'] / (2025 - ames['YearBuilt'])  # 연식 보정 가격
+ames['price_area_ratio'] = ames['SalePrice'] / ames['GrLivArea']  # 평당 가격
+ames['price_qual_ratio'] = ames['SalePrice'] / ames['OverallQual']  # 품질당 가격
+ames['price_yrblt_ratio'] = ames['SalePrice'] / (2025 - ames['YearBuilt'])  # 연식 보정 가격
 
 from scipy.stats import zscore
 
 
-ames['z_price_sqft'] = zscore(ames['PricePerSqft'])
-ames['z_qual_price'] = zscore(ames['QualPriceRatio'])
-ames['z_year_adj'] = zscore(ames['YearAdjPrice'])
+ames['z_price_sqft'] = zscore(ames['price_area_ratio'])
+ames['z_qual_price'] = zscore(ames['price_qual_ratio'])
+ames['z_year_adj'] = zscore(ames['price_yrblt_ratio'])
 
 ames['ValueScore'] = -1 * (ames['z_price_sqft'] + ames['z_qual_price'] + ames['z_year_adj']) / 3
 
 from sklearn.cluster import KMeans
 
-cluster_features = ames[['PricePerSqft', 'QualPriceRatio', 'YearAdjPrice']]
+cluster_features = ames[['price_area_ratio', 'price_qual_ratio', 'price_yrblt_ratio']]
 kmeans = KMeans(n_clusters=3, random_state=42)
 ames['Cluster'] = kmeans.fit_predict(cluster_features)
 
@@ -116,5 +116,64 @@ fig = px.scatter_mapbox(
 fig.update_layout(mapbox_style="open-street-map")
 fig.update_layout(margin={"r":0,"t":30,"l":0,"b":0})
 fig.update_layout(title="Ames Housing 군집 분석 결과 (지도 시각화)")
-
 fig.show()
+
+
+# 토지 용도 구분 데이터 개수 확인 
+zoning_val = ['C (all)','FV','I (all)','A (agr)', 'C (all)']
+ames[ames['MSZoning'].isin(zoning_val)]
+ames['MSZoning'].value_counts()
+
+a = ames[ames['MSZoning'].isin(['FV'])].iloc[1,:]
+a['Latitude'], a['Longitude']
+import folium
+
+map_fv = folium.Map(location=[a['Latitude'], a['Longitude']], zoom_start=12,tiles='OpenStreetMap')
+folium.Marker(location=[a['Latitude'], a['Longitude']],tooltip='환영합니다',
+                       icon=folium.Icon(icon='home', color='red')).add_to(map_fv)
+map_fv
+
+
+'''
+# 리모델링 연도 확인 
+'''
+
+a = ames['YearRemodAdd'].unique().tolist()
+a.sort()
+a
+a = ames['YearRemodAdd'].unique().tolist()
+a.sort()
+a
+
+ames['HeatingQC'].value_counts()
+ames['Electrical'].value_counts()
+ames['Functional'].value_counts()
+
+ames[ames['Electrical'].isin(['FuseP'])]['YearBuilt']
+ames['YearBuilt'].sort_values(ascending=False)
+
+a = ames[ames['YearBuilt']==1872]
+
+# 차고 
+
+
+a['']
+
+map = folium.Map(location=[a['Latitude'], a['Longitude']], zoom_start=12,tiles='OpenStreetMap')
+folium.Marker(location=[a['Latitude'], a['Longitude']],tooltip='환영합니다',
+                       icon=folium.Icon(icon='home', color='red')).add_to(map)
+map
+
+sns.barplot(x = ames['YearBuilt'],y = ames['YearBuilt'].value_counts())
+
+
+importance_col = ['MSZoning','OverallQual','YearBuilt','YearRemodAdd','HeatingQC','CentralAir','GrLivArea','GarageCars']
+
+sns.barplot(x=ames['GarageCars'],y=ames['SalePrice'])
+
+sns.barplot(ames.groupby('GarageCars')['SalePrice'].mean())
+
+garage_group = ames.groupby('GarageCars')['SalePrice']
+garage_group.describe().T
+
+sns.boxplot(x=ames['GarageCars'],y=ames['SalePrice'])
