@@ -69,7 +69,7 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
 | LotFrontage   | 도로와 접한 길이 (feet)                 |
 | LotArea       | 대지 면적 (제곱피트)                    |
 | Street        | 도로 접근 유형                          |
-| Alley         | 골목 접근 유형                          |
+| Alley         | 골목 접근 유형 (NA: 없음)               |
 | LotShape      | 대지 형태                               |
 | LandContour   | 대지의 평탄도                           |
 | Utilities     | 사용 가능한 공공설비 종류               |
@@ -88,7 +88,7 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
 | RoofMatl      | 지붕 재질                               |
 | Exterior1st   | 외벽 마감재 (첫 번째)                   |
 | Exterior2nd   | 외벽 마감재 (두 번째)                   |
-| MasVnrType    | 벽돌 베니어 유형                        |
+| MasVnrType    | 벽돌 베니어 유형 (NA: 없음)             |
 | MasVnrArea    | 벽돌 베니어 면적 (제곱피트)             |
 | ExterQual     | 외벽 마감재 품질                        |
 | ExterCond     | 외벽 현재 상태                          |

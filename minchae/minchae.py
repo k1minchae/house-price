@@ -10,6 +10,7 @@ plt.rcParams['axes.unicode_minus'] = False
 load_df = pd.read_csv('../kaggle/ames.csv')
 load_df.isna().sum()[load_df.isna().sum() > 0]
 
+# 컬럼명 한국어로 변경
 column_dict = {
     "SalePrice": "주택 판매 가격 (예측 대상)",
     "MSSubClass": "건물 클래스",
@@ -108,3 +109,97 @@ df_renamed
 csv_path = "../ames_kor.csv"
 df_renamed.to_csv(csv_path, index=False)
 csv_path
+
+df = df_renamed
+df.isna().sum()[df.isna().sum() > 0]
+
+load_df.isna().sum()[load_df.isna().sum() > 0]
+
+# Nan 이 없음 을 나타내는 컬럼들
+nan_columns = ['지하실 전반 상태', 
+               '지하실 마감 공간 유형 2', '지하실 외부 노출 여부', 
+               '지하실 마감 공간 유형 1', '벽난로 품질',
+               '차고 위치', '차고 내부 마감 상태',
+               '차고 품질', '차고 상태', '수영장 품질', '벽돌 베니어 유형',
+               '울타리 품질', '기타 부대시설', '골목 접근 유형']
+
+# 결측치 처리
+df['지하실 높이'].fillna(0, inplace=True)
+df['도로와 접한 길이 (feet)'].fillna(0, inplace=True)
+df['차고 건축 연도'].fillna(0, inplace=True)
+df[nan_columns] = df[nan_columns].fillna("없음")
+
+df.isna().sum()[df.isna().sum() > 0]
+
+print(df.loc[(df['위도'].isna()) & (~(df['주소'].isna())), :])
+
+# 주소는 있는데 위도 경도가 없는 경우
+filtered = df.loc[(df['위도'].isna()) & (~df['주소'].isna()), :]
+
+# 주소도 없는 경우: 20개
+len(df.loc[(df['위도'].isna()) & (df['주소'].isna()), :])
+
+# 주소를 찾아서 위도경도 찾기
+filtered.iloc[:20, -3]
+filtered.iloc[20:40, -3]
+filtered.iloc[40:60, -3]
+filtered.iloc[60:, -3]
+
+
+from geopy.geocoders import Nominatim
+import time
+geolocator = Nominatim(user_agent="ames_geocoder")
+
+# 위도/경도 컬럼 생성
+filtered['위도_보정'] = None
+filtered['경도_보정'] = None
+
+# 주소 기반 위도/경도 검색
+find = 0
+not_find = 0
+for idx, row in filtered.iterrows():
+    try:
+        # 주소 + 도시 이름으로 검색 정확도 향상
+        full_address = f"{row['주소']}, Ames, Iowa"
+        location = geolocator.geocode(full_address)
+
+        if location:
+            filtered.at[idx, '위도_보정'] = location.latitude
+            filtered.at[idx, '경도_보정'] = location.longitude
+            print(f"[O] 주소 찾음: {full_address} → 위도: {location.latitude}, 경도: {location.longitude}")
+            find += 1
+        else:
+            print(f"[X] 주소 찾을 수 없음: {full_address}")
+            not_find += 1
+    except Exception as e:
+        print(f"[!] 오류 발생 at {row['주소']} → {e}")
+        not_find += 1
+    time.sleep(1)  # API 과부하 방지
+
+# 기존 df에 위도/경도 덮어쓰기
+df.loc[filtered.index, '위도'] = filtered['위도_보정']
+df.loc[filtered.index, '경도'] = filtered['경도_보정']
+
+# 주소 찾은 개수: 41, 찾지 못한 개수: 36
+print(f"주소 찾은 개수: {find}, 찾지 못한 개수: {not_find}")    
+
+print(df.isna().sum())
+# 벽돌 베니어 면적 (제곱피트)    14
+# 마감된 지하 공간 면적 1       1
+# 마감된 지하 공간 면적 2       1
+# 미마감 지하 공간 면적         1
+# 전체 지하 공간 면적          1
+# 전기 시스템 종류            1
+# 지하 전체 욕실 수           2
+# 지하 반 욕실 수            2
+# 차고 수용 차량 수           1
+# 차고 면적                1
+# 지리 참조 번호            20
+# 주소                  20
+# 위도                  56
+# 경도                  56
+
+df = df.dropna()
+df
+df.to_csv(csv_path, index=False)
+
