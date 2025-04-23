@@ -93,12 +93,12 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
 | ExterQual     | 외벽 마감재 품질                        |
 | ExterCond     | 외벽 현재 상태                          |
 | Foundation    | 기초 형태                               |
-| BsmtQual      | 지하실 높이                             |
-| BsmtCond      | 지하실 전반 상태                        |
-| BsmtExposure  | 지하실 외부 노출 여부                   |
-| BsmtFinType1  | 지하실 마감 공간 유형 1                 |
+| BsmtQual      | 지하실 높이 (NA: 없음)                  |
+| BsmtCond      | 지하실 전반 상태 (NA: 없음)             |
+| BsmtExposure  | 지하실 외부 노출 여부 (NA: 없음)        |
+| BsmtFinType1  | 지하실 마감 공간 유형 1 (NA: 없음)      |
 | BsmtFinSF1    | 마감된 지하 공간 면적 1                 |
-| BsmtFinType2  | 지하실 마감 공간 유형 2                 |
+| BsmtFinType2  | 지하실 마감 공간 유형 2 (NA: 없음)      |
 | BsmtFinSF2    | 마감된 지하 공간 면적 2                 |
 | BsmtUnfSF     | 미마감 지하 공간 면적                   |
 | TotalBsmtSF   | 전체 지하 공간 면적                     |
@@ -120,14 +120,14 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
 | TotRmsAbvGrd  | 총 방 수 (욕실 제외, 지상 기준)         |
 | Functional    | 주택 기능성 등급                        |
 | Fireplaces    | 벽난로 수                               |
-| FireplaceQu   | 벽난로 품질                             |
-| GarageType    | 차고 위치                               |
+| FireplaceQu   | 벽난로 품질 (NA: 없음)                  |
+| GarageType    | 차고 위치 (NA: 없음)                    |
 | GarageYrBlt   | 차고 건축 연도                          |
-| GarageFinish  | 차고 내부 마감 상태                     |
+| GarageFinish  | 차고 내부 마감 상태 (NA: 없음)          |
 | GarageCars    | 차고 수용 차량 수                       |
 | GarageArea    | 차고 면적                               |
-| GarageQual    | 차고 품질                               |
-| GarageCond    | 차고 상태                               |
+| GarageQual    | 차고 품질 (NA: 없음)                    |
+| GarageCond    | 차고 상태 (NA: 없음)                    |
 | PavedDrive    | 포장 진입로 여부                        |
 | WoodDeckSF    | 목재 데크 면적                          |
 | OpenPorchSF   | 개방형 현관 면적                        |
@@ -135,9 +135,9 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
 | 3SsnPorch     | 3계절용 현관 면적                       |
 | ScreenPorch   | 방충망 있는 현관 면적                   |
 | PoolArea      | 수영장 면적                             |
-| PoolQC        | 수영장 품질                             |
-| Fence         | 울타리 품질                             |
-| MiscFeature   | 기타 부대시설                           |
+| PoolQC        | 수영장 품질 (NA: 없음)                  |
+| Fence         | 울타리 품질 (NA: 없음)                  |
+| MiscFeature   | 기타 부대시설 (NA: 없음)                |
 | MiscVal       | 기타 부대시설의 금전적 가치             |
 | MoSold        | 판매 월                                 |
 | YrSold        | 판매 연도                               |
