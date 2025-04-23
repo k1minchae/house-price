@@ -1,0 +1,19 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "안성맞춤부동산"
+  navbar:
+    logo: assets/logo.png
+    left:
+      - text: "홈"
+        href: index.qmd
+      - text: "고객 응대자료"
+        href: customer/index.qmd
+      - text: "신입 교육자료"
+        href: study/index.qmd
+format:
+  dashboard:
+    theme: materia
+    css: styles.css

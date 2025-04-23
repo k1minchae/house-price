@@ -1,24 +1,8 @@
----
-project:
-  type: website
-  output-dir: docs
-format:
-  dashboard:
-    theme: materia 
-    title: "안성맞춤부동산"
-    css: styles.css
-    logo: assets/logo.png
----
-
-
-
-# 홈
-
 <img src="assets/banner.png" style="margin-left:auto; margin-right: auto;"/>
 
 <p style="font-weight: bold; font-size: 32px; text-align:center; margin-top: 3rem;">고객 응대용 자료</p>
 
-<a href="https://k1minchae.github.io/house-price/#%EA%B3%A0%EA%B0%9D-%EC%9D%91%EB%8C%80%EC%9E%90%EB%A3%8C" style="text-decoration: none; color: inherit;">
+<a href="https://k1minchae.github.io/house-price/customer" style="text-decoration: none; color: inherit;">
 <div style="width:100%; 
           display:flex !important; 
           flex-wrap:wrap; 
@@ -65,7 +49,7 @@ format:
 <p style="font-weight: bold; font-size: 32px; text-align:center;">신입사원 교육자료</p>
 
 
-<a href="https://k1minchae.github.io/house-price/#%EC%8B%A0%EC%9E%85-%EA%B5%90%EC%9C%A1%EC%9E%90%EB%A3%8C" style="text-decoration: none; color: inherit;">
+<a href="https://k1minchae.github.io/house-price/study" style="text-decoration: none; color: inherit;">
 <div style="width:100%; 
           display:flex !important; 
           flex-wrap:wrap; 
@@ -101,15 +85,3 @@ format:
 
 </div>
 </a>
-
-
-
-# 고객 응대자료
-
-
-
-내용
-
-
-
-# 신입 교육자료
