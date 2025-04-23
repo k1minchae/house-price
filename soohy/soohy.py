@@ -101,7 +101,7 @@ print(top_10_features_shap)
 
 
 ########################################################################
-#SFS
+#SFS#
 import pandas as pd
 import numpy as np
 from sklearn.impute import SimpleImputer
@@ -228,6 +228,7 @@ def aic_score(estimator, X, y):
     return -model.aic  
 
 model = LinearRegression()
+
 sfs = SFS(
     model,
     k_features="best",
@@ -235,6 +236,7 @@ sfs = SFS(
     scoring=aic_score,
     cv=0,
 )
+
 sfs = sfs.fit(X, y)
 
 # 7. 선택된 피처로 OLS 학습
@@ -247,9 +249,9 @@ final_model.fit(X[selected_features], y)
 
 len(selected_features)
 
-
 ###########test##########
 # 4. test 데이터 불러오기 및 전처리
+
 test_df = pd.read_csv('test.csv')
 
 test_numeric = test_df.select_dtypes(include=["number"])
@@ -276,7 +278,3 @@ X_test_selected = X_test_full[selected_features]
 # 7. 예측 및 제출 파일 저장
 y_pred = final_model.predict(X_test_selected)
 y_pred = np.where(y_pred < 0, 0, y_pred)  # 음수 방지 조치
-
-submit = pd.read_csv('./data/house/sample_submission.csv')
-submit["SalePrice"] = y_pred
-submit.to_csv('./data/house/baseline.csv', index=False)
