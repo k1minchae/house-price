@@ -3,6 +3,8 @@ import pandas as pd
 
 # 데이터 불러오기
 load_df = pd.read_csv('../kaggle/ames.csv')
+print(load_df.info())
+load_df.info(max_cols=10)
 
 
 # Nan 이 없음 을 나타내는 컬럼들
