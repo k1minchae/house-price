@@ -1,7 +1,7 @@
 import numpy as np
+import pandas as pd
 from sklearn.linear_model import Ridge, Lasso
 from sklearn.metrics import mean_squared_error
-import pandas as pd
 # 데이터 불러오기
 train = pd.read_csv('train.csv')
 test = pd.read_csv('test.csv')
@@ -60,3 +60,61 @@ plt.plot(np.log10(lassocv_model.alphas_), lassocv_model.mse_path_.mean(axis=1), 
 plt.legend()
 plt.grid() 
 plt.tight_layout()
+
+
+
+# 
+ames = pd.read_csv('ames.csv')
+ames.head()
+ames.shape
+
+# 파생 변수 만들기
+ames['PricePerSqft'] = ames['SalePrice'] / ames['GrLivArea']  # 평당 가격
+ames['QualPriceRatio'] = ames['SalePrice'] / ames['OverallQual']  # 품질당 가격
+ames['YearAdjPrice'] = ames['SalePrice'] / (2025 - ames['YearBuilt'])  # 연식 보정 가격
+
+from scipy.stats import zscore
+
+
+ames['z_price_sqft'] = zscore(ames['PricePerSqft'])
+ames['z_qual_price'] = zscore(ames['QualPriceRatio'])
+ames['z_year_adj'] = zscore(ames['YearAdjPrice'])
+
+ames['ValueScore'] = -1 * (ames['z_price_sqft'] + ames['z_qual_price'] + ames['z_year_adj']) / 3
+
+from sklearn.cluster import KMeans
+
+cluster_features = ames[['PricePerSqft', 'QualPriceRatio', 'YearAdjPrice']]
+kmeans = KMeans(n_clusters=3, random_state=42)
+ames['Cluster'] = kmeans.fit_predict(cluster_features)
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.boxplot(x='Cluster', y='ValueScore', data=ames)
+plt.title("Cluster별 ValueScore 분포")
+plt.show()
+
+ames['Latitude']
+ames['Longitude']
+
+ames['Condition1'].unique()
+import plotly.express as px
+
+# 지도 스타일은 open-street-map을 사용하면 토큰 없이 사용 가능
+fig = px.scatter_mapbox(
+    df,
+    lat="Latitude",
+    lon="Longitude",
+    color="Cluster",
+    hover_data=["SalePrice", "GrLivArea", "OverallQual", "YearBuilt"],
+    color_continuous_scale=px.colors.qualitative.Set2,  # 또는 discrete_color_sequence
+    zoom=11,
+    height=600
+)
+
+fig.update_layout(mapbox_style="open-street-map")
+fig.update_layout(margin={"r":0,"t":30,"l":0,"b":0})
+fig.update_layout(title="Ames Housing 군집 분석 결과 (지도 시각화)")
+
+fig.show()
