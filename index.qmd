@@ -1,54 +1,68 @@
 ---
-title: "대시보드"
 project:
   type: website
   output-dir: docs
-format: "dashboard"
+format:
+  dashboard:
+    theme: materia 
+    title: "안성맞춤부동산"
+    css: styles.css
+    logo: assets/logo.png
 ---
 
-# 페이지1
-페이지1
-
-## Row {height="70%"}
-
-```python
-a = 1
-print(a)
-```
 
 
-## Row {height="30%"}
+# 홈
 
-### part 1
+<img src="assets/banner.png" style="margin-left:auto; margin-right: auto;"/>
 
-```python
-b = 1
-print(b)
-```
-
-### part2 {.tabset}
-
-```{python}
-#| title: Chart 2
-#| echo: true
-#| eval: true
-c = 1
-print(c)
-```
-
-```{python}
-#| title: Chart 3
-e = 1
-print(e)
-```
-
-### part3
-row 안이 세개로 쪼개지네요 
+<p style="font-weight: bold; font-size: 32px; text-align:center; margin-top: 3rem;">고객 응대용 자료</p>
 
 
-::: {.card title="제목"}
-Card text
-마크다운만 입력된 패널을 추가할 수 있습니다.
-:::
+<div style="width:100%; 
+          display:flex !important; 
+          flex-wrap:wrap; 
+          flex-direction: row;
+          justify-content: space-around !important;">
+
+<div style="width:40%; margin-right: 3rem;">
+  <img src="assets/customer.png" style="width:100%;"/>
+</div>
+
+<div style="width:40%; font-size: 28px;">
+
+<strong>🧭 고객 응대, 더 이상 막막하지 않도록</strong>
 
 
+<li style="margin-top: 2.6rem !important;"> 💰 <strong>가성비</strong>를 따지는 고객에겐? </li>
+
+"합리적인 선택을 돕는 데이터 기반 추천"
+
+
+
+<li style="margin-top: 2.6rem !important"> 🔧 <strong>리모델링</strong>을 고려하는 고객에겐? </li>
+
+"리모델링 전후의 가치를 비교해 설득하세요"
+
+
+
+<li style="margin-top: 2.6rem !important"> 📍 <strong>선호하는 동네</strong>가 있는 고객에겐? </li>
+
+"지역별 특징과 매물을 연결해 신뢰를 쌓으세요"
+
+</div>
+
+</div>
+
+
+
+
+# 고객 응대자료
+
+
+
+내용
+
+
+
+# 신입 교육자료
