@@ -106,7 +106,7 @@ df_renamed.columns
 df_renamed
 
 
-csv_path = "../ames_kor.csv"
+csv_path = "../ames_cleaned.csv"
 df_renamed.to_csv(csv_path, index=False)
 csv_path
 
@@ -138,12 +138,6 @@ filtered = df.loc[(df['위도'].isna()) & (~df['주소'].isna()), :]
 
 # 주소도 없는 경우: 20개
 len(df.loc[(df['위도'].isna()) & (df['주소'].isna()), :])
-
-# 주소를 찾아서 위도경도 찾기
-filtered.iloc[:20, -3]
-filtered.iloc[20:40, -3]
-filtered.iloc[40:60, -3]
-filtered.iloc[60:, -3]
 
 
 from geopy.geocoders import Nominatim
@@ -203,3 +197,110 @@ df = df.dropna()
 df
 df.to_csv(csv_path, index=False)
 
+
+###############################################
+# 데이터 불러오기 (영문)
+load_df = pd.read_csv('../kaggle/ames.csv')
+
+
+
+# Nan 이 없음 을 나타내는 컬럼들
+nan_colums_eng = ['BsmtCond', 'BsmtFinType2', 'BsmtExposure',
+                  'BsmtFinType1', 'FireplaceQu', 'GarageType', 
+                  'GarageFinish', 'GarageQual', 'GarageCond',
+                  'PoolQC', 'MasVnrType', 'Fence', 'MiscFeature',
+                    'Alley', 'BsmtQual']
+
+load_df['LotFrontage'].fillna(0, inplace=True)
+load_df['GarageYrBlt'].fillna(0, inplace=True)
+
+load_df[nan_colums_eng] = load_df[nan_colums_eng].fillna("없음")
+
+load_df.isna().sum()[load_df.isna().sum() > 0]
+'''
+MasVnrArea      14
+BsmtFinSF1       1
+BsmtFinSF2       1
+BsmtUnfSF        1
+TotalBsmtSF      1
+Electrical       1
+BsmtFullBath     2
+BsmtHalfBath     2
+GarageCars       1
+GarageArea       1
+GeoRefNo        20
+Prop_Addr       20
+Latitude        97
+Longitude       97
+'''
+
+
+# 주소는 있는데 위도 경도가 없는 경우
+filtered = load_df.loc[(load_df['Latitude'].isna()) & (~load_df['Prop_Addr'].isna()), :]
+
+# 주소도 없는 경우: 20개
+len(load_df.loc[(load_df['Latitude'].isna()) & (load_df['Prop_Addr'].isna()), :])
+
+
+from geopy.geocoders import Nominatim
+import time
+geolocator = Nominatim(user_agent="ames_geocoder")
+
+# 위도/경도 컬럼 생성
+filtered['위도_보정'] = None
+filtered['경도_보정'] = None
+
+# 주소 기반 위도/경도 검색
+find = 0
+not_find = 0
+for idx, row in filtered.iterrows():
+    try:
+        # 주소 + 도시 이름으로 검색 정확도 향상
+        full_address = f"{row['Prop_Addr']}, Ames, Iowa"
+        location = geolocator.geocode(full_address)
+
+        if location:
+            filtered.at[idx, '위도_보정'] = location.latitude
+            filtered.at[idx, '경도_보정'] = location.longitude
+            print(f"[O] 주소 찾음: {full_address} → 위도: {location.latitude}, 경도: {location.longitude}")
+            find += 1
+        else:
+            print(f"[X] 주소 찾을 수 없음: {full_address}")
+            not_find += 1
+    except Exception as e:
+        print(f"[!] 오류 발생 at {row['주소']} → {e}")
+        not_find += 1
+    time.sleep(1)  # API 과부하 방지
+
+# 기존 df에 위도/경도 덮어쓰기
+load_df.loc[filtered.index, 'Latitude'] = filtered['위도_보정']
+load_df.loc[filtered.index, 'Longitude'] = filtered['경도_보정']
+
+# 주소 찾은 개수: 42, 찾지 못한 개수: 35
+print(f"주소 찾은 개수: {find}, 찾지 못한 개수: {not_find}")    
+
+load_df.isna().sum()[load_df.isna().sum() > 0]
+'''
+MasVnrArea      14
+BsmtFinSF1       1
+BsmtFinSF2       1
+BsmtUnfSF        1
+TotalBsmtSF      1
+Electrical       1
+BsmtFullBath     2
+BsmtHalfBath     2
+GarageCars       1
+GarageArea       1
+GeoRefNo        20
+Prop_Addr       20
+Latitude        55
+Longitude       55
+
+'''
+
+load_df = load_df.dropna()
+load_df.to_csv(csv_path, index=False)
+
+df = pd.read_csv(csv_path)
+df
+df.isna().sum()[df.isna().sum() > 0]
