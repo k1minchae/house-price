@@ -1,0 +1,54 @@
+---
+title: "대시보드"
+project:
+  type: website
+  output-dir: docs
+format: "dashboard"
+---
+
+# 페이지1
+페이지1
+
+## Row {height="70%"}
+
+```python
+a = 1
+print(a)
+```
+
+
+## Row {height="30%"}
+
+### part 1
+
+```python
+b = 1
+print(b)
+```
+
+### part2 {.tabset}
+
+```{python}
+#| title: Chart 2
+#| echo: true
+#| eval: true
+c = 1
+print(c)
+```
+
+```{python}
+#| title: Chart 3
+e = 1
+print(e)
+```
+
+### part3
+row 안이 세개로 쪼개지네요 
+
+
+::: {.card title="제목"}
+Card text
+마크다운만 입력된 패널을 추가할 수 있습니다.
+:::
+
+
