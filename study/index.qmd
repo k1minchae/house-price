@@ -376,91 +376,254 @@ print("난방시설이 나쁜 주택이 거의 없음을 알 수 있습니다.")
 
 # 집값에 영향을 주는 요인
 
+### 
 
-## Row
+<p style="font-size: 24px; font-weight: bold;"> 🏠 안성맞춤부동산 신입사원 교육 자료: 집값에 영향을 주는 핵심 요인 🏠 </p>
+
+###
+
+```{python}
+
+#|echo: false
+#|eval: true
+import numpy as np
+import pandas as pd
+import seaborn as sns
+
+df_cleaned = pd.read_csv("../soohy/df_cleaned.csv")
+
+
+# SalePrice와의 상관계수 계산
+corr_matrix = df_cleaned.corr(numeric_only=True)
+top_corr = corr_matrix['SalePrice'].abs().sort_values(ascending=False).head(11)  # 본인 포함 상위 11개 (SalePrice 포함됨)
+
+# 상관계수 높은 상위 10개 변수 추출 (SalePrice 제외)
+top_features = top_corr.index[1:]  # SalePrice 본인은 제외
+
+
+# 히트맵 그리기
+_=plt.figure(figsize=(10, 8))
+_=sns.heatmap(df_cleaned[top_features.tolist() + ['SalePrice']].corr(), annot=True, cmap='coolwarm', fmt='.2f')
+_=plt.title('Correlated Features with SalePrice')
+plt.show()
+```
+
+
+| 변수명               | 상관계수   |
+|---------------------|------------|
+| TotalArea           | 0.846837   |
+| TotalHouse          | 0.822480   |
+| OverallQual         | 0.793038   |
+| Total_sqr_footage   | 0.777079   |
+| GrLivArea           | 0.722949   |
+| GarageCars          | 0.639265   |
+| Total_Bathrooms     | 0.639052   |
+| YearBuilt           | 0.546182   |
+| YearRemodAdd        | 0.511456   |
+| MasVnrArea          | 0.503615   |
+
+
+## Row 
+
+### Column {.tabset}
 
 ```{python}
 #|echo: false
 #|eval: true
+#|title: TotalArea
 
-df_cleaned = pd.read_csv("../soohy/df_cleaned.csv")
-
-import plotly.graph_objects as go
-import numpy as np
-
-# 공통 변수 리스트
-common_features = ['TotalArea', 'YearBuilt', 'GrLivArea', 'OverallQual', 'Total_sqr_footage']
-x_var = common_features[0]  # 기본 X축
-
-# 초기 회귀선 계산
-x = df_cleaned[x_var]
+x = df_cleaned['TotalArea']
 y = df_cleaned['SalePrice']
-coef = np.polyfit(x, y, 1)  # 1차 회귀
-reg_line = coef[0] * x + coef[1]
+coef = np.polyfit(x, y, 1)
+line_eq = f'y = {coef[0]:.2f}x + {coef[1]:,.0f}'
 
-# Figure 생성
-fig = go.Figure()
+_=plt.figure(figsize=(8, 6))
+_=sns.regplot(x=x, y=y, scatter_kws={'alpha': 0.5}, line_kws={'color': 'red', 'lw': 2})
+_=plt.title(f'TotalArea vs SalePrice\n{line_eq}', fontsize=14)
+_=plt.xlabel('TotalArea')
+_=plt.ylabel('SalePrice')
+_=plt.grid(True)
+_=plt.tight_layout()
+plt.show()
 
-# 산점도
-fig = fig.add_trace(
-    go.Scatter(
-        x=x, y=y,
-        mode='markers',
-        marker=dict(color='steelblue', size=8, line=dict(width=1, color='DarkSlateGrey')),
-        name='Data'
-    )
-)
-
-# 회귀선
-fig = fig.add_trace(
-    go.Scatter(
-        x=x,
-        y=reg_line,
-        mode='lines',
-        line=dict(color='red', width=2),
-        name='Regression Line'
-    )
-)
-
-# 드롭다운 버튼 설정
-buttons = []
-for feature in common_features:
-    x = df_cleaned[feature]
-    y = df_cleaned['SalePrice']
-    coef = np.polyfit(x, y, 1)
-    reg_line = coef[0] * x + coef[1]
-    buttons.append(
-        dict(
-            label=feature,
-            method='update',
-            args=[
-                {'x': [x, x], 'y': [y, reg_line]},
-                {'xaxis.title': feature,
-                 'title': f'{feature} vs SalePrice'}
-            ],
-        )
-    )
-
-# 레이아웃 설정
-fig = fig.update_layout(
-    title=f'{x_var} vs SalePrice',
-    template='plotly_white',
-    width=1000,
-    height=600,
-    xaxis_title=x_var,
-    yaxis_title='SalePrice',
-    updatemenus=[
-        dict(
-            buttons=buttons,
-            direction='down',
-            showactive=True,
-            x=0.5,
-            xanchor='center',
-            y=1.15,
-            yanchor='top'
-        )
-    ]
-)
-
-fig
 ```
+
+```{python}
+#|echo: false
+#|eval: true
+#|title: OverallQual
+
+x = df_cleaned['OverallQual']
+y = df_cleaned['SalePrice']
+coef = np.polyfit(x, y, 1)
+line_eq = f'y = {coef[0]:.2f}x + {coef[1]:,.0f}'
+
+_=plt.figure(figsize=(8,6))
+_=sns.regplot(x=x, y=y, scatter_kws={'alpha': 0.5}, line_kws={'color': 'red', 'lw': 2})
+_=plt.title(f'OverallQual vs SalePrice\n{line_eq}', fontsize=14)
+_=plt.xlabel('OverallQual')
+_=plt.ylabel('SalePrice')
+_=plt.grid(True)
+_=plt.tight_layout()
+plt.show()
+```
+
+```{python}
+#|echo: false
+#|eval: true
+#|title: Total_sqr_footage
+x = df_cleaned['Total_sqr_footage']
+y = df_cleaned['SalePrice']
+coef = np.polyfit(x, y, 1)
+line_eq = f'y = {coef[0]:.2f}x + {coef[1]:,.0f}'
+
+_=plt.figure(figsize=(8, 6))
+_=sns.regplot(x=x, y=y, scatter_kws={'alpha': 0.5}, line_kws={'color': 'red', 'lw': 2})
+_=plt.title(f'Total_sqr_footage vs SalePrice\n{line_eq}', fontsize=14)
+_=plt.xlabel('Total_sqr_footage')
+_=plt.ylabel('SalePrice')
+_=plt.grid(True)
+_=plt.tight_layout()
+plt.show()
+```
+
+```{python}
+#|echo: false
+#|eval: true
+#|title: GrLivArea
+x = df_cleaned['GrLivArea']
+y = df_cleaned['SalePrice']
+coef = np.polyfit(x, y, 1)
+line_eq = f'y = {coef[0]:.2f}x + {coef[1]:,.0f}'
+
+_=plt.figure(figsize=(8, 6))
+_=sns.regplot(x=x, y=y, scatter_kws={'alpha': 0.5}, line_kws={'color': 'red', 'lw': 2})
+_=plt.title(f'GrLivArea vs SalePrice\n{line_eq}', fontsize=14)
+_=plt.xlabel('GrLivArea')
+_=plt.ylabel('SalePrice')
+_=plt.grid(True)
+_=plt.tight_layout()
+plt.show()
+```
+
+```{python}
+#|echo: false
+#|eval: true
+#|title: YearBuilt
+
+x = df_cleaned['YearBuilt']
+y = df_cleaned['SalePrice']
+coef = np.polyfit(x, y, 1)
+line_eq = f'y = {coef[0]:.2f}x + {coef[1]:,.0f}'
+
+_=plt.figure(figsize=(8, 6))
+_=sns.regplot(x=x, y=y, scatter_kws={'alpha': 0.5}, line_kws={'color': 'red', 'lw': 2})
+_=plt.title(f'YearBuilt vs SalePrice\n{line_eq}', fontsize=14)
+_=plt.xlabel('YearBuilt')
+_=plt.ylabel('SalePrice')
+_=plt.grid(True)
+_=plt.tight_layout()
+plt.show()
+```
+
+###
+
+<p style="font-size: 24px; font-weight: bold;">Elastic Net 회귀 분석 </p>
+
+위 상관관계를 기반으로 유의미해 보이는 변수들을 직관적으로 선정하여 회귀 분석에 활용
+
+독립 변수(X): TotalArea, YearBuilt, GrLivArea, OverallQual, Total_sqr_footage
+
+종속 변수(y): SalePrice
+
+
+| 항목                    | 값            | 해석 |
+|-------------------------|--------------|------|
+| **Best Parameters**     | -             | Elastic Net이 자동으로 찾은 최적 파라미터. |
+| └─ alpha                | 0.0119        | 규제 강도가 낮음. 과적합을 막으면서도 모델의 자유도 확보. |
+| └─ l1_ratio             | 0.1           | L1과 L2 정규화 비율. 0.1은 거의 L2(릿지)에 가까움. |
+| **Test RMSE**           | 27,524.69     | 평균적으로 예측값과 실제값의 오차가 약 2.75만 달러. |
+| **Test R²**             | 0.880         | 설명력.    전체 주택 가격 변동성의 88%를 모델이 설명함. |
+
+### 
+
+<p style="font-size: 24px; font-weight: bold;"> 모델 결과 해석</p>
+
+<br>
+
+모델은 **적절한 정규화(alpha=0.0119)**와 **거의 L2 중심의 조합(l1_ratio=0.1)**을 사용해 학습됨.
+
+즉, 거의 **Ridge**에 가까운 **Elastic Net** 모델.
+
+**RMSE (Root Mean Squared Error)**는 27,524.69로, 이는 모델이 실제 주택 가격과 예측값 사이에서 평균적으로 약 2.75만 달러 수준의 오차를 보인다는 의미.
+
+R² 값이 **0.88**이라는 것은, 모델이 **SalePrice**의 변동성을 **88%**나 설명할 수 있다는 뜻으로, 상당히 높은 예측력을 가진 모델임.
+
+
+###
+
+<p style="font-size: 24px; font-weight: bold;">회귀 계수 설명</p>
+
+| 변수명               | 회귀 계수        |
+|---------------------|------------------|
+| OverallQual         | 25,842.27        |
+| TotalArea           | 24,015.77        |
+| Total_sqr_footage   | 18,804.72        |
+| YearBuilt           | 8,263.44         |
+| GrLivArea           | 1,880.68         |
+
+<br>
+
+### 
+**TotalArea**  
+
+회귀 계수: 24,015.77  
+
+→ 주택 전체 면적이 클수록 가격 상승. 면적 1 단위 증가 시 **약 2.4만 달러** 상승
+
+**YearBuilt** 
+
+회귀 계수: 8,263.44  
+
+→ 집이 1년 더 최근에 지어졌을수록, 가격이 **약 8,263.44** 더 높음
+
+**GrLivArea**  
+
+회귀 계수: 1,880.68  
+
+→ 지상 거주 면적이 1제곱미터 늘어나면, 가격이 **약 1,880.68** 증가함
+
+**OverallQual**  
+
+회귀 계수: 25,842.27  
+
+→ 주택의 전반적 품질이 한 단계 올라가면, 가격이 **약 25,842.27** 상승
+
+**Total_sqr_footage**
+
+회귀 계수: 18,804.72  
+
+→ 총 실내 면적이 1제곱미터 늘어나면, 가격이 **약 18,804.72** 상승함
+
+### 
+<p style="font-size: 30px; font-weight: bold;">실무에서 이렇게 활용하세요!</p>
+
+- **매물 등록 시 강조 포인트 설정**
+  - 예: `2020년 신축 + 고급 마감재 + 넓은 실내 면적`
+
+- **리모델링 투자 우선순위 판단**
+  - 면적 확장보다 품질 개선이 더 효과적일 수 있음
+
+- **고객 상담 시 데이터 기반 설명**
+  - 고객: “이 집이 왜 이렇게 비싸요?”  
+  - 중개사: "이 집은 같은 면적이라도 **건축 연도**가 더 최근이고, **건축 품질 등급이 높아서** 가격이 더 나옵니다."
+  - → 감에 의존하지 않고 **신뢰감 있는 설명** 가능
+
+- **비슷한 매물 비교할 때**
+  - 동일 면적대라도 **가격 차이가 나는 이유**를 설명할 수 있어요.
+  - 예: `GrLivArea`는 비슷하지만 `TotalArea`나 `품질등급`이 다를 수 있음 → "이 집은 외관은 비슷해도 지하공간이 넓고 마감재가 더 좋습니다."
+
+- **고객 니즈에 맞춘 매물 추천**
+  - 실거주 목적 고객이라면 `GrLivArea` 중심으로 제안  
+  - 임대 수익 중심 고객이라면 `Total_sqr_footage`가 넓은 물건 추천  
+  - → “1층과 지하층 활용이 많은 집을 찾으시는 거라면 이 매물이 더 적합합니다.”
