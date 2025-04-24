@@ -2,11 +2,11 @@
 title: "신입 교육자료"
 ---
 
-# 1
+## 1
 
-<div style="height: 2000px !important; width:100% !important; display: flex; justify-content: space-around;">
+<div style="max-height: 600px !important; width:100% !important; display: flex; justify-content: space-around;">
 
-<div style="overflow-y:auto;">
+<div style="overflow-y:auto; width:30%; height:100%;">
 <h3>데이터 불러오기</h3>
 
 ```{python}
@@ -16,18 +16,61 @@ import pandas as pd
 
 # 데이터 불러오기
 load_df = pd.read_csv('../kaggle/ames.csv')
-load_df.info(max_cols=10)
+load_df.info(max_cols=0)
 ```
 
-- 행 
-- 열
+- 행(데이터)은 총 **2579개**
+- 열(속성)은 총 **85개**로 이루어져있습니다.
+- 즉, **집이 2579개** 있고 각각의 집을 나타내는 **속성이 85개**가 있습니다.
 
 </div>
 
-<div>
+<div style="overflow-y:auto; width:30%; max-height:100%;">
+
+<h3>결측치 확인</h3>
+
+```{python}
+#|eval: true
+#|echo: false
+print(load_df.isna().sum()[load_df.isna().sum() > 100])
+
+```
+
+- 결측치가 100개 이상인 컬럼만 필터링을 해보았습니다.
+- 확인 결과 <strong>결측치가 상당히 많은</strong> 것을 알 수 있습니다.
+- Kaggle Data 설명을 참고하여 <code style="color:red;">NaN</code>값이 왜이렇게 많은지 살펴봤더니, 
 
 
-결측치확인
+<p><code style="color:red;">NaN</code>값이 **'없음'**을 나타내는 데이터가 많았습니다.</p>
+
+| 영문 변수명        | 설명 (한글)             |
+|-------------------|--------------------------|
+| BsmtCond          | 지하실 상태              |
+| BsmtFinType2      | 지하실 마감 공간 유형 2  |
+| BsmtExposure      | 지하실 외부 노출 여부    |
+| BsmtFinType1      | 지하실 마감 공간 유형 1  |
+| FireplaceQu       | 벽난로 품질              |
+| GarageType        | 차고 타입                |
+| GarageFinish      | 차고 마감 상태           |
+| GarageQual        | 차고 품질                |
+| GarageCond        | 차고 상태                |
+| PoolQC            | 수영장 품질              |
+| MasVnrType        | 벽돌 베니어 유형         |
+| Fence             | 울타리 품질              |
+| MiscFeature       | 기타 부대시설            |
+| Alley             | 골목 포장 상태           |
+| BsmtQual          | 지하실 품질              |
+
+- 위 표에 들어있는 데이터는 <code style="color:red;">NaN</code> 값이 **'없음'** 을 나타냅니다.
+- 그래서, 저희는 해당 데이터를 결측치로 인식하지 않고 **'없다'라는 의미를 명확히** 하고자 했습니다.
+
+
+</div>
+
+
+<div style="overflow-y:auto; width:30%; height:100%;">
+<h3>결측치 처리(1)</h3>
+
 
 
 </div>
@@ -35,11 +78,9 @@ load_df.info(max_cols=10)
 
 
 
-
-
 </div>
 
-# 2
+## 2
 
 
 # 3

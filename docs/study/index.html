@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -134,7 +168,7 @@ ul.task-list li input[type="checkbox"] {
         
       </div>
     </div>
-<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-section" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#section" data-scrolling="false" href="#section" aria-controls="section" aria-selected="true"><span class="nav-link-text">1</span></a></li><li class="nav-item" role="presentation"><a id="tab-section-1" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#section-1" data-scrolling="false" href="#section-1" aria-controls="section-1" aria-selected="false"><span class="nav-link-text">2</span></a></li><li class="nav-item" role="presentation"><a id="tab-section-2" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#section-2" data-scrolling="false" href="#section-2" aria-controls="section-2" aria-selected="false"><span class="nav-link-text">3</span></a></li></ul></div></div>
+<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-section-2" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#section-2" data-scrolling="false" href="#section-2" aria-controls="section-2" aria-selected="true"><span class="nav-link-text">3</span></a></li></ul></div></div>
 </nav>
 </header></header>
 <!-- content -->
@@ -143,14 +177,169 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
 <!-- main -->
 
-<div class="bslib-grid-item html-fill-item tab-content bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
-<div id="section" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-section">
-
+<div class="bslib-grid-item html-fill-item tab-content bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, max-content) minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div style="max-height: 600px !important; width:100% !important; display: flex !important; justify-content: space-around !important;" class="html-fill-item html-fill-container">
+<div style="overflow-y:auto; width:30%; height:100%;" class="html-fill-item html-fill-container">
+<h3>
+데이터 불러오기
+</h3>
+<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="sourceCode cell-code html-fill-item html-fill-container" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 데이터 불러오기</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>load_df <span class="op">=</span> pd.read_csv(<span class="st">'../kaggle/ames.csv'</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>load_df.info(max_cols<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 2579 entries, 0 to 2578
+Columns: 85 entries, PID to Longitude
+dtypes: float64(14), int64(27), object(44)
+memory usage: 1.7+ MB</code></pre>
 </div>
-<div id="section-1" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-section-1">
-
 </div>
-<div id="section-2" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-section-2">
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<ul>
+<li>행(데이터)은 총 <strong>2579개</strong></li>
+<li>열(속성)은 총 <strong>85개</strong>로 이루어져있습니다.</li>
+<li>즉, <strong>집이 2579개</strong> 있고 각각의 집을 나타내는 <strong>속성이 85개</strong>가 있습니다.</li>
+</ul>
+</div>
+<div style="overflow:auto; width:30%; max-height:100%;" class="html-fill-item html-fill-container">
+<h3>
+결측치 확인
+</h3>
+<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>LotFrontage      462
+Alley           2411
+MasVnrType      1572
+FireplaceQu     1241
+GarageType       127
+GarageYrBlt      129
+GarageFinish     129
+GarageQual       129
+GarageCond       129
+PoolQC          2570
+Fence           2054
+MiscFeature     2482
+dtype: int64</code></pre>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<ul>
+<li>결측치가 100개 이상인 컬럼만 필터링을 해보았습니다.</li>
+<li>확인 결과 <strong>결측치가 상당히 많은</strong> 것을 알 수 있습니다.</li>
+<li>Kaggle Data 설명을 참고하여 <code style="color:red;">NaN</code>값이 왜이렇게 많은지 살펴봤더니,</li>
+</ul>
+<p>
+<code style="color:red;">NaN</code>값이 <strong>‘없음’</strong>을 나타내는 데이터가 많았습니다.
+</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>영문 변수명</th>
+<th>설명 (한글)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>BsmtCond</td>
+<td>지하실 상태</td>
+</tr>
+<tr class="even">
+<td>BsmtFinType2</td>
+<td>지하실 마감 공간 유형 2</td>
+</tr>
+<tr class="odd">
+<td>BsmtExposure</td>
+<td>지하실 외부 노출 여부</td>
+</tr>
+<tr class="even">
+<td>BsmtFinType1</td>
+<td>지하실 마감 공간 유형 1</td>
+</tr>
+<tr class="odd">
+<td>FireplaceQu</td>
+<td>벽난로 품질</td>
+</tr>
+<tr class="even">
+<td>GarageType</td>
+<td>차고 타입</td>
+</tr>
+<tr class="odd">
+<td>GarageFinish</td>
+<td>차고 마감 상태</td>
+</tr>
+<tr class="even">
+<td>GarageQual</td>
+<td>차고 품질</td>
+</tr>
+<tr class="odd">
+<td>GarageCond</td>
+<td>차고 상태</td>
+</tr>
+<tr class="even">
+<td>PoolQC</td>
+<td>수영장 품질</td>
+</tr>
+<tr class="odd">
+<td>MasVnrType</td>
+<td>벽돌 베니어 유형</td>
+</tr>
+<tr class="even">
+<td>Fence</td>
+<td>울타리 품질</td>
+</tr>
+<tr class="odd">
+<td>MiscFeature</td>
+<td>기타 부대시설</td>
+</tr>
+<tr class="even">
+<td>Alley</td>
+<td>골목 포장 상태</td>
+</tr>
+<tr class="odd">
+<td>BsmtQual</td>
+<td>지하실 품질</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>위 표에 들어있는 데이터는 <code style="color:red;">NaN</code> 값이 <strong>‘없음’</strong> 을 나타냅니다.</li>
+<li>그래서, 저희는 해당 데이터를 결측치로 인식하지 않고 <strong>’없다’라는 의미를 명확히</strong> 하고자 했습니다.</li>
+</ul>
+</div>
+<div style="overflow-y:auto; width:30%; height:100%;" class="html-fill-item html-fill-container">
+<h3>
+결측치 처리(1)
+</h3>
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div id="section-2" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-section-2">
 <div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: ; grid-auto-columns: minmax(0, 1fr);">
 
 
