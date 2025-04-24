@@ -376,3 +376,91 @@ print("난방시설이 나쁜 주택이 거의 없음을 알 수 있습니다.")
 
 # 집값에 영향을 주는 요인
 
+
+## Row
+
+```{python}
+#|echo: false
+#|eval: true
+
+df_cleaned = pd.read_csv("../soohy/df_cleaned.csv")
+
+import plotly.graph_objects as go
+import numpy as np
+
+# 공통 변수 리스트
+common_features = ['TotalArea', 'YearBuilt', 'GrLivArea', 'OverallQual', 'Total_sqr_footage']
+x_var = common_features[0]  # 기본 X축
+
+# 초기 회귀선 계산
+x = df_cleaned[x_var]
+y = df_cleaned['SalePrice']
+coef = np.polyfit(x, y, 1)  # 1차 회귀
+reg_line = coef[0] * x + coef[1]
+
+# Figure 생성
+fig = go.Figure()
+
+# 산점도
+fig = fig.add_trace(
+    go.Scatter(
+        x=x, y=y,
+        mode='markers',
+        marker=dict(color='steelblue', size=8, line=dict(width=1, color='DarkSlateGrey')),
+        name='Data'
+    )
+)
+
+# 회귀선
+fig = fig.add_trace(
+    go.Scatter(
+        x=x,
+        y=reg_line,
+        mode='lines',
+        line=dict(color='red', width=2),
+        name='Regression Line'
+    )
+)
+
+# 드롭다운 버튼 설정
+buttons = []
+for feature in common_features:
+    x = df_cleaned[feature]
+    y = df_cleaned['SalePrice']
+    coef = np.polyfit(x, y, 1)
+    reg_line = coef[0] * x + coef[1]
+    buttons.append(
+        dict(
+            label=feature,
+            method='update',
+            args=[
+                {'x': [x, x], 'y': [y, reg_line]},
+                {'xaxis.title': feature,
+                 'title': f'{feature} vs SalePrice'}
+            ],
+        )
+    )
+
+# 레이아웃 설정
+fig = fig.update_layout(
+    title=f'{x_var} vs SalePrice',
+    template='plotly_white',
+    width=1000,
+    height=600,
+    xaxis_title=x_var,
+    yaxis_title='SalePrice',
+    updatemenus=[
+        dict(
+            buttons=buttons,
+            direction='down',
+            showactive=True,
+            x=0.5,
+            xanchor='center',
+            y=1.15,
+            yanchor='top'
+        )
+    ]
+)
+
+fig
+```
