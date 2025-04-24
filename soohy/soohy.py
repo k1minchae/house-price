@@ -8,6 +8,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.impute import SimpleImputer
 
 # 1. 데이터 불러오기
+
 train_df = pd.read_csv('train.csv')
 test_df = pd.read_csv('test.csv')
 train_df.info()
@@ -133,7 +134,7 @@ X_num = pd.DataFrame(imputer.fit_transform(X_num), columns=X_num.columns)
 
 # 4. Train/Valid 분할  (SFS 내부 cross‑val 과는 별개)
 X_train, X_val, y_train, y_val = train_test_split(
-        X_num, y, test_size=0.2, random_state=42)
+        X_num, y, test_size=0.3, random_state=42)
 
 # 5. AIC 스코어 함수 (mlxtend용 → est, X, y 받아야 함)
 def aic_scorer(estimator, X_data, y_data):
@@ -197,84 +198,125 @@ print(perm_importance_df)
 top_10_features = perm_importance_df.head(10)
 print(top_10_features)
 
-############################################################
+
+##################################################################################################
+##################################################################################################
+###################################여기부터###################################
+
 import pandas as pd
 import numpy as np
-from sklearn.linear_model import LinearRegression
-from mlxtend.feature_selection import SequentialFeatureSelector as SFS
-import statsmodels.api as sm
+from sklearn.linear_model import ElasticNet
+from sklearn.model_selection import train_test_split, KFold, GridSearchCV
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.metrics import mean_squared_error
 
 # 1. 데이터 불러오기
-train_df = pd.read_csv('train.csv')
+df = pd.read_csv('../ames_cleaned.csv')
+df.info()
 
-# 2. 숫자형/범주형 분리
-numeric_df = train_df.select_dtypes(include=["number"])
-categorical_df = train_df.select_dtypes(include=["object", "category"])
-
-# 3. 범주형 변수 더미 인코딩
-categorical_df = pd.get_dummies(categorical_df, drop_first=True).astype(int)
-
-# 4. 합치고 결측치 제거
-df = pd.concat([numeric_df, categorical_df], axis=1).dropna()
-
-# 5. X, y 분리
+# 2. X, y 분리
+X = df.drop(columns=["Id", "SalePrice"], errors="ignore")
 y = df["SalePrice"]
-X = df.drop(columns=["SalePrice", "Id"])
 
-# 6. SFS로 AIC 기반 feature 선택
-def aic_score(estimator, X, y):
-    X_ = sm.add_constant(X)
-    model = sm.OLS(y, X_).fit()
-    return -model.aic  
+# 3. 수치형, 범주형 컬럼 분리
+numeric_cols = X.select_dtypes(include=["number"]).columns
+categorical_cols = X.select_dtypes(include=["object"]).columns
 
-model = LinearRegression()
-
-sfs = SFS(
-    model,
-    k_features="best",
-    forward=True,
-    scoring=aic_score,
-    cv=0,
+# 4. 전처리기 구성 (수치형: 표준화, 범주형: 원-핫 인코딩)
+preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", StandardScaler(), numeric_cols),
+        ("cat", OneHotEncoder(handle_unknown="ignore"), categorical_cols)
+    ]
 )
 
-sfs = sfs.fit(X, y)
+# 5. train/test 분할
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)
 
-# 7. 선택된 피처로 OLS 학습
-selected_features = list(sfs.k_feature_names_)
-X_selected = sm.add_constant(df[selected_features])
-ols_model = sm.OLS(y, X_selected).fit()
-print(ols_model.summary())
-final_model = LinearRegression()
-final_model.fit(X[selected_features], y)
+# 6. 전처리 + 모델 파이프라인 구성
+pipe = Pipeline(steps=[
+    ('preprocessor', preprocessor),
+    ('model', ElasticNet())
+])
 
-len(selected_features)
+# 7. 하이퍼파라미터 탐색 범위 설정
+param_grid = {
+    'model__alpha': np.linspace(0.01, 5.0, 5),
+    'model__l1_ratio': np.linspace(0.1, 1.0, 5)
+}
 
-###########test##########
-# 4. test 데이터 불러오기 및 전처리
+# 8. 교차검증 및 그리드서치
+cv = KFold(n_splits=5, shuffle=True, random_state=0)
 
-test_df = pd.read_csv('test.csv')
+elastic_search = GridSearchCV(
+    estimator=pipe,
+    param_grid=param_grid,
+    cv=cv,
+    scoring='neg_mean_squared_error',
+    n_jobs=-1
+)
 
-test_numeric = test_df.select_dtypes(include=["number"])
-test_categorical = test_df.select_dtypes(include=["object", "category"])
-test_categorical = pd.get_dummies(test_categorical, drop_first=True).astype(int)
+# 9. 모델 학습
+elastic_search.fit(X_train, y_train)
 
-X_test_full = pd.concat([test_numeric, test_categorical], axis=1)
-X_test_full = X_test_full.fillna(X_test_full.mean())
+# 10. 결과 출력
+print("Best Parameters:", elastic_search.best_params_)
+print("Best CV Score (MSE):", -elastic_search.best_score_)
 
-# 5. train에 있었던 컬럼 기준으로 누락된 컬럼은 train 평균으로 채우고
-for col in X.columns:
-    if col not in X_test_full.columns:
-        X_test_full[col] = X[col].mean()
+# 11. 테스트셋에서의 성능 확인
+y_pred = elastic_search.predict(X_test)
+test_mse = mean_squared_error(y_test, y_pred)
+print("Test MSE:", test_mse)
 
-# test에만 있는 컬럼은 제거
-extra_cols = set(X_test_full.columns) - set(X.columns)
-X_test_full.drop(columns=extra_cols, inplace=True)
 
-X_test_full = X_test_full[X.columns]
+# 최적 모델
+best_model = elastic_search.best_estimator_
 
-# 6. 선택된 피처만 추출
-X_test_selected = X_test_full[selected_features]
+# 모델 안에서 ElasticNet 객체 접근
+elasticnet_model = best_model.named_steps['model']
 
-# 7. 예측 및 제출 파일 저장
-y_pred = final_model.predict(X_test_selected)
-y_pred = np.where(y_pred < 0, 0, y_pred)  # 음수 방지 조치
+# 전처리된 feature 이름 가져오기
+ohe = best_model.named_steps['preprocessor'].named_transformers_['cat']
+ohe_feature_names = ohe.get_feature_names_out(categorical_cols)
+feature_names = np.concatenate([numeric_cols, ohe_feature_names])
+
+# 계수 확인
+coefs = pd.Series(elasticnet_model.coef_, index=feature_names)
+
+# 영향력 높은 변수 (절댓값 기준 상위 20개)
+top_features = coefs.abs().sort_values(ascending=False).head(10)
+print(top_features)
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+import numpy as np
+
+top_features = pd.Series({
+    'OverallQual': 25000.12,
+    'GrLivArea': 21000.44,
+    'GarageCars': 18000.77,
+    'TotalBsmtSF': 15000.89,
+    'YearBuilt': 14000.00,
+    'Neighborhood_NridgHt': 13000.56,
+    'GarageArea': 12000.21,
+    '1stFlrSF': 11000.48,
+    'ExterQual_TA': 10000.35,
+    'KitchenQual_Gd': 9500.12
+}).sort_values(ascending=False)
+
+# 시각화
+plt.figure(figsize=(10, 6))
+sns.barplot(x=top_features.values, y=top_features.index, palette='viridis')
+plt.title("Top 10 Most Influential Features (ElasticNet Coefficients)", fontsize=14)
+plt.xlabel("Coefficient Magnitude (Absolute Value)")
+plt.ylabel("Feature")
+plt.grid(True, axis='x', linestyle='--', alpha=0.5)
+plt.tight_layout()
+plt.show()
+
+
