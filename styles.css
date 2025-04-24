@@ -127,3 +127,8 @@ a span div p h1 h2 h3 h4 h5 h6 ul li ol {
   font-size: 1.2rem;
   font-weight: semi-bold;
 }
+
+.card-body {
+  width: 100% !important;
+  max-height: 600px !important;
+}
