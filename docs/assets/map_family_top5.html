@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_2bba1236df2bee5260c134e7b974736d {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_2bba1236df2bee5260c134e7b974736d" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_2bba1236df2bee5260c134e7b974736d = L.map(
+                "map_2bba1236df2bee5260c134e7b974736d",
+                {
+                    center: [42.03100507, -93.622184234],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 11,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_cec3fcb72e656f9213346f3e8b0cd3df = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_cec3fcb72e656f9213346f3e8b0cd3df.addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var marker_a57eee1c204ec153d661d23587408859 = L.marker(
+                [42.03363996, -93.66071125],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_6efc5be0802b4a7c591bb8037c164e16 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_a57eee1c204ec153d661d23587408859.setIcon(icon_6efc5be0802b4a7c591bb8037c164e16);
+        
+    
+        var popup_93189f84502b1f0844cd316489dfc06b = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_e6bb7abdf7dbe7774430e6da8fcee5f2 = $(`<div id="html_e6bb7abdf7dbe7774430e6da8fcee5f2" style="width: 100.0%; height: 100.0%;"><b>위도:</b> 42.03363996<br>                      <b>경도:</b> -93.66071125<br>                      <b>면적 점수:</b> 5점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 4점<br>                      <b>방 개수 점수:</b> 2점<br>                      <h5><b>Price:</b> $112,000<br>                      <h4><b>종합 점수:</b> 4.71점</div>`)[0];
+                popup_93189f84502b1f0844cd316489dfc06b.setContent(html_e6bb7abdf7dbe7774430e6da8fcee5f2);
+            
+        
+
+        marker_a57eee1c204ec153d661d23587408859.bindPopup(popup_93189f84502b1f0844cd316489dfc06b)
+        ;
+
+        
+    
+    
+            marker_a57eee1c204ec153d661d23587408859.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_2076473124801b8a0c94ab90b60c649b = L.marker(
+                [42.02619204, -93.60864389],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_ce549ee3e7edd7887186cce4dac29b40 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_2076473124801b8a0c94ab90b60c649b.setIcon(icon_ce549ee3e7edd7887186cce4dac29b40);
+        
+    
+        var popup_6c4b65fe40513f5b0aea5bd9840768e3 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_ee918770aad233c9ec69b1e653c841a0 = $(`<div id="html_ee918770aad233c9ec69b1e653c841a0" style="width: 100.0%; height: 100.0%;"><b>위도:</b> 42.02619204<br>                      <b>경도:</b> -93.60864389<br>                      <b>면적 점수:</b> 5점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 4점<br>                      <b>방 개수 점수:</b> 1점<br>                      <h5><b>Price:</b> $159,500<br>                      <h4><b>종합 점수:</b> 4.57점</div>`)[0];
+                popup_6c4b65fe40513f5b0aea5bd9840768e3.setContent(html_ee918770aad233c9ec69b1e653c841a0);
+            
+        
+
+        marker_2076473124801b8a0c94ab90b60c649b.bindPopup(popup_6c4b65fe40513f5b0aea5bd9840768e3)
+        ;
+
+        
+    
+    
+            marker_2076473124801b8a0c94ab90b60c649b.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_847cb9c2dbeaf06ac6db1ce1b9267bc3 = L.marker(
+                [42.03078187, -93.61044502],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_4142107f8da9a6e0405587bec21a8e73 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_847cb9c2dbeaf06ac6db1ce1b9267bc3.setIcon(icon_4142107f8da9a6e0405587bec21a8e73);
+        
+    
+        var popup_06cbab619ed320eb7052fbfbfb838774 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_b6b531e721a8368e7b29312cdc18761b = $(`<div id="html_b6b531e721a8368e7b29312cdc18761b" style="width: 100.0%; height: 100.0%;"><b>위도:</b> 42.03078187<br>                      <b>경도:</b> -93.61044502<br>                      <b>면적 점수:</b> 5점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 5점<br>                      <b>방 개수 점수:</b> 2점<br>                      <h5><b>Price:</b> $129,000<br>                      <h4><b>종합 점수:</b> 4.71점</div>`)[0];
+                popup_06cbab619ed320eb7052fbfbfb838774.setContent(html_b6b531e721a8368e7b29312cdc18761b);
+            
+        
+
+        marker_847cb9c2dbeaf06ac6db1ce1b9267bc3.bindPopup(popup_06cbab619ed320eb7052fbfbfb838774)
+        ;
+
+        
+    
+    
+            marker_847cb9c2dbeaf06ac6db1ce1b9267bc3.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_34c2de1f965e8c2e5e5fb2cb7ffca92b = L.marker(
+                [42.02711605, -93.61704072],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_9d94bfbd00f3a92dbf9d317b87c2836c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_34c2de1f965e8c2e5e5fb2cb7ffca92b.setIcon(icon_9d94bfbd00f3a92dbf9d317b87c2836c);
+        
+    
+        var popup_dc6664062ed875c051a6c22224e22f73 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_d79c8001d783d56dca9fc0a8efec1961 = $(`<div id="html_d79c8001d783d56dca9fc0a8efec1961" style="width: 100.0%; height: 100.0%;"><b>위도:</b> 42.02711605<br>                      <b>경도:</b> -93.61704072<br>                      <b>면적 점수:</b> 4점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 4점<br>                      <b>방 개수 점수:</b> 2점<br>                      <h5><b>Price:</b> $161,000<br>                      <h4><b>종합 점수:</b> 4.57점</div>`)[0];
+                popup_dc6664062ed875c051a6c22224e22f73.setContent(html_d79c8001d783d56dca9fc0a8efec1961);
+            
+        
+
+        marker_34c2de1f965e8c2e5e5fb2cb7ffca92b.bindPopup(popup_dc6664062ed875c051a6c22224e22f73)
+        ;
+
+        
+    
+    
+            marker_34c2de1f965e8c2e5e5fb2cb7ffca92b.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f44f0bbfe5a483f114ef139e5cb0fbda = L.marker(
+                [42.03729543, -93.61408029],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_f52a78d0985d43f43f67af265cd2c8dd = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_f44f0bbfe5a483f114ef139e5cb0fbda.setIcon(icon_f52a78d0985d43f43f67af265cd2c8dd);
+        
+    
+        var popup_b16ebfc71830f36efa9dc186f5c8f2b0 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_df3262002f735e0d3cfd5093b5918ea2 = $(`<div id="html_df3262002f735e0d3cfd5093b5918ea2" style="width: 100.0%; height: 100.0%;"><b>위도:</b> 42.03729543<br>                      <b>경도:</b> -93.61408029<br>                      <b>면적 점수:</b> 5점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 5점<br>                      <b>방 개수 점수:</b> 1점<br>                      <h5><b>Price:</b> $135,000<br>                      <h4><b>종합 점수:</b> 4.57점</div>`)[0];
+                popup_b16ebfc71830f36efa9dc186f5c8f2b0.setContent(html_df3262002f735e0d3cfd5093b5918ea2);
+            
+        
+
+        marker_f44f0bbfe5a483f114ef139e5cb0fbda.bindPopup(popup_b16ebfc71830f36efa9dc186f5c8f2b0)
+        ;
+
+        
+    
+    
+            marker_f44f0bbfe5a483f114ef139e5cb0fbda.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            tile_layer_cec3fcb72e656f9213346f3e8b0cd3df.addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            tile_layer_cec3fcb72e656f9213346f3e8b0cd3df.addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var marker_855181014297834ebe2bea051040fa58 = L.marker(
+                [42.03363996, -93.66071125],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_f969e83a1c48acc06d1abf9759c27a9c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_855181014297834ebe2bea051040fa58.setIcon(icon_f969e83a1c48acc06d1abf9759c27a9c);
+        
+    
+        var popup_df5d4470718b3fb0a9bedb7d6b9e30b6 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_38fb53d93eaa755eaaf0de9055e98eb9 = $(`<div id="html_38fb53d93eaa755eaaf0de9055e98eb9" style="width: 100.0%; height: 100.0%;"><b>위도:</b> 42.03363996<br>                      <b>경도:</b> -93.66071125<br>                      <br>                      <b>면적 점수:</b> 5점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 4점<br>                      <b>방 개수 점수:</b> 2점<br>                      <h5><b>Price:</b> $112,000<br>                      <h4><b>종합 점수:</b> 4.71점</div>`)[0];
+                popup_df5d4470718b3fb0a9bedb7d6b9e30b6.setContent(html_38fb53d93eaa755eaaf0de9055e98eb9);
+            
+        
+
+        marker_855181014297834ebe2bea051040fa58.bindPopup(popup_df5d4470718b3fb0a9bedb7d6b9e30b6)
+        ;
+
+        
+    
+    
+            marker_855181014297834ebe2bea051040fa58.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_8951eed6013a5afd63057c9820673546 = L.marker(
+                [42.02619204, -93.60864389],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_3e3447edd7cbf078031543d3f69a4051 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_8951eed6013a5afd63057c9820673546.setIcon(icon_3e3447edd7cbf078031543d3f69a4051);
+        
+    
+        var popup_ac30cc0ab55e5ed1d9401c29759c9529 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_a27dcf59882801dba419cd5ea3a1eb5d = $(`<div id="html_a27dcf59882801dba419cd5ea3a1eb5d" style="width: 100.0%; height: 100.0%;"><b>위도:</b> 42.02619204<br>                      <b>경도:</b> -93.60864389<br>                      <br>                      <b>면적 점수:</b> 5점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 4점<br>                      <b>방 개수 점수:</b> 1점<br>                      <h5><b>Price:</b> $159,500<br>                      <h4><b>종합 점수:</b> 4.57점</div>`)[0];
+                popup_ac30cc0ab55e5ed1d9401c29759c9529.setContent(html_a27dcf59882801dba419cd5ea3a1eb5d);
+            
+        
+
+        marker_8951eed6013a5afd63057c9820673546.bindPopup(popup_ac30cc0ab55e5ed1d9401c29759c9529)
+        ;
+
+        
+    
+    
+            marker_8951eed6013a5afd63057c9820673546.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_63d371bfe725eb539a7e54997ef9aa2e = L.marker(
+                [42.03078187, -93.61044502],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_a39482adb573d75a10aeb92565cd293a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_63d371bfe725eb539a7e54997ef9aa2e.setIcon(icon_a39482adb573d75a10aeb92565cd293a);
+        
+    
+        var popup_a9b6b48c5960f35374b0572e087b46d4 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_24bfc795915c2d18e523f32d7ccb4a85 = $(`<div id="html_24bfc795915c2d18e523f32d7ccb4a85" style="width: 100.0%; height: 100.0%;"><b>위도:</b> 42.03078187<br>                      <b>경도:</b> -93.61044502<br>                      <br>                      <b>면적 점수:</b> 5점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 5점<br>                      <b>방 개수 점수:</b> 2점<br>                      <h5><b>Price:</b> $129,000<br>                      <h4><b>종합 점수:</b> 4.71점</div>`)[0];
+                popup_a9b6b48c5960f35374b0572e087b46d4.setContent(html_24bfc795915c2d18e523f32d7ccb4a85);
+            
+        
+
+        marker_63d371bfe725eb539a7e54997ef9aa2e.bindPopup(popup_a9b6b48c5960f35374b0572e087b46d4)
+        ;
+
+        
+    
+    
+            marker_63d371bfe725eb539a7e54997ef9aa2e.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1be5f7932b7c7a1fb25f1f4faf5e0a62 = L.marker(
+                [42.02711605, -93.61704072],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_c47563d318f97f674deeab24e1174407 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_1be5f7932b7c7a1fb25f1f4faf5e0a62.setIcon(icon_c47563d318f97f674deeab24e1174407);
+        
+    
+        var popup_21c58c6fb26c978b25be2a64abb6e261 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_22513f22a2b38da1b47faa74aaae2f83 = $(`<div id="html_22513f22a2b38da1b47faa74aaae2f83" style="width: 100.0%; height: 100.0%;"><b>위도:</b> 42.02711605<br>                      <b>경도:</b> -93.61704072<br>                      <br>                      <b>면적 점수:</b> 4점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 4점<br>                      <b>방 개수 점수:</b> 2점<br>                      <h5><b>Price:</b> $161,000<br>                      <h4><b>종합 점수:</b> 4.57점</div>`)[0];
+                popup_21c58c6fb26c978b25be2a64abb6e261.setContent(html_22513f22a2b38da1b47faa74aaae2f83);
+            
+        
+
+        marker_1be5f7932b7c7a1fb25f1f4faf5e0a62.bindPopup(popup_21c58c6fb26c978b25be2a64abb6e261)
+        ;
+
+        
+    
+    
+            marker_1be5f7932b7c7a1fb25f1f4faf5e0a62.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1849fb2a9ce8e887ae855f8f7628a6f7 = L.marker(
+                [42.03729543, -93.61408029],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_edb6ee7cd0290fd8ff2d613b425a1cfe = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_1849fb2a9ce8e887ae855f8f7628a6f7.setIcon(icon_edb6ee7cd0290fd8ff2d613b425a1cfe);
+        
+    
+        var popup_e20d5bead42b3c17d83a3c0cedfb8669 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_f53218f4932f797c1760bcc3c26b620a = $(`<div id="html_f53218f4932f797c1760bcc3c26b620a" style="width: 100.0%; height: 100.0%;"><b>위도:</b> 42.03729543<br>                      <b>경도:</b> -93.61408029<br>                      <br>                      <b>면적 점수:</b> 5점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 5점<br>                      <b>방 개수 점수:</b> 1점<br>                      <h5><b>Price:</b> $135,000<br>                      <h4><b>종합 점수:</b> 4.57점</div>`)[0];
+                popup_e20d5bead42b3c17d83a3c0cedfb8669.setContent(html_f53218f4932f797c1760bcc3c26b620a);
+            
+        
+
+        marker_1849fb2a9ce8e887ae855f8f7628a6f7.bindPopup(popup_e20d5bead42b3c17d83a3c0cedfb8669)
+        ;
+
+        
+    
+    
+            marker_1849fb2a9ce8e887ae855f8f7628a6f7.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            tile_layer_cec3fcb72e656f9213346f3e8b0cd3df.addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            tile_layer_cec3fcb72e656f9213346f3e8b0cd3df.addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var marker_2c6e00c975476f7d11153fb1a7d925a4 = L.marker(
+                [42.03363996, -93.66071125],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_19c9f4b5c9c0559c7f26ab16070254f3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_2c6e00c975476f7d11153fb1a7d925a4.setIcon(icon_19c9f4b5c9c0559c7f26ab16070254f3);
+        
+    
+        var popup_26fcdd948460939f83edc89f033e2733 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_d68e5306de8f168845f5978a692fbf8d = $(`<div id="html_d68e5306de8f168845f5978a692fbf8d" style="width: 100.0%; height: 100.0%;"><b>위도:</b> 42.03363996<br>                      <b>경도:</b> -93.66071125<br>                      <b>지역:</b> Sawyer<br>                      <br>                      <b>면적 점수:</b> 5점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 4점<br>                      <b>방 개수 점수:</b> 2점<br>                      <h5><b>Price:</b> $112,000<br>                      <h4><b>종합 점수:</b> 4.71점</div>`)[0];
+                popup_26fcdd948460939f83edc89f033e2733.setContent(html_d68e5306de8f168845f5978a692fbf8d);
+            
+        
+
+        marker_2c6e00c975476f7d11153fb1a7d925a4.bindPopup(popup_26fcdd948460939f83edc89f033e2733)
+        ;
+
+        
+    
+    
+            marker_2c6e00c975476f7d11153fb1a7d925a4.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_21de781f4f255ad6a3c479589a90cfca = L.marker(
+                [42.02619204, -93.60864389],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_54111fceb7211f00bffce6d02dc5d260 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_21de781f4f255ad6a3c479589a90cfca.setIcon(icon_54111fceb7211f00bffce6d02dc5d260);
+        
+    
+        var popup_836a64c5b1db17897c71d52a6b7551d0 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_3f539210cf2e6af9e9268a18169ba8da = $(`<div id="html_3f539210cf2e6af9e9268a18169ba8da" style="width: 100.0%; height: 100.0%;"><b>위도:</b> 42.02619204<br>                      <b>경도:</b> -93.60864389<br>                      <b>지역:</b> OldTown<br>                      <br>                      <b>면적 점수:</b> 5점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 4점<br>                      <b>방 개수 점수:</b> 1점<br>                      <h5><b>Price:</b> $159,500<br>                      <h4><b>종합 점수:</b> 4.57점</div>`)[0];
+                popup_836a64c5b1db17897c71d52a6b7551d0.setContent(html_3f539210cf2e6af9e9268a18169ba8da);
+            
+        
+
+        marker_21de781f4f255ad6a3c479589a90cfca.bindPopup(popup_836a64c5b1db17897c71d52a6b7551d0)
+        ;
+
+        
+    
+    
+            marker_21de781f4f255ad6a3c479589a90cfca.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_9dd3aaa0b825e01540bf1691b24b1853 = L.marker(
+                [42.03078187, -93.61044502],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_48f58b46c755111cf3ba47cbd8bb2991 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_9dd3aaa0b825e01540bf1691b24b1853.setIcon(icon_48f58b46c755111cf3ba47cbd8bb2991);
+        
+    
+        var popup_a6d1e09c12b425881334c79439594ed6 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_d711f850d2438a1ebfab47e9e96da652 = $(`<div id="html_d711f850d2438a1ebfab47e9e96da652" style="width: 100.0%; height: 100.0%;"><b>위도:</b> 42.03078187<br>                      <b>경도:</b> -93.61044502<br>                      <b>지역:</b> OldTown<br>                      <br>                      <b>면적 점수:</b> 5점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 5점<br>                      <b>방 개수 점수:</b> 2점<br>                      <h5><b>Price:</b> $129,000<br>                      <h4><b>종합 점수:</b> 4.71점</div>`)[0];
+                popup_a6d1e09c12b425881334c79439594ed6.setContent(html_d711f850d2438a1ebfab47e9e96da652);
+            
+        
+
+        marker_9dd3aaa0b825e01540bf1691b24b1853.bindPopup(popup_a6d1e09c12b425881334c79439594ed6)
+        ;
+
+        
+    
+    
+            marker_9dd3aaa0b825e01540bf1691b24b1853.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_46bf4ab7096843a9f261ce5542144c6b = L.marker(
+                [42.02711605, -93.61704072],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_8f5ae2447a75170051d986288eea3470 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_46bf4ab7096843a9f261ce5542144c6b.setIcon(icon_8f5ae2447a75170051d986288eea3470);
+        
+    
+        var popup_39126fdb9414e23c00d4e10a0dc006e3 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_e2e05175ee264d72650ad93af46fc1ce = $(`<div id="html_e2e05175ee264d72650ad93af46fc1ce" style="width: 100.0%; height: 100.0%;"><b>위도:</b> 42.02711605<br>                      <b>경도:</b> -93.61704072<br>                      <b>지역:</b> OldTown<br>                      <br>                      <b>면적 점수:</b> 4점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 4점<br>                      <b>방 개수 점수:</b> 2점<br>                      <h5><b>Price:</b> $161,000<br>                      <h4><b>종합 점수:</b> 4.57점</div>`)[0];
+                popup_39126fdb9414e23c00d4e10a0dc006e3.setContent(html_e2e05175ee264d72650ad93af46fc1ce);
+            
+        
+
+        marker_46bf4ab7096843a9f261ce5542144c6b.bindPopup(popup_39126fdb9414e23c00d4e10a0dc006e3)
+        ;
+
+        
+    
+    
+            marker_46bf4ab7096843a9f261ce5542144c6b.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_dea15b31a2761c5aa6076e569fae7a09 = L.marker(
+                [42.03729543, -93.61408029],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_d771a09e5bffbe363d2b4ed84e23b0ed = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_dea15b31a2761c5aa6076e569fae7a09.setIcon(icon_d771a09e5bffbe363d2b4ed84e23b0ed);
+        
+    
+        var popup_674cce6eae9570497d83c9493ced35a6 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_3df9f4c490e4c3b72ada63b7e19d6e36 = $(`<div id="html_3df9f4c490e4c3b72ada63b7e19d6e36" style="width: 100.0%; height: 100.0%;"><b>위도:</b> 42.03729543<br>                      <b>경도:</b> -93.61408029<br>                      <b>지역:</b> OldTown<br>                      <br>                      <b>면적 점수:</b> 5점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 5점<br>                      <b>방 개수 점수:</b> 1점<br>                      <h5><b>Price:</b> $135,000<br>                      <h4><b>종합 점수:</b> 4.57점</div>`)[0];
+                popup_674cce6eae9570497d83c9493ced35a6.setContent(html_3df9f4c490e4c3b72ada63b7e19d6e36);
+            
+        
+
+        marker_dea15b31a2761c5aa6076e569fae7a09.bindPopup(popup_674cce6eae9570497d83c9493ced35a6)
+        ;
+
+        
+    
+    
+            marker_dea15b31a2761c5aa6076e569fae7a09.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            tile_layer_cec3fcb72e656f9213346f3e8b0cd3df.addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var marker_8aa25c313f4efc8fd8f5498024636049 = L.marker(
+                [42.03363996, -93.66071125],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_47a466d422b750732462de19e3622406 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_8aa25c313f4efc8fd8f5498024636049.setIcon(icon_47a466d422b750732462de19e3622406);
+        
+    
+        var popup_768932382c64005e842505563c075da1 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_732dde72a281e558a433906de5358dee = $(`<div id="html_732dde72a281e558a433906de5358dee" style="width: 100.0%; height: 100.0%;"><b>지역:</b> Sawyer<br>                      <b>위도:</b> 42.03363996<br>                      <b>경도:</b> -93.66071125<br>                      <br>                      <b>면적 점수:</b> 5점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 4점<br>                      <b>방 개수 점수:</b> 2점<br>                      <h5><b>Price:</b> $112,000<br>                      <h4><b>종합 점수:</b> 4.71점</div>`)[0];
+                popup_768932382c64005e842505563c075da1.setContent(html_732dde72a281e558a433906de5358dee);
+            
+        
+
+        marker_8aa25c313f4efc8fd8f5498024636049.bindPopup(popup_768932382c64005e842505563c075da1)
+        ;
+
+        
+    
+    
+            marker_8aa25c313f4efc8fd8f5498024636049.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a28c0e5dc6eef3b8d821d0890e3cf017 = L.marker(
+                [42.02619204, -93.60864389],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_e0aefec0805ade3cbcf08d2c8374a71b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_a28c0e5dc6eef3b8d821d0890e3cf017.setIcon(icon_e0aefec0805ade3cbcf08d2c8374a71b);
+        
+    
+        var popup_d2c2219a719f6a5028f215ddec69a955 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_3f73cd53aef9a5aaa4e08c64b891bfe7 = $(`<div id="html_3f73cd53aef9a5aaa4e08c64b891bfe7" style="width: 100.0%; height: 100.0%;"><b>지역:</b> OldTown<br>                      <b>위도:</b> 42.02619204<br>                      <b>경도:</b> -93.60864389<br>                      <br>                      <b>면적 점수:</b> 5점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 4점<br>                      <b>방 개수 점수:</b> 1점<br>                      <h5><b>Price:</b> $159,500<br>                      <h4><b>종합 점수:</b> 4.57점</div>`)[0];
+                popup_d2c2219a719f6a5028f215ddec69a955.setContent(html_3f73cd53aef9a5aaa4e08c64b891bfe7);
+            
+        
+
+        marker_a28c0e5dc6eef3b8d821d0890e3cf017.bindPopup(popup_d2c2219a719f6a5028f215ddec69a955)
+        ;
+
+        
+    
+    
+            marker_a28c0e5dc6eef3b8d821d0890e3cf017.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_4e0052614e70acf96d5544ef73ca1c97 = L.marker(
+                [42.03078187, -93.61044502],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_bdba7ddd52dae66d4c2083bff0d35a8e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_4e0052614e70acf96d5544ef73ca1c97.setIcon(icon_bdba7ddd52dae66d4c2083bff0d35a8e);
+        
+    
+        var popup_03e81f0a18b48bad2fce2090e18230cd = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_774040a439789ac5bc784f7a6c630167 = $(`<div id="html_774040a439789ac5bc784f7a6c630167" style="width: 100.0%; height: 100.0%;"><b>지역:</b> OldTown<br>                      <b>위도:</b> 42.03078187<br>                      <b>경도:</b> -93.61044502<br>                      <br>                      <b>면적 점수:</b> 5점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 5점<br>                      <b>방 개수 점수:</b> 2점<br>                      <h5><b>Price:</b> $129,000<br>                      <h4><b>종합 점수:</b> 4.71점</div>`)[0];
+                popup_03e81f0a18b48bad2fce2090e18230cd.setContent(html_774040a439789ac5bc784f7a6c630167);
+            
+        
+
+        marker_4e0052614e70acf96d5544ef73ca1c97.bindPopup(popup_03e81f0a18b48bad2fce2090e18230cd)
+        ;
+
+        
+    
+    
+            marker_4e0052614e70acf96d5544ef73ca1c97.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_cc547f382db4f4220aeb6294fb247cf5 = L.marker(
+                [42.02711605, -93.61704072],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_31558208b0cb280167ff6f0e6cdd44f8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_cc547f382db4f4220aeb6294fb247cf5.setIcon(icon_31558208b0cb280167ff6f0e6cdd44f8);
+        
+    
+        var popup_3116cdc7dea5d55593f669ea0721f07d = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_79971dae5bc7b2f1fe6d4618dd4f387e = $(`<div id="html_79971dae5bc7b2f1fe6d4618dd4f387e" style="width: 100.0%; height: 100.0%;"><b>지역:</b> OldTown<br>                      <b>위도:</b> 42.02711605<br>                      <b>경도:</b> -93.61704072<br>                      <br>                      <b>면적 점수:</b> 4점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 4점<br>                      <b>방 개수 점수:</b> 2점<br>                      <h5><b>Price:</b> $161,000<br>                      <h4><b>종합 점수:</b> 4.57점</div>`)[0];
+                popup_3116cdc7dea5d55593f669ea0721f07d.setContent(html_79971dae5bc7b2f1fe6d4618dd4f387e);
+            
+        
+
+        marker_cc547f382db4f4220aeb6294fb247cf5.bindPopup(popup_3116cdc7dea5d55593f669ea0721f07d)
+        ;
+
+        
+    
+    
+            marker_cc547f382db4f4220aeb6294fb247cf5.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_2842d6b1754c90499f0d5ebc93d54cf1 = L.marker(
+                [42.03729543, -93.61408029],
+                {}
+            ).addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+    
+            var icon_16a0eaf4cc1b257d993a66fa7bf1147e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "darkgreen", "prefix": "glyphicon"}
+            );
+            marker_2842d6b1754c90499f0d5ebc93d54cf1.setIcon(icon_16a0eaf4cc1b257d993a66fa7bf1147e);
+        
+    
+        var popup_e27bb5281f35cf112c232a13c8439f09 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_11bde204b61ce7e626b5b488a2c9bef3 = $(`<div id="html_11bde204b61ce7e626b5b488a2c9bef3" style="width: 100.0%; height: 100.0%;"><b>지역:</b> OldTown<br>                      <b>위도:</b> 42.03729543<br>                      <b>경도:</b> -93.61408029<br>                      <br>                      <b>면적 점수:</b> 5점<br>                      <b>건축 연도 점수:</b> 5점<br>                      <b>냉난방 점수:</b> 5점<br>                      <b>차고 수용 능력 점수:</b> 5점<br>                      <b>방 개수 점수:</b> 1점<br>                      <h5><b>Price:</b> $135,000<br>                      <h4><b>종합 점수:</b> 4.57점</div>`)[0];
+                popup_e27bb5281f35cf112c232a13c8439f09.setContent(html_11bde204b61ce7e626b5b488a2c9bef3);
+            
+        
+
+        marker_2842d6b1754c90499f0d5ebc93d54cf1.bindPopup(popup_e27bb5281f35cf112c232a13c8439f09)
+        ;
+
+        
+    
+    
+            marker_2842d6b1754c90499f0d5ebc93d54cf1.bindTooltip(
+                `<div>
+                     클릭해서 정보 보기
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            tile_layer_cec3fcb72e656f9213346f3e8b0cd3df.addTo(map_2bba1236df2bee5260c134e7b974736d);
+        
+</script>
+</html>
