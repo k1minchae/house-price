@@ -112,3 +112,114 @@ Longitude       55
 csv_path = "../ames_cleaned.csv"
 load_df = load_df.dropna()
 load_df.to_csv(csv_path, index=False)
+
+df = pd.read_csv(csv_path)
+len(df.loc[df['SaleCondition'] == 'Partial'])
+len(df.loc[df['SaleCondition'] >= 3])
+df.loc[df['FullBath'] > 2]
+sorted(df['SaleCondition'].unique())
+df['TotalArea']
+
+
+# 난방 품질
+import matplotlib.pyplot as plt
+
+# 원하는 순서대로 등급 정의
+order = ['Ex', 'Gd', 'TA', 'Fa', 'Po', 'NA']
+labels = ['매우우수', '좋음', '보통', '나쁨', '매우나쁨', '없음']
+
+# NA 값 대체
+df['HeatingQC'] = df['HeatingQC'].fillna('NA')
+
+# 값 개수 정렬
+counts = df['HeatingQC'].value_counts().reindex(order, fill_value=0)
+
+# 시각화
+plt.figure(figsize=(8, 5))
+plt.bar(labels, counts[order], color='skyblue')
+plt.xlabel('난방 품질')
+plt.ylabel('건수')
+plt.title('난방 품질 분포 (내림차순)')
+plt.grid(axis='y', alpha=0.3)
+plt.tight_layout()
+plt.show()
+
+
+df['RoofMatl'].unique()
+plt.hist(df['RoofMatl'], bins=20, color='skyblue')
+plt.xlabel('지붕 자재')
+plt.ylabel('건수')
+plt.title('지붕 자재 분포')
+plt.xticks(rotation=45)
+plt.grid(axis='y', alpha=0.3)
+plt.tight_layout()
+plt.show()
+
+df['TotalArea']
+
+import pandas as pd
+import plotly.graph_objects as go
+
+# 수치형 변수 리스트
+numeric_vars = ['GrLivArea', 'YearBuilt', 
+                'TotalArea']
+# 기본 x, y 변수
+x_var = 'TotalArea'
+y_var = 'SalePrice'
+# Plotly figure 생성
+fig = go.Figure()
+# 첫 산점도 trace
+fig.add_trace(
+    go.Scatter(
+        x=df[x_var],
+        y=df[y_var],
+        mode='markers',
+        marker=dict(color='skyblue', 
+                    size=10,
+                    line=dict(width=1, color='DarkSlateGrey')),
+        # text=df['species'],
+        name=f'{x_var} vs {y_var}')
+)
+# 레이아웃 업데이트
+fig.update_layout(
+    title='데이터 변수 선택 산점도',
+    template='plotly_white',
+    width=700,
+    height=600,
+    xaxis_title=x_var,
+    yaxis_title=y_var,
+    margin=dict(t=100, b=180),  # 하단 여백 더 확보!
+    updatemenus=[       # 여기가 핵심 !!
+        dict(
+            buttons=[       # x축변수 선택 버튼
+                dict(label=col, method='update',
+                     args=[{'x': [df[col]]}, {'xaxis.title': col}])
+                for col in numeric_vars
+            ],
+            direction='down',
+            showactive=True,
+            x=0.2,          # 버튼위치
+            xanchor='left',
+            y=-0.3,
+            yanchor='bottom'
+        ),
+        dict(
+            buttons=[
+                dict(label=col, method='update',
+                     args=[{'y': [df[col]]}, {'yaxis.title': col}])
+                for col in numeric_vars
+            ],
+            direction='down',
+            showactive=True,
+            x=0.7,
+            xanchor='left',
+            y=-0.3,
+            yanchor='bottom'
+        )
+    ],
+    annotations=[
+        dict(text="X 변수 선택:", x=0.05, y=-0.28, xref="paper", yref="paper", showarrow=False),
+        dict(text="Y 변수 선택:", x=0.6, y=-0.28, xref="paper", yref="paper", showarrow=False)
+    ]
+)
+fig.show()

@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -113,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="quarto-dashboard nav-fixed dashboard-fill fullcontent">
+<body class="quarto-dashboard nav-fixed fullcontent">
 
 
 <div id="quarto-search-results"></div>
@@ -168,39 +134,222 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         
       </div>
     </div>
-<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-데이터-설명" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#데이터-설명" data-scrolling="false" href="#데이터-설명" aria-controls="데이터-설명" aria-selected="true"><span class="nav-link-text">데이터 설명</span></a></li><li class="nav-item" role="presentation"><a id="tab-section-1" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#section-1" data-scrolling="false" href="#section-1" aria-controls="section-1" aria-selected="false"><span class="nav-link-text">3</span></a></li></ul></div></div>
+<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-데이터-탐색" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#데이터-탐색" data-scrolling="true" href="#데이터-탐색" aria-controls="데이터-탐색" aria-selected="true"><span class="nav-link-text">데이터 탐색</span></a></li><li class="nav-item" role="presentation"><a id="tab-ames-시의-특징" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#ames-시의-특징" data-scrolling="true" href="#ames-시의-특징" aria-controls="ames-시의-특징" aria-selected="false"><span class="nav-link-text">Ames 시의 특징</span></a></li><li class="nav-item" role="presentation"><a id="tab-페이지" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#페이지" data-scrolling="true" href="#페이지" aria-controls="페이지" aria-selected="false"><span class="nav-link-text">3페이지</span></a></li></ul></div></div>
 </nav>
 </header></header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-layout-custom page-navbar quarto-dashboard-content bslib-gap-spacing html-fill-container bslib-page-fill quarto-dashboard-pages">
+<div id="quarto-content" class="quarto-container page-layout-custom page-navbar quarto-dashboard-content bslib-gap-spacing html-fill-container dashboard-scrolling quarto-dashboard-pages">
 <!-- sidebar -->
 <!-- margin-sidebar -->
 <!-- main -->
 
-<div class="bslib-grid-item html-fill-item tab-content bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
-<div id="데이터-설명" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-데이터-설명">
+<div class="bslib-grid-item html-fill-item tab-content bslib-grid" data-layout="flow" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div id="데이터-탐색" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-데이터-탐색">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content) minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card valuebox cell html-fill-item html-fill-container bslib-card bslib-value-box bg-secondary showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-body html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-house-gear-fill"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+최신 리모델링 매물
+</p>
+<p class="value-box-value">
+6
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox cell html-fill-item html-fill-container bslib-card bslib-value-box bg-secondary showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-body html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-water"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+수영장 매물
+</p>
+<p class="value-box-value">
+8
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox cell html-fill-item html-fill-container bslib-card bslib-value-box bg-secondary showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-body html-fill-item html-fill-container">
+<div class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-house-x-fill"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+미입주 가구
+</p>
+<p class="value-box-value">
+78
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card tabset html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header bslib-navs-card-title"><div class="card-title"><span style="display: inline">
+
+</span></div><ul class="nav nav-tabs card-header-tabs" role="tablist" data-tabsetid="card-tabset-4"><li class="nav-item" role="presentation"><a href="#card-tabset-4-1" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="데이터 살펴보기" aria-selected="true" class="nav-link active">데이터 살펴보기</a></li><li class="nav-item" role="presentation"><a href="#card-tabset-4-2" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="더보기1" aria-selected="false" class="nav-link">더보기1</a></li><li class="nav-item" role="presentation"><a href="#card-tabset-4-3" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="더보기2" aria-selected="false" class="nav-link">더보기2</a></li><li class="nav-item" role="presentation"><a href="#card-tabset-4-4" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="더보기3" aria-selected="false" class="nav-link">더보기3</a></li></ul></div>
+
+
+
+
+<div class="tab-content html-fill-item html-fill-container" data-tabset-id="card-tabset-4"><div class="tab-pane active show html-fill-item html-fill-container" role="tabpanel" id="card-tabset-4-1"><div class="card-body html-fill-item html-fill-container" data-title="데이터 살펴보기">
 <div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
 <div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container tab-content">
-<div style="max-height: 1000px !important; width:100% !important; display: flex !important; justify-content: space-around !important; flex-direction: row !important;" class="html-fill-item html-fill-container">
-<div style="overflow-y:auto; width:25%; height:100%;" class="html-fill-item html-fill-container">
-<h3>
-데이터 불러오기
-</h3>
-<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
 <div class="card-body html-fill-item html-fill-container">
-<div class="sourceCode cell-code html-fill-item html-fill-container" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 데이터 불러오기</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>load_df <span class="op">=</span> pd.read_csv(<span class="st">'../kaggle/ames.csv'</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>load_df.info(max_cols<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
-<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
-RangeIndex: 2579 entries, 0 to 2578
-Columns: 85 entries, PID to Longitude
-dtypes: float64(14), int64(27), object(44)
-memory usage: 1.7+ MB</code></pre>
-</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Index</th>
+<th>속성명 (EN)</th>
+<th>속성명 (KR)</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>PID</td>
+<td>고유 식별자</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>GrLivArea</td>
+<td>지상 생활 면적</td>
+<td>int64</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>SalePrice</td>
+<td>주택 판매 가격</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>MSSubClass</td>
+<td>건물 클래스</td>
+<td>int64</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>MSZoning</td>
+<td>지역 용도 분류</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>LotFrontage</td>
+<td>도로와 접한 길이</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>LotArea</td>
+<td>대지 면적</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>Street</td>
+<td>도로 유형</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>Alley</td>
+<td>골목 포장 상태</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>LotShape</td>
+<td>대지 형태</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>LandContour</td>
+<td>대지 고도 형태</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>Utilities</td>
+<td>공공 설비 이용 가능 여부</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>12</td>
+<td>LotConfig</td>
+<td>대지 구성 방식</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>13</td>
+<td>LandSlope</td>
+<td>대지 경사도</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>14</td>
+<td>Neighborhood</td>
+<td>이웃 지역</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td>Condition1</td>
+<td>주변 환경1</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>16</td>
+<td>Condition2</td>
+<td>주변 환경2</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>17</td>
+<td>BldgType</td>
+<td>건물 유형</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>18</td>
+<td>HouseStyle</td>
+<td>주택 스타일</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>19</td>
+<td>OverallQual</td>
+<td>전체 자재 및 마감 품질</td>
+<td>int64</td>
+</tr>
+<tr class="odd">
+<td>20</td>
+<td>OverallCond</td>
+<td>전체 상태</td>
+<td>int64</td>
+</tr>
+</tbody>
+</table>
 </div>
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
     <template>Expand</template>
@@ -208,33 +357,143 @@ memory usage: 1.7+ MB</code></pre>
         <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
     </span>
 </bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-<ul>
-<li>행(데이터)은 총 <strong>2579개</strong></li>
-<li>열(속성)은 총 <strong>85개</strong>로 이루어져있습니다.</li>
-<li>즉, <strong>집이 2579개</strong> 있고 각각의 집을 나타내는 <strong>속성이 85개</strong>가 있습니다.</li>
-</ul>
 </div>
-<div style="overflow:auto; width:30%; max-height:100%;" class="html-fill-item html-fill-container">
-<h3>
-결측치 확인
-</h3>
-<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+</div></div><div class="tab-pane html-fill-item html-fill-container" role="tabpanel" id="card-tabset-4-2"><div class="card-body html-fill-item html-fill-container" data-title="더보기1">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
 <div class="card-body html-fill-item html-fill-container">
-<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
-<pre><code>LotFrontage      462
-Alley           2411
-MasVnrType      1572
-FireplaceQu     1241
-GarageType       127
-GarageYrBlt      129
-GarageFinish     129
-GarageQual       129
-GarageCond       129
-PoolQC          2570
-Fence           2054
-MiscFeature     2482
-dtype: int64</code></pre>
-</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Index</th>
+<th>속성명 (EN)</th>
+<th>속성명 (KR)</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>21</td>
+<td>YearBuilt</td>
+<td>건축 연도</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>22</td>
+<td>YearRemodAdd</td>
+<td>리모델링 연도</td>
+<td>int64</td>
+</tr>
+<tr class="odd">
+<td>23</td>
+<td>RoofStyle</td>
+<td>지붕 스타일</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>24</td>
+<td>RoofMatl</td>
+<td>지붕 재질</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>25</td>
+<td>Exterior1st</td>
+<td>외벽 재질 1</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>26</td>
+<td>Exterior2nd</td>
+<td>외벽 재질 2</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>27</td>
+<td>MasVnrType</td>
+<td>벽돌 베니어 유형</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>28</td>
+<td>MasVnrArea</td>
+<td>벽돌 베니어 면적</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td>29</td>
+<td>ExterQual</td>
+<td>외벽 마감 품질</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>30</td>
+<td>ExterCond</td>
+<td>외벽 현재 상태</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>31</td>
+<td>Foundation</td>
+<td>기초 유형</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>32</td>
+<td>BsmtQual</td>
+<td>지하실 품질</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>33</td>
+<td>BsmtCond</td>
+<td>지하실 상태</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>34</td>
+<td>BsmtExposure</td>
+<td>지하실 외부 노출</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>35</td>
+<td>BsmtFinType1</td>
+<td>지하실 마감 유형 1</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>36</td>
+<td>BsmtFinSF1</td>
+<td>마감 지하 공간 면적 1</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td>37</td>
+<td>BsmtFinType2</td>
+<td>지하실 마감 유형 2</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>38</td>
+<td>BsmtFinSF2</td>
+<td>마감 지하 공간 면적 2</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td>39</td>
+<td>BsmtUnfSF</td>
+<td>미마감 지하 공간 면적</td>
+<td>float64</td>
+</tr>
+<tr class="even">
+<td>40</td>
+<td>TotalBsmtSF</td>
+<td>전체 지하 면적</td>
+<td>float64</td>
+</tr>
+</tbody>
+</table>
 </div>
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
     <template>Expand</template>
@@ -242,18 +501,475 @@ dtype: int64</code></pre>
         <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
     </span>
 </bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-<ul>
-<li>결측치가 100개 이상인 컬럼만 필터링을 해보았습니다.</li>
-<li>확인 결과 <strong>결측치가 상당히 많은</strong> 것을 알 수 있습니다.</li>
-<li>Kaggle Data 설명을 참고하여 <code style="color:red;">NaN</code>값이 왜이렇게 많은지 살펴봤더니,</li>
-</ul>
-<p style="margin-bottom: 2rem;">
-<code style="color:red;">NaN</code>값이 <strong>‘없음’</strong>을 나타내는 데이터가 많았습니다.
+</div>
+</div></div><div class="tab-pane html-fill-item html-fill-container" role="tabpanel" id="card-tabset-4-3"><div class="card-body html-fill-item html-fill-container" data-title="더보기2">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Index</th>
+<th>속성명 (EN)</th>
+<th>속성명 (KR)</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>41</td>
+<td>Heating</td>
+<td>난방 유형</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>42</td>
+<td>HeatingQC</td>
+<td>난방 품질</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>43</td>
+<td>CentralAir</td>
+<td>중앙 냉방 여부</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>44</td>
+<td>Electrical</td>
+<td>전기 시스템</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>45</td>
+<td>1stFlrSF</td>
+<td>1층 면적</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>46</td>
+<td>2ndFlrSF</td>
+<td>2층 면적</td>
+<td>int64</td>
+</tr>
+<tr class="odd">
+<td>47</td>
+<td>LowQualFinSF</td>
+<td>낮은 품질 마감 면적</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>48</td>
+<td>BsmtFullBath</td>
+<td>지하 전체 욕실 수</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td>49</td>
+<td>BsmtHalfBath</td>
+<td>지하 반 욕실 수</td>
+<td>float64</td>
+</tr>
+<tr class="even">
+<td>50</td>
+<td>FullBath</td>
+<td>지상 전체 욕실 수</td>
+<td>int64</td>
+</tr>
+<tr class="odd">
+<td>51</td>
+<td>HalfBath</td>
+<td>지상 반 욕실 수</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>52</td>
+<td>BedroomAbvGr</td>
+<td>지상 침실 수</td>
+<td>int64</td>
+</tr>
+<tr class="odd">
+<td>53</td>
+<td>KitchenAbvGr</td>
+<td>지상 주방 수</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>54</td>
+<td>KitchenQual</td>
+<td>주방 품질</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>55</td>
+<td>TotRmsAbvGrd</td>
+<td>지상 총 방 수</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>56</td>
+<td>Functional</td>
+<td>주택 기능성</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>57</td>
+<td>Fireplaces</td>
+<td>벽난로 수</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>58</td>
+<td>FireplaceQu</td>
+<td>벽난로 품질</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>59</td>
+<td>GarageType</td>
+<td>차고 유형</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>60</td>
+<td>GarageYrBlt</td>
+<td>차고 건축 연도</td>
+<td>float64</td>
+</tr>
+</tbody>
+</table>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div></div><div class="tab-pane html-fill-item html-fill-container" role="tabpanel" id="card-tabset-4-4"><div class="card-body html-fill-item html-fill-container" data-title="더보기3">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Index</th>
+<th>속성명 (EN)</th>
+<th>속성명 (KR)</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>61</td>
+<td>GarageFinish</td>
+<td>차고 마감 상태</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>62</td>
+<td>GarageCars</td>
+<td>차고 차량 수용 수</td>
+<td>float64</td>
+</tr>
+<tr class="odd">
+<td>63</td>
+<td>GarageArea</td>
+<td>차고 면적</td>
+<td>float64</td>
+</tr>
+<tr class="even">
+<td>64</td>
+<td>GarageQual</td>
+<td>차고 품질</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>65</td>
+<td>GarageCond</td>
+<td>차고 상태</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>66</td>
+<td>PavedDrive</td>
+<td>포장된 진입로 여부</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>67</td>
+<td>WoodDeckSF</td>
+<td>우드 데크 면적</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>68</td>
+<td>OpenPorchSF</td>
+<td>개방형 현관 면적</td>
+<td>int64</td>
+</tr>
+<tr class="odd">
+<td>69</td>
+<td>EnclosedPorch</td>
+<td>폐쇄형 현관 면적</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>70</td>
+<td>3SsnPorch</td>
+<td>3계절용 현관 면적</td>
+<td>int64</td>
+</tr>
+<tr class="odd">
+<td>71</td>
+<td>ScreenPorch</td>
+<td>스크린 포치 면적</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>72</td>
+<td>PoolArea</td>
+<td>수영장 면적</td>
+<td>int64</td>
+</tr>
+<tr class="odd">
+<td>73</td>
+<td>PoolQC</td>
+<td>수영장 품질</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>74</td>
+<td>Fence</td>
+<td>울타리 품질</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>75</td>
+<td>MiscFeature</td>
+<td>기타 부대시설</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>76</td>
+<td>MiscVal</td>
+<td>기타 부대시설 가치</td>
+<td>int64</td>
+</tr>
+<tr class="odd">
+<td>77</td>
+<td>MoSold</td>
+<td>판매 월</td>
+<td>int64</td>
+</tr>
+<tr class="even">
+<td>78</td>
+<td>YrSold</td>
+<td>판매 연도</td>
+<td>int64</td>
+</tr>
+<tr class="odd">
+<td>79</td>
+<td>SaleType</td>
+<td>판매 유형</td>
+<td>object</td>
+</tr>
+<tr class="even">
+<td>80</td>
+<td>SaleCondition</td>
+<td>판매 조건</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>81</td>
+<td>GeoRefNo</td>
+<td>지리 참조 번호</td>
+<td>float64</td>
+</tr>
+<tr class="even">
+<td>82</td>
+<td>Prop_Addr</td>
+<td>부동산 주소</td>
+<td>object</td>
+</tr>
+<tr class="odd">
+<td>83</td>
+<td>Latitude</td>
+<td>위도</td>
+<td>float64</td>
+</tr>
+<tr class="even">
+<td>84</td>
+<td>Longitude</td>
+<td>경도</td>
+<td>float64</td>
+</tr>
+</tbody>
+</table>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div></div></div><bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card tabset html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header bslib-navs-card-title"><div class="card-title"><span style="display: inline">
+
+</span></div><ul class="nav nav-tabs card-header-tabs" role="tablist" data-tabsetid="card-tabset-9"><li class="nav-item" role="presentation"><a href="#card-tabset-9-1" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="전체 결측치" aria-selected="true" class="nav-link active">전체 결측치</a></li><li class="nav-item" role="presentation"><a href="#card-tabset-9-2" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="‘없음’ 컬럼 처리" aria-selected="false" class="nav-link">‘없음’ 컬럼 처리</a></li><li class="nav-item" role="presentation"><a href="#card-tabset-9-3" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="위도/경도가 없는 데이터" aria-selected="false" class="nav-link">위도/경도가 없는 데이터</a></li><li class="nav-item" role="presentation"><a href="#card-tabset-9-4" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="오류 데이터 제거" aria-selected="false" class="nav-link">오류 데이터 제거</a></li></ul></div>
+
+
+
+
+<div class="tab-content html-fill-item html-fill-container" data-tabset-id="card-tabset-9"><div class="tab-pane active show html-fill-item html-fill-container" role="tabpanel" id="card-tabset-9-1"><div class="card-body html-fill-item html-fill-container" data-title="전체 결측치">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<p style="font-size:22px; font-weight: bold;">
+원본 데이터 결측치
 </p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>영문 변수명</th>
+<th>컬럼명 (영문)</th>
+<th>컬럼명 (한글)</th>
+<th>결측치 수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>LotFrontage</td>
+<td>도로와 접한 길이</td>
+<td>462</td>
+</tr>
+<tr class="even">
+<td>Alley</td>
+<td>골목 포장 상태</td>
+<td>2411</td>
+</tr>
+<tr class="odd">
+<td>MasVnrType</td>
+<td>벽돌 베니어 유형</td>
+<td>1572</td>
+</tr>
+<tr class="even">
+<td>MasVnrArea</td>
+<td>벽돌 베니어 면적</td>
+<td>14</td>
+</tr>
+<tr class="odd">
+<td>BsmtQual</td>
+<td>지하실 높이</td>
+<td>69</td>
+</tr>
+<tr class="even">
+<td>BsmtCond</td>
+<td>지하실 상태</td>
+<td>69</td>
+</tr>
+<tr class="odd">
+<td>BsmtExposure</td>
+<td>지하실 외부 노출</td>
+<td>71</td>
+</tr>
+<tr class="even">
+<td>BsmtFinType1</td>
+<td>지하실 마감 유형 1</td>
+<td>69</td>
+</tr>
+<tr class="odd">
+<td>BsmtFinType2</td>
+<td>지하실 마감 유형 2</td>
+<td>70</td>
+</tr>
+<tr class="even">
+<td>FireplaceQu</td>
+<td>벽난로 품질</td>
+<td>1241</td>
+</tr>
+<tr class="odd">
+<td>GarageType</td>
+<td>차고 위치</td>
+<td>127</td>
+</tr>
+<tr class="even">
+<td>GarageYrBlt</td>
+<td>차고 건축 연도</td>
+<td>129</td>
+</tr>
+<tr class="odd">
+<td>GarageFinish</td>
+<td>차고 마감 상태</td>
+<td>129</td>
+</tr>
+<tr class="even">
+<td>GarageQual</td>
+<td>차고 품질</td>
+<td>129</td>
+</tr>
+<tr class="odd">
+<td>GarageCond</td>
+<td>차고 상태</td>
+<td>129</td>
+</tr>
+<tr class="even">
+<td>PoolQC</td>
+<td>수영장 품질</td>
+<td>2570</td>
+</tr>
+<tr class="odd">
+<td>Fence</td>
+<td>울타리 품질</td>
+<td>2054</td>
+</tr>
+<tr class="even">
+<td>MiscFeature</td>
+<td>기타 부대시설</td>
+<td>2482</td>
+</tr>
+<tr class="odd">
+<td>Latitude</td>
+<td>위도</td>
+<td>97</td>
+</tr>
+<tr class="even">
+<td>Longitude</td>
+<td>경도</td>
+<td>97</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>결측치</strong>가 10개 이상인 컬럼 목록입니다.</li>
+<li><code style="color:red;">NaN</code> 값이 상당히 많은 것을 알 수 있습니다.</li>
+<li>데이터셋의 설명을 확인해 본 결과, <code style="color:red;">NaN</code>이 ’<strong>없음’</strong> 을 나타내는 데이터가 많음을 알 수 있었습니다.</li>
+<li>이를 명확히 처리하기 위해 <code style="color:red;">NaN</code> 대신 <strong>‘없음’</strong> 이라는 명확한 표현으로 대체했습니다.</li>
+</ul>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div></div><div class="tab-pane html-fill-item html-fill-container" role="tabpanel" id="card-tabset-9-2"><div class="card-body html-fill-item html-fill-container" data-title="‘없음’ 컬럼 처리">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<p style="font-size:22px; font-weight: bold;">
+<code style="color: red;">NaN</code>이 없다는 의미를 나타내는 컬럼들입니다.
+</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>변수명</th>
 <th>설명 (한글)</th>
 </tr>
 </thead>
@@ -321,18 +1037,169 @@ dtype: int64</code></pre>
 </tbody>
 </table>
 <ul>
-<li>위 표에 들어있는 데이터는 <code style="color:red;">NaN</code> 값이 <strong>‘없음’</strong> 을 나타냅니다.</li>
-<li>그래서, 저희는 해당 데이터를 결측치로 인식하지 않고 <strong>’없다’라는 의미를 명확히</strong> 하고자 했습니다.</li>
+<li>위 데이터가 <strong>‘없음’</strong> 을 나타내는 컬럼입니다.</li>
+<li>저희는 해당 데이터를 명확히 하고자 <code style="color: red;">NaN</code> 값을 ‘없음’ 이라는 단어로 채워주었습니다.</li>
+</ul>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div></div><div class="tab-pane html-fill-item html-fill-container" role="tabpanel" id="card-tabset-9-3"><div class="card-body html-fill-item html-fill-container" data-title="위도/경도가 없는 데이터">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<p style="font-size:22px; font-weight: bold;">
+주소는 있는데, 위도/경도가 없는 데이터가 있습니다.
+</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>컬럼명 (영문)</th>
+<th>컬럼명 (한글)</th>
+<th>결측치 수</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Prop_Addr</td>
+<td>부동산 주소</td>
+<td>20</td>
+</tr>
+<tr class="even">
+<td>Latitude</td>
+<td>위도</td>
+<td>97</td>
+</tr>
+<tr class="odd">
+<td>Longitude</td>
+<td>경도</td>
+<td>97</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>저희는 이 데이터를 geocoding 을 통해 위도/경도 값을 채워주었습니다.</li>
+<li>geocoding 이란, 주소를 위도/경도로 변환하는 것입니다.</li>
+<li><code style="color:red;">geopy.geocoders</code> 라이브러리를 사용해서 geocoding 을 수행했습니다.</li>
+</ul>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div></div><div class="tab-pane html-fill-item html-fill-container" role="tabpanel" id="card-tabset-9-4"><div class="card-body html-fill-item html-fill-container" data-title="오류 데이터 제거">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<p style="font-size:22px; font-weight: bold;">
+논리적으로 오류가 있는 데이터가 있습니다.
+</p>
+<ul>
+<li><code>df[df[‘YearRemodAdd’] &lt; df[‘YearBuilt’]]</code> 처럼</li>
+<li>리모델링 연도가 건축 연도보다 빠른 경우 오류가 있다고 판단했습니다.</li>
+<li>그래서 저희는 해당 데이터를 제거해주었습니다.</li>
+</ul>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div></div></div><bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div>
+<div id="ames-시의-특징" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-ames-시의-특징">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 50fr) minmax(3em, 50fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<p style="font-size:22px; font-weight: bold;">
+계절별 강우량이 일정한 편
+</p>
+<img src="../assets/강우량.png">
+<br>
+<ul>
+<li>서울에 비해 계절별 강우량이 일정하다.</li>
+<li><strong>서울은 Ames 에 비해 여름철 비가 많이 온다.</strong></li>
 </ul>
 <br>
-<hr>
-<ul>
-<li>또한, 리모델링 연도가 건축 연도보다 빠른 경우가 있습니다.</li>
-</ul>
-<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
-<div class="sourceCode cell-code html-fill-item html-fill-container" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 리모델링 연도가 지어진 연도보다 빠른 경우 결측치로 판단</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">'YearRemodAdd'</span>] <span class="op">&lt;</span> df[<span class="st">'YearBuilt'</span>]] <span class="co"># 1개</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 24%">
+<col style="width: 30%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>값</th>
+<th>명칭</th>
+<th>특징</th>
+<th>강수량과의 관계</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CompShg</td>
+<td>Composite Shingle (복합 아스팔트 기와)</td>
+<td>✅ 가장 흔함, 저렴하고 설치 쉬움, 15~30년 수명</td>
+<td>💧 중간 이상 강수량에 적합, 물 잘 흐름, 내습성 양호</td>
+</tr>
+<tr class="even">
+<td>Tar&amp;Grv</td>
+<td>Tar &amp; Gravel (타르 + 자갈)</td>
+<td>주로 평지붕에 사용, 무겁고 유지보수 필요</td>
+<td>💧 평지붕이라 배수 안 좋음, 강수량 많은 지역엔 비추천</td>
+</tr>
+<tr class="odd">
+<td>WdShake</td>
+<td>Wood Shake (천연 목재 쉐이크)</td>
+<td>자연스러움, 고급스러움, 단열 효과 좋음</td>
+<td>💧 습기에 약함, 강수량 많으면 부패·곰팡이 위험</td>
+</tr>
+<tr class="even">
+<td>WdShngl</td>
+<td>Wood Shingle (평평한 목재 기와)</td>
+<td>WdShake보다 얇고 규칙적, 시각적으로 깔끔</td>
+<td>💧 마찬가지로 강우에 취약, 유지보수 많음</td>
+</tr>
+<tr class="odd">
+<td>Metal</td>
+<td>Metal (금속 지붕)</td>
+<td>고가, 튼튼, 긴 수명(40년 이상), 불연성</td>
+<td>💧 강우·폭설 모두 우수, 완전 방수에 가까움</td>
+</tr>
+<tr class="even">
+<td>Roll</td>
+<td>Roll Roofing (롤 시트)</td>
+<td>저가, 시공 간단, 수명 짧음</td>
+<td>💧 저렴한 평지붕용, 강수량 많으면 금방 닳음</td>
+</tr>
+<tr class="odd">
+<td>Membran</td>
+<td>Membrane Roofing (방수 멤브레인)</td>
+<td>평지붕 방수용, 수명은 중간, 정기적 유지보수 필요</td>
+<td>💧 방수엔 특화, 그러나 누수 위험 있음 (파손 시 치명적)</td>
+</tr>
+</tbody>
+</table>
 </div>
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
     <template>Expand</template>
@@ -340,46 +1207,65 @@ dtype: int64</code></pre>
         <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
     </span>
 </bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-<ul>
-<li>저희는 해당 데이터를 정확하지 않다고 판단하여 제거했습니다.</li>
-</ul>
-</div>
-<div style="overflow-y:auto; width:30%; max-height:100%; padding-left: 1rem;" class="html-fill-item html-fill-container">
-<h3>
-결측치 처리
-</h3>
+</div><div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr) minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
 <div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
 <div class="card-body html-fill-item html-fill-container">
-<div class="sourceCode cell-code html-fill-item html-fill-container" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nan 이 없음 을 나타내는 컬럼들</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>nan_ <span class="op">=</span> [<span class="st">'BsmtCond'</span>, <span class="st">'BsmtFinType2'</span>, <span class="st">'BsmtExposure'</span>,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">'BsmtFinType1'</span>, <span class="st">'FireplaceQu'</span>, <span class="st">'GarageType'</span>, </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">'GarageFinish'</span>, <span class="st">'GarageQual'</span>, <span class="st">'GarageCond'</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">'PoolQC'</span>, <span class="st">'MasVnrType'</span>, <span class="st">'Fence'</span>, <span class="st">'MiscFeature'</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>          <span class="st">'Alley'</span>, <span class="st">'BsmtQual'</span>]</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>load_df[<span class="st">'LotFrontage'</span>].fillna(<span class="dv">0</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>load_df[<span class="st">'GarageYrBlt'</span>].fillna(<span class="dv">0</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>load_df[nan_] <span class="op">=</span> load_df[nan_].fillna(<span class="st">"없음"</span>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 결측치 재확인</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(load_df.isna().<span class="bu">sum</span>()[load_df.isna().<span class="bu">sum</span>() <span class="op">&gt;</span> <span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<img src="index_files/figure-html/cell-6-output-1.png" class="quarto-dashboard-img-contain">
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<img src="../assets/roof.png">
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<p style="font-size:22px; font-weight: bold;">
+겨울에 눈이 많이 오는 편
+</p>
+<img src="../assets/강설량.png">
+<br>
+<ul>
+<li>서울에 비해 Ames 는 눈이 많이 온다.</li>
+<li><strong>난방 시설이 중요</strong>하다고 할 수 있다.</li>
+</ul>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<img src="index_files/figure-html/cell-7-output-1.png" class="quarto-dashboard-img-contain">
+</div>
 <div class="cell-output cell-output-stdout html-fill-item html-fill-container">
-<pre><code>MasVnrArea      14
-BsmtFinSF1       1
-BsmtFinSF2       1
-BsmtUnfSF        1
-TotalBsmtSF      1
-Electrical       1
-BsmtFullBath     2
-BsmtHalfBath     2
-GarageCars       1
-GarageArea       1
-GeoRefNo        20
-Prop_Addr       20
-Latitude        97
-Longitude       97
-dtype: int64</code></pre>
+<pre><code>Ames 지역은 난방시설이 대부분 우수하고,
+난방시설이 나쁜 주택이 거의 없음을 알 수 있습니다.</code></pre>
 </div>
 </div>
 <bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
@@ -388,92 +1274,20 @@ dtype: int64</code></pre>
         <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
     </span>
 </bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-<ul>
-<li><strong>‘없음’</strong>이라는 의미를 가진 데이터를 채우고 나니 결측치가 확연히 줄어든 것을 볼 수 있습니다.</li>
-<li>하지만, 여전히 <strong>위도와 경도</strong>는 결측치가 많습니다.</li>
-<li>주소는 있는데, <strong>위도/경도 정보만 없는 데이터가 77개</strong>가 있습니다.</li>
-<li>저희는 이 데이터를 살리기 위해 주소를 통해 위도와 경도를 추출하기로 했습니다.</li>
-</ul>
-<hr>
-<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
-<div class="sourceCode cell-code html-fill-item html-fill-container" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> geopy.geocoders <span class="im">import</span> Nominatim</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>geolocator <span class="op">=</span> Nominatim(user_agent<span class="op">=</span><span class="st">"ames_geocoder"</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 위도/경도 컬럼 생성</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>filtered[<span class="st">'위도_보정'</span>] <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>filtered[<span class="st">'경도_보정'</span>] <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 주소 기반 위도/경도 검색</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>find <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>not_find <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, row <span class="kw">in</span> filtered.iterrows():</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 주소 + 도시 이름으로 검색 정확도 향상</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        full_address <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>row[<span class="st">'Prop_Addr'</span>]<span class="sc">}</span><span class="ss">, Ames, Iowa"</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        location <span class="op">=</span> geolocator.geocode(full_address)</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 주소 찾은 경우</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> location:</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>            filtered.at[idx, <span class="st">'위도_보정'</span>] <span class="op">=</span> location.latitude</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>            filtered.at[idx, <span class="st">'경도_보정'</span>] <span class="op">=</span> location.longitude</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"[O] 주소 찾음: </span><span class="sc">{</span>full_address<span class="sc">}</span><span class="ss"> → 위도: </span><span class="sc">{</span>location<span class="sc">.</span>latitude<span class="sc">}</span><span class="ss">, 경도: </span><span class="sc">{</span>location<span class="sc">.</span>longitude<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>            find <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 주소 못 찾은 경우</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"[X] 주소 찾을 수 없음: </span><span class="sc">{</span>full_address<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>            not_find <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"[!] 오류 발생 at </span><span class="sc">{</span>row[<span class="st">'주소'</span>]<span class="sc">}</span><span class="ss"> → </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>        not_find <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="dv">1</span>)  <span class="co"># API 과부하 방지</span></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 기존 df에 위도/경도 덮어쓰기</span></span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>load_df.loc[filtered.index, <span class="st">'Latitude'</span>] <span class="op">=</span> filtered[<span class="st">'위도_보정'</span>]</span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>load_df.loc[filtered.index, <span class="st">'Longitude'</span>] <span class="op">=</span> filtered[<span class="st">'경도_보정'</span>]</span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co"># 주소 찾은 개수: 42, 찾지 못한 개수: 35</span></span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"주소 찾은 개수: </span><span class="sc">{</span>find<span class="sc">}</span><span class="ss">, 찾지 못한 개수: </span><span class="sc">{</span>not_find<span class="sc">}</span><span class="ss">"</span>)    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-<ul>
-<li><code style="color:red;">geopy.geocoders</code>는 주소를 위도/경도로 변환해주는 라이브러리 입니다.</li>
-<li>지오코딩: 주소를 위도/경도로 변환</li>
-<li>지오코딩을 가능하게 해주는 라이브러리 입니다.</li>
-<li><code style="color:red;">pip install geopy</code> 를 통해 설치할 수 있습니다.</li>
-<li>해당 라이브러리를 통해 42개의 데이터의 위도/경도 정보를 얻을 수 있었습니다.</li>
-</ul>
 </div>
 </div>
-<div id="section-1" class="dashboard-page html-fill-item html-fill-container tab-pane grid-skip" data-orientation="rows" aria-labelledby="tab-section-1">
+</div>
+</div>
+<div id="페이지" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-페이지">
 <div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: ; grid-auto-columns: minmax(0, 1fr);">
 
 
-</div>
-</div>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
-</div>
-</div>
-<div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden">
+<div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden html-fill-item html-fill-container">
 
 </div>
 </div>
 </div>
-
+</div>
 
 
 <script id="quarto-html-after-body" type="application/javascript">
@@ -893,7 +1707,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
- <!-- /content -->
+</div> <!-- /content -->
 
 <script type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (_event) {
