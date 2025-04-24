@@ -4,6 +4,8 @@
 
 Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝트입니다.
 
+[>프로젝트 대시보드 바로가기 링크]("https://k1minchae.github.io/house-price/")
+
 <br>
 
 ## 팀원 소개
@@ -17,9 +19,8 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
         <sub><b>김민채</b></sub>
       </a>
       <br />
-      리모델링-집값 영향 분석<br />
-      역할2<br />
-      역할3
+      리모델링 영향 분석<br />
+      Qmd/Git 관리
     </td>
     <td align="center">
       <a href="https://github.com/soohyhy">
@@ -29,30 +30,27 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
       </a>
       <br />
       집값 영향 요인 분석<br />
-      역할2<br />
-      역할3
+      회귀분석 진행
     </td>
     <td align="center">
       <a href="https://github.com/ParkHansl">
         <img src="https://github.com/ParkHansl.png" width="100px;" alt="ParkHansl"/>
         <br />
-        <sub><b>박한슬 (발표)</b></sub>
+        <sub><b>박한슬</b></sub>
       </a>
       <br />
       동네별 선호하는 주택 분석<br />
-      역할2<br />
-      역할3
+      발표
     </td>
     <td align="center">
       <a href="https://github.com/leechanghyuk">
         <img src="https://github.com/leechanghyuk.png" width="100px;" alt="leechanghyuk"/>
         <br />
-        <sub><b>이창혁 (조장/발표)</b></sub>
+        <sub><b>이창혁</b></sub>
       </a>
       <br />
       가성비 좋은 주택 분석<br />
-      역할2</strong><br />
-      역할3
+      조장/발표<br />
     </td>
   </tr>
 </table>
@@ -183,7 +181,7 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
 
 우리는 중소형 부동산 사무소를 운영하고 있습니다. 신입사원이 입사할 때마다 반복적으로 업무 설명을 해줘야 하는 상황입니다.
 
-신입사원이 부동산 업무 전반을 빠르게 이해하고 실제 상담에 활용할 수 있도록 돕는 교육용 대시보드를 제작하기로 했습니다.
+신입사원이 부동산 업무 전반을 빠르게 이해하고 실제 상담에 활용할 수 있도록 돕는 **교육용 대시보드**를 제작하기로 했습니다.
 
 <br />
 
@@ -199,7 +197,7 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
 
 ### 세부 사항
 
-## 1. 가성비 좋은 주택의 조건은 무엇인가?
+### 1. 가성비 좋은 주택의 조건은 무엇인가?
 
 **🧩 Story**
 
@@ -207,16 +205,16 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
 
 **🎯 주제**
 
-- 같은 가격대에서 면적, 위치, 연식 등을 고려했을 때, 어떤 조합이 '가성비'가 좋은 집인가를 분석
+- 손님 유형에 따라, 어떤 주택 조합이 '가성비'가 좋은 집인가를 분석
 
 **🔍 방법**
 
-- `SalePrice` 대비 `GrLivArea`, `OverallQual`, `YearBuilt` 등의 비율 파생변수 생성
-- 클러스터링을 통해 "가성비 그룹"을 나누고 조건 분석
+- 1인가구, 2인가구, 자녀있는 가구로 구분
+- 각각의 가구 유형에 맞는 주택 조합을 도출하기 위해, 여러 변수를 종합하여 점수 계산 후 Top 10 집 선정
 
 ---
 
-## 2. 리모델링이 집값에 미치는 영향
+### 2. 리모델링이 집값에 미치는 영향
 
 **🧩 Story**
 
@@ -229,12 +227,11 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
 **🔍 방법**
 
 - 리모델링 여부 (`YearRemodAdd != YearBuilt`)에 따라 그룹 나누기
-- 동일한 조건(`Area`, `Quality`)일 때 가격 차이 분석
-- 회귀모형에 interaction term 추가 (`Remod × Quality`)
+- 각종 검정/시각화 방법을 통해 리모델링 유무에 따른 가격 차이 분석
 
 ---
 
-## 3. 집값에 가장 영향을 많이 주는 요인은 무엇인가?
+### 3. 집값에 가장 영향을 많이 주는 요인은 무엇인가?
 
 **🧩 Story**
 
@@ -242,17 +239,16 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
 
 **🎯 주제**
 
-- 회귀 모델 또는 Lasso, Tree 기반 모델로 주요 변수 탐색
+- 회귀 모델 또는 Lasso, Ridge 기반 Elastic Net 모델로 주요 변수 탐색
 
 **🔍 방법**
 
-- AIC/forward selection 또는 Lasso로 변수 선택
-- SHAP 또는 permutation importance로 변수 중요도 해석
-- 결과를 바탕으로 “Top 5 영향 요인” 도출
+- 상관관계를 기반으로 변수선택 + Elastic Net으로 변수 선택
+- 결과를 바탕으로 “Top 영향 요인” 도출
 
 ---
 
-## 4. 동네에 따라 선호되는 집의 스타일이 다를까?
+### 4. 동네에 따라 선호되는 집의 스타일이 다를까?
 
 **🧩 Story**
 
@@ -264,43 +260,5 @@ Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝
 
 **🔍 방법**
 
-- `Neighborhood`별 주택 스타일 비율 시각화
-- 특정 스타일이 가격 상승에 기여하는지 회귀 분석
+- `Neighborhood`별 주택 스타일 시각화
 - 지도 시각화로 인사이트 전달
-
----
-
-## 5. 아이를 키우기 좋은 집은 어떤 조건일까?
-
-**🧩 Story**
-
-> "아이를 키우기 위한 주택 조건을 찾는 부모님을 위한 분석"
-
-**🎯 주제**
-
-- `TotRmsAbvGrd`, `BedroomAbvGr`, `GarageCars`, `YrSold` 등을 종합하여 ‘가족친화적’ 주택 조건 정의
-
-**🔍 방법**
-
-- 가족친화 점수 지표 생성
-- 해당 점수와 가격 간 관계 분석
-- “가족친화도 높은데 가격은 합리적인” 동네 추천
-- 마케팅이나 정책 제안으로 확장 가능
-
----
-
-## 6. 시장 타이밍: 언제 집을 사면 가장 유리할까?
-
-**🧩 Story**
-
-> "주택 시장에도 타이밍이 있다면? 월별 또는 연도별 가격 추이를 보고 전략을 짜보자"
-
-**🎯 주제**
-
-- `MoSold`, `YrSold` 기반으로 계절성과 시장 흐름 분석
-
-**🔍 방법**
-
-- 월별 평균 가격 시계열 분석
-- 연도별 경기 흐름 반영 → 경기침체기 or 호황기 도출
-- “12월엔 저렴하게 살 수 있다” 같은 실용적 인사이트
