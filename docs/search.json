@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "study/index.html",
+    "href": "study/index.html",
+    "title": "신입 교육자료",
+    "section": "",
+    "text": "총 2579개의 행, 85개 열로 구성\n주요 분석 대상: 주소 기반 위도/경도 보정, 결측치 처리\n\n\n\n\n\n\n\n\n\n\n변수명\n처리 방법\n\n\n\n\nLotFrontage\n0으로 채움\n\n\nGarageYrBlt\n0으로 채움\n\n\n\n\n\n\n다음 변수들은 \"없음\" 으로 채움:\n\nBsmtCond, BsmtFinType2, BsmtExposure, BsmtFinType1\nFireplaceQu, GarageType, GarageFinish, GarageQual, GarageCond\nPoolQC, MasVnrType, Fence, MiscFeature, Alley, BsmtQual\n\n\n\n\n\n\n\n\n\n변수명\n결측치 수\n\n\n\n\nMasVnrArea\n14\n\n\nBsmtFinSF1\n1\n\n\nBsmtFinSF2\n1\n\n\nBsmtUnfSF\n1\n\n\nTotalBsmtSF\n1\n\n\nElectrical\n1\n\n\nBsmtFullBath\n2\n\n\nBsmtHalfBath\n2\n\n\nGarageCars\n1\n\n\nGarageArea\n1\n\n\nGeoRefNo\n20\n\n\nProp_Addr\n20\n\n\nLatitude\n55\n\n\nLongitude\n55\n\n\n\n\n\n\n\n\n\n\n\ngeopy의 Nominatim API를 사용\n주소(Prop_Addr) + Ames, Iowa로 결합하여 검색 정확도 향상\ntime.sleep(1)으로 요청 제한 대응\n\n\n\n\nfrom geopy.geocoders import Nominatim\nimport time\n\ngeolocator = Nominatim(user_agent=\"ames_geocoder\")\nfiltered = load_df.loc[(load_df['Latitude'].isna()) & (~load_df['Prop_Addr'].isna()), :]\nfiltered['위도_보정'] = None\nfiltered['경도_보정'] = None\n\nfind, not_find = 0, 0\nfor idx, row in filtered.iterrows():\n    try:\n        full_address = f\"{row['Prop_Addr']}, Ames, Iowa\"\n        location = geolocator.geocode(full_address)\n        if location:\n            filtered.at[idx, '위도_보정'] = location.latitude\n            filtered.at[idx, '경도_보정'] = location.longitude\n            print(f\"[O] 주소 찾음: {full_address} → 위도: {location.latitude}, 경도: {location.longitude}\")\n            find += 1\n        else:\n            print(f\"[X] 주소 찾을 수 없음: {full_address}\")\n            not_find += 1\n    except Exception as e:\n        print(f\"[!] 오류 발생 at {row['Prop_Addr']} → {e}\")\n        not_find += 1\n    time.sleep(1)\n\nload_df.loc[filtered.index, 'Latitude'] = filtered['위도_보정']\nload_df.loc[filtered.index, 'Longitude'] = filtered['경도_보정']\n\n\n\n\n주소 보정 성공: 42건\n보정 실패: 35건\n\n\n\n\n\nload_df = load_df.dropna()\nload_df.to_csv(\"../ames_cleaned.csv\", index=False)\n총 {load_df.shape[0]}건의 클린 데이터를 저장하였습니다."
+  },
+  {
+    "objectID": "study/index.html#데이터-개요",
+    "href": "study/index.html#데이터-개요",
+    "title": "신입 교육자료",
+    "section": "",
+    "text": "총 2579개의 행, 85개 열로 구성\n주요 분석 대상: 주소 기반 위도/경도 보정, 결측치 처리"
+  },
+  {
+    "objectID": "study/index.html#결측치-처리-내역",
+    "href": "study/index.html#결측치-처리-내역",
+    "title": "신입 교육자료",
+    "section": "",
+    "text": "변수명\n처리 방법\n\n\n\n\nLotFrontage\n0으로 채움\n\n\nGarageYrBlt\n0으로 채움\n\n\n\n\n\n\n다음 변수들은 \"없음\" 으로 채움:\n\nBsmtCond, BsmtFinType2, BsmtExposure, BsmtFinType1\nFireplaceQu, GarageType, GarageFinish, GarageQual, GarageCond\nPoolQC, MasVnrType, Fence, MiscFeature, Alley, BsmtQual\n\n\n\n\n\n\n\n\n\n변수명\n결측치 수\n\n\n\n\nMasVnrArea\n14\n\n\nBsmtFinSF1\n1\n\n\nBsmtFinSF2\n1\n\n\nBsmtUnfSF\n1\n\n\nTotalBsmtSF\n1\n\n\nElectrical\n1\n\n\nBsmtFullBath\n2\n\n\nBsmtHalfBath\n2\n\n\nGarageCars\n1\n\n\nGarageArea\n1\n\n\nGeoRefNo\n20\n\n\nProp_Addr\n20\n\n\nLatitude\n55\n\n\nLongitude\n55"
+  },
+  {
+    "objectID": "study/index.html#주소-기반-위도경도-보정",
+    "href": "study/index.html#주소-기반-위도경도-보정",
+    "title": "신입 교육자료",
+    "section": "",
+    "text": "geopy의 Nominatim API를 사용\n주소(Prop_Addr) + Ames, Iowa로 결합하여 검색 정확도 향상\ntime.sleep(1)으로 요청 제한 대응\n\n\n\n\nfrom geopy.geocoders import Nominatim\nimport time\n\ngeolocator = Nominatim(user_agent=\"ames_geocoder\")\nfiltered = load_df.loc[(load_df['Latitude'].isna()) & (~load_df['Prop_Addr'].isna()), :]\nfiltered['위도_보정'] = None\nfiltered['경도_보정'] = None\n\nfind, not_find = 0, 0\nfor idx, row in filtered.iterrows():\n    try:\n        full_address = f\"{row['Prop_Addr']}, Ames, Iowa\"\n        location = geolocator.geocode(full_address)\n        if location:\n            filtered.at[idx, '위도_보정'] = location.latitude\n            filtered.at[idx, '경도_보정'] = location.longitude\n            print(f\"[O] 주소 찾음: {full_address} → 위도: {location.latitude}, 경도: {location.longitude}\")\n            find += 1\n        else:\n            print(f\"[X] 주소 찾을 수 없음: {full_address}\")\n            not_find += 1\n    except Exception as e:\n        print(f\"[!] 오류 발생 at {row['Prop_Addr']} → {e}\")\n        not_find += 1\n    time.sleep(1)\n\nload_df.loc[filtered.index, 'Latitude'] = filtered['위도_보정']\nload_df.loc[filtered.index, 'Longitude'] = filtered['경도_보정']\n\n\n\n\n주소 보정 성공: 42건\n보정 실패: 35건"
+  },
+  {
+    "objectID": "study/index.html#최종-저장-및-확인",
+    "href": "study/index.html#최종-저장-및-확인",
+    "title": "신입 교육자료",
+    "section": "",
+    "text": "load_df = load_df.dropna()\nload_df.to_csv(\"../ames_cleaned.csv\", index=False)\n총 {load_df.shape[0]}건의 클린 데이터를 저장하였습니다."
+  }
+]

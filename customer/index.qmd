@@ -1,0 +1,60 @@
+---
+title: "고객 응대자료"
+---
+
+# 가성비 추구 고객 유형
+
+## Rows
+
+<p style="font-size: 2.5rem; font-weight: bold; text-align: center;">dd 응대하는 매뉴얼</p>
+
+
+
+# 리모델링 고객 유형
+
+## Row
+
+<p style="font-size: 2.5rem; font-weight: bold; text-align: center;">주택 판매 전 리모델링을 고려하는 고객을 응대하는 매뉴얼</p>
+
+## Row
+
+### Column
+
+<p style="font-size:22px; font-weight: bold;">리모델링의 기준</p>
+
+
+### Column
+
+<p style="font-size:22px; font-weight: bold;">주택 연식에 따른 리모델링 여부</p>
+
+
+## Row
+
+### Column {.tabset}
+
+#### 이상치 제거 전
+
+<p style="font-size:22px; font-weight: bold;">리모델링 유무에 따른 주택 가격</p>
+
+
+#### 이상치 제거 후
+
+<p style="font-size:22px; font-weight: bold;">리모델링 유무에 따른 주택 가격</p>
+
+
+### Column
+
+<p style="font-size:22px; font-weight: bold;">정규성 검정</p>
+
+
+## Row
+
+### Column
+
+
+
+
+
+# 특정 동네를 선호하는 고객 유형
+
+<p style="font-size: 2.5rem; font-weight: bold; text-align: center;">dd 응대하는 매뉴얼</p>
