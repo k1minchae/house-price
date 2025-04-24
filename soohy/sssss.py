@@ -65,7 +65,7 @@ df=add_features(df)
 df=drop_redundant_columns(df)
 df
 
-# 예: 이상치 제거된 데이터를 저장하고 싶다면
+# 변수 합친거 저장
 df.to_csv("df_cleaned.csv", index=False)
 
 
@@ -204,7 +204,7 @@ def remove_outliers_iqr(df, column):
     return cleaned_df
 
 # 공통 변수 목록
-common_features = ['TotalArea', 'YearBuilt', 'GrLivArea', 'OverallQual']
+common_features = ['TotalArea', 'YearBuilt', 'GrLivArea', 'OverallQual', 'Total_sqr_footage']
 
 # 모든 이상치 제거 적용
 df_cleaned = df.copy()
@@ -213,30 +213,123 @@ for col in common_features:
 
 print(f"이상치 제거 후 데이터 크기: {df_cleaned.shape}")
 
-##########################################
 
-import matplotlib.pyplot as plt
-import seaborn as sns
+#########################################
 
-# 공통 변수 리스트 (4개)
-common_features = ['TotalArea', 'YearBuilt', 'GrLivArea', 'OverallQual',"Total_sqr_footage"]
+# 시각화# 드롭다운
+import plotly.graph_objects as go
+import numpy as np
 
-# 시각화
-plt.figure(figsize=(12, 10))
-for i, feature in enumerate(common_features):
-    plt.subplot(2, 2, i + 1)  # 2행 2열
-    sns.regplot(
-        x=df_cleaned[feature],
-        y=df_cleaned['SalePrice'],
-        scatter_kws={'alpha': 0.5},
-        line_kws={'color': 'red'}
+# 공통 변수 리스트
+common_features = ['TotalArea', 'YearBuilt', 'GrLivArea', 'OverallQual', 'Total_sqr_footage']
+x_var = common_features[0]  # 기본 X축
+
+# 초기 회귀선 계산
+x = df_cleaned[x_var]
+y = df_cleaned['SalePrice']
+coef = np.polyfit(x, y, 1)  # 1차 회귀
+reg_line = coef[0] * x + coef[1]
+
+# Figure 생성
+fig = go.Figure()
+
+# 산점도
+fig.add_trace(
+    go.Scatter(
+        x=x, y=y,
+        mode='markers',
+        marker=dict(color='steelblue', size=8, line=dict(width=1, color='DarkSlateGrey')),
+        name='Data'
     )
-    plt.title(f'{feature} vs SalePrice')
-    plt.xlabel(feature)
-    plt.ylabel('SalePrice')
+)
 
-plt.tight_layout()
-# plt.suptitle("공통 영향 변수들과 SalePrice의 관계", fontsize=16, y=1.02)
-plt.show()
+# 회귀선
+fig.add_trace(
+    go.Scatter(
+        x=x,
+        y=reg_line,
+        mode='lines',
+        line=dict(color='red', width=2),
+        name='Regression Line'
+    )
+)
 
-df_cleaned[['GrLivArea', 'Total_sqr_footage', 'TotalArea']].corr()
+# 드롭다운 버튼 설정
+buttons = []
+for feature in common_features:
+    x = df_cleaned[feature]
+    y = df_cleaned['SalePrice']
+    coef = np.polyfit(x, y, 1)
+    reg_line = coef[0] * x + coef[1]
+    buttons.append(
+        dict(
+            label=feature,
+            method='update',
+            args=[
+                {'x': [x, x], 'y': [y, reg_line]},
+                {'xaxis.title': feature,
+                 'title': f'SalePrice vs {feature}'}  # 제목을 동적으로 업데이트
+            ]
+        )
+    )
+
+# 레이아웃 설정
+fig.update_layout(
+    title=f'SalePrice vs {x_var}',  # 초기 제목 설정
+    template='plotly_white',
+    width=800,
+    height=600,
+    xaxis_title=x_var,
+    yaxis_title='SalePrice',
+    updatemenus=[dict(
+        buttons=buttons,
+        direction='down',
+        showactive=True,
+        x=0.6,  # 드롭다운을 오른쪽으로 살짝 이동
+        xanchor='center',
+        y=1.15,
+        yanchor='top'
+    )]
+)
+
+fig.show()
+########################################
+import numpy as np
+import pandas as pd
+from sklearn.linear_model import ElasticNet
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+
+# 공통 변수 리스트
+common_features = ['TotalArea', 'YearBuilt', 'GrLivArea', 'OverallQual', 'Total_sqr_footage']
+
+# 데이터 준비
+X = df_cleaned[common_features]
+y = df_cleaned['SalePrice']
+
+# 데이터 분할 (학습 데이터와 테스트 데이터)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# 데이터 스케일링 (ElasticNet은 스케일에 민감하므로 반드시 필요)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# ElasticNet 모델 생성 및 학습
+elastic_net = ElasticNet(alpha=0.01, l1_ratio=0.5, random_state=42)
+elastic_net.fit(X_train_scaled, y_train)
+
+# 회귀 계수 출력
+coefficients = elastic_net.coef_
+
+# 변수와 회귀 계수 결합
+coefficients_df = pd.DataFrame({
+    'Feature': common_features,
+    'Coefficient': coefficients
+})
+
+# 각 특성의 변화에 따른 집값 변화 (단위 변화시)
+coefficients_df['Price Change per Unit'] = coefficients_df['Coefficient']
+
+# 결과 출력
+print(coefficients_df)
