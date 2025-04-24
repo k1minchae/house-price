@@ -1,7 +1,6 @@
 project:
   type: website
   output-dir: docs
-
 website:
   title: "안성맞춤부동산"
   navbar:

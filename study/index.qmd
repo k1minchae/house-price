@@ -1,49 +1,216 @@
 ---
 title: "신입 교육자료"
+format: 
+  dashboard: 
+    scrolling: true
+    orientation: rows
+
 ---
 
-# 데이터 설명
+# 데이터 탐색
 
-<div style="max-height: 1000px !important; width:100% !important; display: flex !important; justify-content: space-around !important; flex-direction: row !important;">
-
-<div style="overflow-y:auto; width:25%; height:100%;">
-<h3>데이터 불러오기</h3>
+## Row
 
 ```{python}
-#|eval: true
-#|echo: true
+#|content: valuebox
+#|title: "최신 리모델링 매물"
+#|icon: house-gear-fill
+
+import pandas as pd
+csv_path = "../ames_cleaned.csv"
+df = pd.read_csv(csv_path)
+
+dict(
+  value = len(df.loc[df['YearRemodAdd'] >= 2010])
+)
+```
+
+
+```{python}
+#|content: valuebox
+#|title: "수영장 매물"
+#|icon: water
+
+dict(
+  value = len(df.loc[df['PoolQC'] != '없음'])
+)
+```
+
+
+```{python}
+#|content: valuebox
+#|title: "미입주 가구"
+#|icon: house-x-fill
+
+dict(
+  value = len(df.loc[df['SaleCondition'] == 'Partial'])
+)
+```
+
+
+## Row 
+
+
+```{python}
+#| echo: false
+#| eval: true
+
 import pandas as pd
 
 # 데이터 불러오기
 load_df = pd.read_csv('../kaggle/ames.csv')
-load_df.info(max_cols=0)
 ```
 
-- 행(데이터)은 총 **2579개**
-- 열(속성)은 총 **85개**로 이루어져있습니다.
-- 즉, **집이 2579개** 있고 각각의 집을 나타내는 **속성이 85개**가 있습니다.
-
-</div>
-
-<div style="overflow:auto; width:30%; max-height:100%;">
-
-<h3>결측치 확인</h3>
-
-```{python}
-#|eval: true
-#|echo: false
-print(load_df.isna().sum()[load_df.isna().sum() > 100])
-
-```
-
-- 결측치가 100개 이상인 컬럼만 필터링을 해보았습니다.
-- 확인 결과 <strong>결측치가 상당히 많은</strong> 것을 알 수 있습니다.
-- Kaggle Data 설명을 참고하여 <code style="color:red;">NaN</code>값이 왜이렇게 많은지 살펴봤더니, 
+### Column {.tabset}
 
 
-<p style="margin-bottom: 2rem;"><code style="color:red;">NaN</code>값이 **'없음'**을 나타내는 데이터가 많았습니다.</p>
 
-| 영문 변수명        | 설명 (한글)             |
+#### 데이터 살펴보기
+
+| Index | 속성명 (EN) | 속성명 (KR)       | Type    |
+|-------|------------------|-------------------------|---------|
+| 0     | PID              | 고유 식별자              | int64   |
+| 1     | GrLivArea        | 지상 생활 면적           | int64   |
+| 2     | SalePrice        | 주택 판매 가격           | int64   |
+| 3     | MSSubClass       | 건물 클래스              | int64   |
+| 4     | MSZoning         | 지역 용도 분류           | object  |
+| 5     | LotFrontage      | 도로와 접한 길이          | float64 |
+| 6     | LotArea          | 대지 면적                | int64   |
+| 7     | Street           | 도로 유형                | object  |
+| 8     | Alley            | 골목 포장 상태           | object  |
+| 9     | LotShape         | 대지 형태                | object  |
+| 10    | LandContour      | 대지 고도 형태           | object  |
+| 11    | Utilities        | 공공 설비 이용 가능 여부   | object  |
+| 12    | LotConfig        | 대지 구성 방식           | object  |
+| 13    | LandSlope        | 대지 경사도              | object  |
+| 14    | Neighborhood     | 이웃 지역                | object  |
+| 15    | Condition1       | 주변 환경1               | object  |
+| 16    | Condition2       | 주변 환경2               | object  |
+| 17    | BldgType         | 건물 유형                | object  |
+| 18    | HouseStyle       | 주택 스타일              | object  |
+| 19    | OverallQual      | 전체 자재 및 마감 품질     | int64   |
+| 20    | OverallCond      | 전체 상태                | int64   |
+
+#### 더보기1
+
+
+| Index | 속성명 (EN) | 속성명 (KR)       | Type    |
+|-------|------------------|-------------------------|---------|
+| 21    | YearBuilt        | 건축 연도                | int64   |
+| 22    | YearRemodAdd     | 리모델링 연도            | int64   |
+| 23    | RoofStyle        | 지붕 스타일              | object  |
+| 24    | RoofMatl         | 지붕 재질                | object  |
+| 25    | Exterior1st      | 외벽 재질 1              | object  |
+| 26    | Exterior2nd      | 외벽 재질 2              | object  |
+| 27    | MasVnrType       | 벽돌 베니어 유형          | object  |
+| 28    | MasVnrArea       | 벽돌 베니어 면적          | float64 |
+| 29    | ExterQual        | 외벽 마감 품질           | object  |
+| 30    | ExterCond        | 외벽 현재 상태           | object  |
+| 31    | Foundation       | 기초 유형                | object  |
+| 32    | BsmtQual         | 지하실 품질              | object  |
+| 33    | BsmtCond         | 지하실 상태              | object  |
+| 34    | BsmtExposure     | 지하실 외부 노출          | object  |
+| 35    | BsmtFinType1     | 지하실 마감 유형 1        | object  |
+| 36    | BsmtFinSF1       | 마감 지하 공간 면적 1     | float64 |
+| 37    | BsmtFinType2     | 지하실 마감 유형 2        | object  |
+| 38    | BsmtFinSF2       | 마감 지하 공간 면적 2     | float64 |
+| 39    | BsmtUnfSF        | 미마감 지하 공간 면적     | float64 |
+| 40    | TotalBsmtSF      | 전체 지하 면적            | float64 |
+
+#### 더보기2
+
+| Index | 속성명 (EN) | 속성명 (KR)       | Type    |
+|-------|------------------|-------------------------|---------|
+| 41    | Heating          | 난방 유형                | object  |
+| 42    | HeatingQC        | 난방 품질                | object  |
+| 43    | CentralAir       | 중앙 냉방 여부            | object  |
+| 44    | Electrical       | 전기 시스템              | object  |
+| 45    | 1stFlrSF         | 1층 면적                 | int64   |
+| 46    | 2ndFlrSF         | 2층 면적                 | int64   |
+| 47    | LowQualFinSF     | 낮은 품질 마감 면적       | int64   |
+| 48    | BsmtFullBath     | 지하 전체 욕실 수         | float64 |
+| 49    | BsmtHalfBath     | 지하 반 욕실 수           | float64 |
+| 50    | FullBath         | 지상 전체 욕실 수         | int64   |
+| 51    | HalfBath         | 지상 반 욕실 수           | int64   |
+| 52    | BedroomAbvGr     | 지상 침실 수             | int64   |
+| 53    | KitchenAbvGr     | 지상 주방 수             | int64   |
+| 54    | KitchenQual      | 주방 품질                | object  |
+| 55    | TotRmsAbvGrd     | 지상 총 방 수            | int64   |
+| 56    | Functional       | 주택 기능성              | object  |
+| 57    | Fireplaces       | 벽난로 수                | int64   |
+| 58    | FireplaceQu      | 벽난로 품질              | object  |
+| 59    | GarageType       | 차고 유형                | object  |
+| 60    | GarageYrBlt      | 차고 건축 연도           | float64 |
+
+#### 더보기3
+
+| Index | 속성명 (EN) | 속성명 (KR)       | Type    |
+|-------|------------------|-------------------------|---------|
+| 61    | GarageFinish     | 차고 마감 상태           | object  |
+| 62    | GarageCars       | 차고 차량 수용 수         | float64 |
+| 63    | GarageArea       | 차고 면적                | float64 |
+| 64    | GarageQual       | 차고 품질                | object  |
+| 65    | GarageCond       | 차고 상태                | object  |
+| 66    | PavedDrive       | 포장된 진입로 여부        | object  |
+| 67    | WoodDeckSF       | 우드 데크 면적            | int64   |
+| 68    | OpenPorchSF      | 개방형 현관 면적          | int64   |
+| 69    | EnclosedPorch    | 폐쇄형 현관 면적          | int64   |
+| 70    | 3SsnPorch        | 3계절용 현관 면적         | int64   |
+| 71    | ScreenPorch      | 스크린 포치 면적          | int64   |
+| 72    | PoolArea         | 수영장 면적              | int64   |
+| 73    | PoolQC           | 수영장 품질              | object  |
+| 74    | Fence            | 울타리 품질              | object  |
+| 75    | MiscFeature      | 기타 부대시설            | object  |
+| 76    | MiscVal          | 기타 부대시설 가치        | int64   |
+| 77    | MoSold           | 판매 월                  | int64   |
+| 78    | YrSold           | 판매 연도                | int64   |
+| 79    | SaleType         | 판매 유형                | object  |
+| 80    | SaleCondition    | 판매 조건                | object  |
+| 81    | GeoRefNo         | 지리 참조 번호            | float64 |
+| 82    | Prop_Addr        | 부동산 주소              | object  |
+| 83    | Latitude         | 위도                     | float64 |
+| 84    | Longitude        | 경도                     | float64 |
+
+
+### Column {.tabset}
+
+#### 전체 결측치
+
+<p style="font-size:22px; font-weight: bold;">원본 데이터 결측치</p>
+
+| 컬럼명 (영문)     | 컬럼명 (한글)            | 결측치 수 |
+|------------------|--------------------------|------------|
+| LotFrontage      | 도로와 접한 길이         | 462        |
+| Alley            | 골목 포장 상태           | 2411       |
+| MasVnrType       | 벽돌 베니어 유형         | 1572       |
+| MasVnrArea       | 벽돌 베니어 면적         | 14         |
+| BsmtQual         | 지하실 높이              | 69         |
+| BsmtCond         | 지하실 상태              | 69         |
+| BsmtExposure     | 지하실 외부 노출         | 71         |
+| BsmtFinType1     | 지하실 마감 유형 1        | 69         |
+| BsmtFinType2     | 지하실 마감 유형 2        | 70         |
+| FireplaceQu      | 벽난로 품질              | 1241       |
+| GarageType       | 차고 위치                | 127        |
+| GarageYrBlt      | 차고 건축 연도           | 129        |
+| GarageFinish     | 차고 마감 상태           | 129        |
+| GarageQual       | 차고 품질                | 129        |
+| GarageCond       | 차고 상태                | 129        |
+| PoolQC           | 수영장 품질              | 2570       |
+| Fence            | 울타리 품질              | 2054       |
+| MiscFeature      | 기타 부대시설            | 2482       |
+| Latitude         | 위도                     | 97         |
+| Longitude        | 경도                     | 97         |
+
+- **결측치**가 10개 이상인 컬럼 목록입니다.
+- <code style="color:red;">NaN</code> 값이 상당히 많은 것을 알 수 있습니다.
+- 데이터셋의 설명을 확인해 본 결과, <code style="color:red;">NaN</code>이 '**없음'** 을 나타내는 데이터가 많음을 알 수 있었습니다.
+- 이를 명확히 처리하기 위해 <code style="color:red;">NaN</code> 대신 **'없음'** 이라는 명확한 표현으로 대체했습니다.
+
+#### '없음' 컬럼 처리
+
+<p style="font-size:22px; font-weight: bold;"><code style="color: red;">NaN</code>이 없다는 의미를 나타내는 컬럼들입니다.</p>
+
+|     변수명        | 설명 (한글)             |
 |-------------------|--------------------------|
 | BsmtCond          | 지하실 상태              |
 | BsmtFinType2      | 지하실 마감 공간 유형 2  |
@@ -61,120 +228,151 @@ print(load_df.isna().sum()[load_df.isna().sum() > 100])
 | Alley             | 골목 포장 상태           |
 | BsmtQual          | 지하실 품질              |
 
-- 위 표에 들어있는 데이터는 <code style="color:red;">NaN</code> 값이 **'없음'** 을 나타냅니다.
-- 그래서, 저희는 해당 데이터를 결측치로 인식하지 않고 **'없다'라는 의미를 명확히** 하고자 했습니다.
+- 위 데이터가 **'없음'** 을 나타내는 컬럼입니다.
+- 저희는 해당 데이터를 명확히 하고자 <code style="color: red;">NaN</code> 값을 '없음' 이라는 단어로 채워주었습니다.
+
+#### 위도/경도가 없는 데이터
+
+<p style="font-size:22px; font-weight: bold;">주소는 있는데, 위도/경도가 없는 데이터가 있습니다.</p>
+
+| 컬럼명 (영문) | 컬럼명 (한글) | 결측치 수 |
+|---------------|----------------|------------|
+| Prop_Addr     | 부동산 주소     | 20         |
+| Latitude      | 위도            | 97         |
+| Longitude     | 경도            | 97         |
+
+- 저희는 이 데이터를 geocoding 을 통해 위도/경도 값을 채워주었습니다.
+- geocoding 이란, 주소를 위도/경도로 변환하는 것입니다.
+- <code style="color:red;">geopy.geocoders</code> 라이브러리를 사용해서 geocoding 을 수행했습니다.
+
+#### 오류 데이터 제거
+
+<p style="font-size:22px; font-weight: bold;">논리적으로 오류가 있는 데이터가 있습니다.</p>
+
+- <code>df[df['YearRemodAdd'] < df['YearBuilt']]</code> 처럼 
+- 리모델링 연도가 건축 연도보다 빠른 경우 오류가 있다고 판단했습니다.
+- 그래서 저희는 해당 데이터를 제거해주었습니다.
+
+
+
+
+
+# Ames 시의 특징
+
+## Row {height=50%}
+
+### Column
+
+<p style="font-size:22px; font-weight: bold;">계절별 강우량이 일정한 편</p>
+
+<img src="../assets/강우량.png"/>
 
 <br>
 
-<hr>
-
-- 또한, 리모델링 연도가 건축 연도보다 빠른 경우가 있습니다.
-
-```{python}
-#| echo: true
-#| eval: false
-# 리모델링 연도가 지어진 연도보다 빠른 경우 결측치로 판단
-df[df['YearRemodAdd'] < df['YearBuilt']] # 1개
-```
-
-- 저희는 해당 데이터를 정확하지 않다고 판단하여 제거했습니다.
+- 서울에 비해 계절별 강우량이 일정하다.
+- **서울은 Ames 에 비해 여름철 비가 많이 온다.**
 
 
-</div>
+<br>
 
 
-<div style="overflow-y:auto; width:30%; max-height:100%; padding-left: 1rem;">
-<h3>결측치 처리</h3>
-
-```{python}
-#|echo: true
-#|eval: true
-# Nan 이 없음 을 나타내는 컬럼들
-nan_ = ['BsmtCond', 'BsmtFinType2', 'BsmtExposure',
-        'BsmtFinType1', 'FireplaceQu', 'GarageType', 
-        'GarageFinish', 'GarageQual', 'GarageCond',
-        'PoolQC', 'MasVnrType', 'Fence', 'MiscFeature',
-          'Alley', 'BsmtQual']
-
-load_df['LotFrontage'].fillna(0, inplace=True)
-load_df['GarageYrBlt'].fillna(0, inplace=True)
-
-load_df[nan_] = load_df[nan_].fillna("없음")
-
-# 결측치 재확인
-print(load_df.isna().sum()[load_df.isna().sum() > 0])
-
-```
-
-- **'없음'**이라는 의미를 가진 데이터를 채우고 나니 결측치가 확연히 줄어든 것을 볼 수 있습니다.
-- 하지만, 여전히 **위도와 경도**는 결측치가 많습니다.
-- 주소는 있는데, **위도/경도 정보만 없는 데이터가 77개**가 있습니다.
-- 저희는 이 데이터를 살리기 위해 주소를 통해 위도와 경도를 추출하기로 했습니다.
+| 값        | 명칭                                   | 특징                                              | 강수량과의 관계                                              |
+|-----------|----------------------------------------|---------------------------------------------------|---------------------------------------------------------------|
+| CompShg   | Composite Shingle (복합 아스팔트 기와) | ✅ 가장 흔함, 저렴하고 설치 쉬움, 15~30년 수명     | 💧 중간 이상 강수량에 적합, 물 잘 흐름, 내습성 양호           |
+| Tar&Grv   | Tar & Gravel (타르 + 자갈)             | 주로 평지붕에 사용, 무겁고 유지보수 필요          | 💧 평지붕이라 배수 안 좋음, 강수량 많은 지역엔 비추천         |
+| WdShake   | Wood Shake (천연 목재 쉐이크)          | 자연스러움, 고급스러움, 단열 효과 좋음            | 💧 습기에 약함, 강수량 많으면 부패·곰팡이 위험                 |
+| WdShngl   | Wood Shingle (평평한 목재 기와)        | WdShake보다 얇고 규칙적, 시각적으로 깔끔          | 💧 마찬가지로 강우에 취약, 유지보수 많음                      |
+| Metal     | Metal (금속 지붕)                      | 고가, 튼튼, 긴 수명(40년 이상), 불연성            | 💧 강우·폭설 모두 우수, 완전 방수에 가까움                    |
+| Roll      | Roll Roofing (롤 시트)                 | 저가, 시공 간단, 수명 짧음                        | 💧 저렴한 평지붕용, 강수량 많으면 금방 닳음                   |
+| Membran   | Membrane Roofing (방수 멤브레인)       | 평지붕 방수용, 수명은 중간, 정기적 유지보수 필요   | 💧 방수엔 특화, 그러나 누수 위험 있음 (파손 시 치명적)        |
 
 
-<hr />
+### Column
+
+#### Row
 
 ```{python}
-#|echo: true
-#|eval: false
-from geopy.geocoders import Nominatim
-import time
-geolocator = Nominatim(user_agent="ames_geocoder")
+#| eval: true
+#| echo: false
+# 폰트 설정
+import matplotlib.pyplot as plt
+plt.rcParams['font.family'] = 'Malgun Gothic'
+plt.rcParams['axes.unicode_minus'] = False
 
-# 위도/경도 컬럼 생성
-filtered['위도_보정'] = None
-filtered['경도_보정'] = None
+# 범주형 RoofMatl 값의 빈도 계산
+roof_counts = df['RoofMatl'].value_counts().sort_index()
 
-# 주소 기반 위도/경도 검색
-find = 0
-not_find = 0
-for idx, row in filtered.iterrows():
-    try:
-        # 주소 + 도시 이름으로 검색 정확도 향상
-        full_address = f"{row['Prop_Addr']}, Ames, Iowa"
-        location = geolocator.geocode(full_address)
+# 막대그래프 그리기
+_ = plt.bar(roof_counts.index, roof_counts.values, color='skyblue')  # _ = 으로 반환값 출력 방지
 
-        # 주소 찾은 경우
-        if location:
-            filtered.at[idx, '위도_보정'] = location.latitude
-            filtered.at[idx, '경도_보정'] = location.longitude
-            print(f"[O] 주소 찾음: {full_address} → 위도: {location.latitude}, 경도: {location.longitude}")
-            find += 1
-
-        # 주소 못 찾은 경우
-        else:
-            print(f"[X] 주소 찾을 수 없음: {full_address}")
-            not_find += 1
-
-    except Exception as e:
-        print(f"[!] 오류 발생 at {row['주소']} → {e}")
-        not_find += 1
-    time.sleep(1)  # API 과부하 방지
-
-# 기존 df에 위도/경도 덮어쓰기
-load_df.loc[filtered.index, 'Latitude'] = filtered['위도_보정']
-load_df.loc[filtered.index, 'Longitude'] = filtered['경도_보정']
-
-# 주소 찾은 개수: 42, 찾지 못한 개수: 35
-print(f"주소 찾은 개수: {find}, 찾지 못한 개수: {not_find}")    
+# 라벨 및 제목 설정
+_ = plt.xlabel('지붕 자재')
+_ = plt.ylabel('건수')
+_ = plt.title('지붕 자재 분포')
+_ = plt.xticks(rotation=45)
+_ = plt.grid(axis='y', alpha=0.3)
+_ = plt.tight_layout()
+plt.show()
 ```
 
-- <code style="color:red;">geopy.geocoders</code>는 주소를 위도/경도로 변환해주는 라이브러리 입니다.
-- 지오코딩: 주소를 위도/경도로 변환
-- 지오코딩을 가능하게 해주는 라이브러리 입니다.
-- <code style="color:red;">pip install geopy</code> 를 통해 설치할 수 있습니다.
-- 해당 라이브러리를 통해 42개의 데이터의 위도/경도 정보를 얻을 수 있었습니다.
 
 
 
-</div>
+#### Row
+
+
+<img src="../assets/roof.png"/>
 
 
 
+## Row {height=50%}
 
-</div>
+### Column
 
-## 2
+<p style="font-size:22px; font-weight: bold;">겨울에 눈이 많이 오는 편</p>
+
+<img src="../assets/강설량.png"/>
+
+<br>
+
+- 서울에 비해 Ames 는 눈이 많이 온다.
+- **난방 시설이 중요**하다고 할 수 있다.
 
 
-# 3
+```{python}
+#| eval: true
+#| echo: false
+#| output-location: column-fragment
+# 난방 품질
+import matplotlib.pyplot as plt
+
+
+# 원하는 순서대로 등급 정의
+order = ['Ex', 'Gd', 'TA', 'Fa', 'Po', 'NA']
+labels = ['매우우수', '좋음', '보통', '나쁨', '매우나쁨', '없음']
+
+# NA 값 대체
+df['HeatingQC'] = df['HeatingQC'].fillna('NA')
+
+# 값 개수 정렬
+counts = df['HeatingQC'].value_counts().reindex(order, fill_value=0)
+
+# 시각화
+_ = plt.figure(figsize=(8, 5))
+_ = plt.bar(labels, counts[order], color='skyblue')
+_ = plt.xlabel('난방 품질')
+_ = plt.ylabel('건수')
+_ = plt.title('난방 품질 분포')
+_ = plt.grid(axis='y', alpha=0.3)
+_ = plt.tight_layout()
+plt.show()
+
+print("Ames 지역은 난방시설이 대부분 우수하고,")
+print("난방시설이 나쁜 주택이 거의 없음을 알 수 있습니다.")
+
+```
+
+
+
+# 집값에 영향을 주는 요인
+

@@ -97,22 +97,6 @@ a span div p h1 h2 h3 h4 h5 h6 ul li ol {
   padding-bottom: 8rem !important;
 } */
 
-.card {
-  box-shadow: 0 0 0 0 !important;
-}
-
-.row {
-  overflow: visible !important;
-  height: auto !important;
-  max-height: none !important;
-}
-
-.html-fill-container {
-  display: inline-block !important;
-  min-height: 0;
-  min-width: 0;
-}
-
 .navbar-logo {
   max-height: 50px;
   width: auto;
@@ -128,7 +112,36 @@ a span div p h1 h2 h3 h4 h5 h6 ul li ol {
   font-weight: semi-bold;
 }
 
-.card-body {
+/* .card-body {
   width: 100% !important;
   max-height: 600px !important;
+}
+
+.card {
+  box-shadow: 0 0 0 0 !important;
+}
+
+.row {
+  overflow: visible !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+.html-fill-container {
+  display: inline-block !important;
+  min-height: 0;
+  min-width: 0;
+} */
+
+div.sourceCode {
+  margin: 1em 0;
+  min-height: 200px !important;
+}
+
+.custom-scroll {
+  overflow: auto !important;
+  max-height: 100dvh !important;
+  padding: 0.5rem !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 0 0 0 !important;
 }
