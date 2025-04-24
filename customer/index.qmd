@@ -1,10 +1,16 @@
 ---
 title: "고객 응대자료"
+format: 
+  dashboard: 
+    scrolling: true
+    orientation: rows
+  
+
 ---
 
 # 가성비 추구 고객 유형
 
-## Rows
+## Row
 
 <p style="font-size: 2.5rem; font-weight: bold; text-align: center;">dd 응대하는 매뉴얼</p>
 
@@ -14,42 +20,384 @@ title: "고객 응대자료"
 
 ## Row
 
-<p style="font-size: 2.5rem; font-weight: bold; text-align: center;">주택 판매 전 리모델링을 고려하는 고객을 응대하는 매뉴얼</p>
+<p style="font-size: 2.5rem; font-weight: bold; text-align: center;">주택 판매 전 리모델링을 고려하는 고객을 응대하기 전 참고할 것</p>
 
 ## Row
 
+
 ### Column
+
+#### Row
 
 <p style="font-size:22px; font-weight: bold;">리모델링의 기준</p>
 
+- 우리 부동산은 건축 **5년 이내**에 시행하는 리모델링 공사는 **하자보수** 공사로 취급합니다.
+- 5년이 지난 건축물에 대해 공사를 진행하는 경우 리모델링으로 판단합니다.
+- **하자보수**는 건축 후 **1년차**에 가장 많이 발생합니다.
 
-### Column
+#### Row
 
-<p style="font-size:22px; font-weight: bold;">주택 연식에 따른 리모델링 여부</p>
+```{python}
+import pandas as pd
+df = pd.read_csv('../ames_cleaned.csv')
+df = df[df['YearRemodAdd'] >= df['YearBuilt']]
+df['diff'] = df['YearRemodAdd'] - df['YearBuilt'] # 리모델링 연도 - 지어진 연도
+not_remodel = df[df['diff'] <= 5] # 1735 개
+remodel = df[df['diff'] > 5] # 771 개
 
+import matplotlib.pyplot as plt
+_ = plt.rcParams['font.family'] ='Malgun Gothic'
+_ = plt.rcParams['axes.unicode_minus'] =False
+
+# 하자보수 기간
+# 5년이하는 시공 하자보수 기간으로 판단
+_ = plt.figure(figsize=(6, 3))
+apt_refactor = not_remodel.loc[(not_remodel['diff'] <= 5) & (not_remodel['diff'] > 0), :]
+_ = plt.hist(apt_refactor['diff'], bins=9, color='skyblue', alpha=0.7)
+_ = plt.title('연식')
+_ = plt.xlabel('연식')
+_ = plt.xticks([1, 2, 3, 4, 5])
+_ = plt.ylabel('빈도수')
+plt.show()
+
+```
+
+
+### Column 
+
+#### Row {.tabset}
+
+##### 이상치 제거 전
+
+::::{.Rows}
+
+:::{.Row}
+
+<p style="font-size:22px; font-weight: bold;">리모델링 전 후 비교</p>
+
+```{python}
+# 리모델링 여부에 따른 주택 판매 가격 비교 (박스플롯)
+import seaborn as sns
+# 두 그룹에 구분 컬럼 추가
+remodel['리모델링'] = 'O'
+not_remodel['리모델링'] = 'X'
+
+# 데이터 합치기
+combined = pd.concat([remodel, not_remodel])
+
+# 이상치 보기
+# 리모델링 여부 그룹 설정
+grouped = combined.groupby('리모델링')
+
+# 이상치 판별 결과 저장용 리스트
+outliers_list = []
+
+# 각 그룹별로 이상치 추출
+for label, group in grouped:
+    q1 = group['SalePrice'].quantile(0.25)
+    q3 = group['SalePrice'].quantile(0.75)
+    iqr = q3 - q1
+
+    lower_bound = q1 - 1.5 * iqr
+    upper_bound = q3 + 1.5 * iqr
+
+    outliers = group[(group['SalePrice'] < lower_bound) | (group['SalePrice'] > upper_bound)]
+    outliers_list.append(outliers)
+
+# 결과 통합
+outliers_df = pd.concat(outliers_list)
+
+# 이상치 개수
+outliner_cnt_X = outliers_df['리모델링'].value_counts()['X']
+outliner_ratio_X = (outliner_cnt_X / len(not_remodel)) * 100
+outliner_cnt_O = outliers_df['리모델링'].value_counts()['O']
+outliner_ratio_O = (outliner_cnt_O / len(remodel)) * 100
+
+# 박스플롯 그리기
+_= plt.figure(figsize=(8, 6))
+sns.boxplot(data=combined, x='리모델링', y='SalePrice', palette='pastel')
+_= plt.title("리모델링 여부에 따른 주택 판매 가격 비교")
+_= plt.xlabel("리모델링 여부")
+_= plt.text(0, 430000, f'이상치: {outliner_cnt_X}개 {outliner_ratio_X:.2f}%', fontsize=12, color='red')
+_= plt.text(1, 500000, f'이상치: {outliner_cnt_O}개 {outliner_ratio_O:.2f}%', fontsize=12, color='red')
+_= plt.ylabel("주택 가격")
+_= plt.grid(True, alpha=0.3)
+plt.show()
+
+```
+
+:::
+
+
+:::{.Row}
+
+<br>
+
+- 우리 신입사원은 아직 특수 주택보다 **일반적인 주택을 상담**하는 경우가 많으므로
+- 가격대가 **너무 낮거나, 너무 높은** 주택은 이상치로 취급하고 **제거**하겠습니다.
+
+:::
+::::
+
+##### 이상치 제거 후
+
+::::{.Rows}
+
+<p style="font-size:22px; font-weight: bold;">리모델링 전 후 비교</p>
+
+
+```{python}
+
+# 이상치 제거한 데이터프레임 생성
+# 신입사원이라 비싼 집은 안맡음
+def remove_outliers_iqr(df, column):
+    Q1 = df[column].quantile(0.25)
+    Q3 = df[column].quantile(0.75)
+    IQR = Q3 - Q1
+    lower_bound = Q1 - 1.5 * IQR
+    upper_bound = Q3 + 1.5 * IQR
+    return df[(df[column] >= lower_bound) & (df[column] <= upper_bound)]
+
+remod_cleaned = remove_outliers_iqr(remodel, 'SalePrice')
+not_remodel_cleaned = remove_outliers_iqr(not_remodel, 'SalePrice')
+
+# 다시 하나의 데이터프레임으로 합치기
+df_cleaned = pd.concat([remod_cleaned, not_remodel_cleaned])
+
+_=plt.figure(figsize=(8, 6))
+sns.boxplot(data=df_cleaned, x='리모델링', y='SalePrice', palette='pastel')
+_=plt.title("리모델링 여부에 따른 주택 판매 가격 비교")
+_=plt.xlabel("리모델링 여부")
+_=plt.ylabel("주택 가격")
+_=plt.grid(True, alpha=0.3)
+plt.show()
+
+```
+
+<br>
+
+- 예상과 달리 **리모델링을 한 집이 가격대가 더 낮게 형성**되어 있습니다.
+- 실제로 각 그룹간 가격대가 유의미하게 차이가 나는지를 검증해 보겠습니다.
+
+::::
 
 ## Row
-
-### Column {.tabset}
-
-#### 이상치 제거 전
-
-<p style="font-size:22px; font-weight: bold;">리모델링 유무에 따른 주택 가격</p>
-
-
-#### 이상치 제거 후
-
-<p style="font-size:22px; font-weight: bold;">리모델링 유무에 따른 주택 가격</p>
-
-
-### Column
 
 <p style="font-size:22px; font-weight: bold;">정규성 검정</p>
 
+- 리모델링 유/무에 따라 주택 가격이 차이가 있는지 **통계적으로 검증하기 전에**
+- 이상치를 제거한 **리모델링 O / 리모델링 X 그룹이 각각 정규성을 따르는 지를 확인**하겠습니다.
+
+```{python}
+# 정규성 검정
+import matplotlib.pyplot as plt
+import scipy.stats as stats
+
+_=plt.figure(figsize=(12, 5))
+
+# 리모델링 O
+_=plt.subplot(1, 2, 1)
+_=stats.probplot(remod_cleaned['SalePrice'], dist="norm", plot=plt)
+_=plt.title("Q-Q Plot: 리모델링 O")
+
+# 리모델링 X
+_=plt.subplot(1, 2, 2)
+_=stats.probplot(not_remodel_cleaned['SalePrice'], dist="norm", plot=plt)
+_=plt.title("Q-Q Plot: 리모델링 X")
+
+_=plt.tight_layout()
+plt.show()
+```
+
+
+<p style="font-size:22px; font-weight: bold;">Anderson-Darling 정규성 검정 결과</p>
+
+| 구분          | Statistic | 15.0% 유의수준 | 10.0% 유의수준 | 5.0% 유의수준 | 2.5% 유의수준 | 1.0% 유의수준 |
+|---------------|-----------|----------------|----------------|----------------|----------------|----------------|
+| 리모델링 O     | 3.1208    | 불만족         | 불만족         | 불만족         | 불만족         | 불만족         |
+| 리모델링 X     | 21.1428   | 불만족         | 불만족         | 불만족         | 불만족         | 불만족         |
+
+
+<br>
+
+- 두 그룹 다 Q-Q Plot 으로 보기엔 얼추 정규성을 따르는 것 처럼 보이지만,
+  
+- <code style="color:red;">Anderson-Darling</code> 검정을 해본 결과 **정규성을 따르지 않음**을 알 수 있습니다.
+
+<br>
+<br>
+
+
+<p style="font-size:22px; font-weight: bold;">비모수 검정 수행</p>
+
+- 두 분포 다 **정규분포를 따르지 않기 때문에**
+- 두 집단 간의 차이를 **비모수 검정**으로 확인하겠습니다.
+
+<br>
+
+<code style="color:red; font-size: 18px;">Mann-Whitney U 검정 통계량: 314837.0000, p-value: 0.0000</code>
+
+- p-value 값이 매우 낮기 때문에 두 집단 간의 차이가 유의미함을 알 수 있습니다.
+
 
 ## Row
 
+
+<p style="font-size: 2.5rem; font-weight: bold; text-align: center;">왜 리모델링을 한 주택의 가격이 더 낮을까요?</p>
+
+## Row
+
+::::{.columns}
+
+:::{.column width=100%}
+```{python}
+# 지어진 연도 비교
+_=plt.figure(figsize=(8, 6))
+sns.boxplot(data=df_cleaned, x='리모델링', y='YearBuilt', palette='Set2')
+_=plt.title("리모델링 여부에 따른 지어진 연도 비교")
+_=plt.xlabel("리모델링 여부")
+_=plt.ylabel("지어진 연도")
+_=plt.grid(True, alpha=0.3)
+plt.show()
+
+```
+
+:::
+
+:::{.Column width=100%}
+
+<br>
+<br>
+
+
+<p style="font-size:22px; font-weight: bold; text-align:center;">리모델링 된 주택이 오래된 주택이 많다.</p>
+
+- 좌측의 박스 플롯을 보면 **리모델링을 안 한 주택**이 리모델링을 한 주택보다 **최근에 지어졌음**을 알 수 있다.
+- 즉, **리모델링 된 주택이 좀 더 저렴한 이유는 오래된 주택이어서** 그랬을 가능성이 있다.
+- 결국, 단순하게 리모델링 여부에 따라 주택 가격을 분류할 수는 없다.
+
+<p style="font-size: 22px; font-weight: bold; text-align: center; color: #ef4444;">그렇다면 오래된 주택은 리모델링을 해서 판매하는 것이 더 유리할까?</p>
+
+1. 건축 **연도별 주택 가격을 비교**해보고, 
+2. **오래된 집에서의 리모델링 전후 가격을 비교**해보겠습니다.
+
+
+:::
+
+::::
+
+## Row
+
+
+<p style="font-size: 2.5rem; font-weight: bold; text-align: center;">건축 연도별 주택 가격 비교</p>
+
+
+```{python}
+
+# 지어진 연도에 따른 가격 차이 비교
+# 연도별 평균 가격 계산
+yearly_avg = df_cleaned.groupby('YearBuilt')['SalePrice'].mean().reset_index()
+
+_=plt.figure(figsize=(12, 6))
+_=sns.lineplot(data=yearly_avg, x='YearBuilt', y='SalePrice')
+_=sns.lineplot()
+_=plt.axvline(x=1950, color='red', linestyle='--', label='1950년')
+_=plt.title('지어진 연도별 평균 주택 가격')
+_=plt.xlabel('지어진 연도')
+_=plt.ylabel('평균 가격')
+_=plt.legend()
+_=plt.grid(True, alpha=0.3)
+plt.show()
+```
+
+<br>
+
+- 지어진 연도가 **최근일수록 가격이 상승**하는 추세가 있습니다.
+- 1950년대 이전은 **오래된 주택이라 변동폭이 큰 것**을 볼 수 있습니다.
+- **1950년대 이전 주택끼리** 비교했을 때, **리모델링 유/무에 따라 가격이 달라지는지** 살펴보겠습니다.
+
 ### Column
+
+```{python}
+#|eval: true
+#|echo: false
+old_houses = df_cleaned.loc[df_cleaned['YearBuilt'] <= 1950, :]
+
+# 이상치 보기
+# 리모델링 O 그룹만 추출
+remod_old = old_houses[old_houses['리모델링'] == 'O']
+
+# 이상치 기준 계산 (IQR)
+q1 = remod_old['SalePrice'].quantile(0.25)
+q3 = remod_old['SalePrice'].quantile(0.75)
+iqr = q3 - q1
+upper_bound = q3 + 1.5 * iqr
+
+# 이상치 추출
+outliers = remod_old[remod_old['SalePrice'] > upper_bound]
+n_outliers = len(outliers)
+n_total = len(remod_old)
+outlier_ratio = (n_outliers / n_total) * 100
+
+# 시각화 (박스플롯)
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+_=plt.figure(figsize=(8, 6))
+_=sns.boxplot(data=old_houses, x='리모델링', y='SalePrice', palette='pastel')
+_=plt.title("오래된 주택 리모델링 여부에 따른 가격 비교")
+_=plt.text(
+    x=0, y=remod_old['SalePrice'].max()*0.95, 
+    s=f"이상치: {n_outliers}개 ({outlier_ratio:.2f}%)", 
+    color='red', fontsize=12
+)
+_=plt.ylabel("주택 판매 가격")
+_=plt.grid(alpha=0.3)
+_=plt.tight_layout()
+plt.show()
+
+
+```
+
+
+<p style="font-size:22px; font-weight: bold; text-align:center;">오래된 주택은 리모델링 한 주택이 더 비쌀까?</p>
+
+- Box Plot 을 그렸을 때 **리모델링 한 주택이 조금 더 비싼** 것을 알 수 있습니다.
+- 하지만, 이는 우연히 그런건지 아니면 **통계적으로 유의미한 지** 확실히 알 수 없습니다.
+
+<br>
+<hr>
+
+- 이를 확실히 하기 위해 **통계적 검정을 활용**해 보겠습니다.
+- 정규성을 만족하지 않기에 **비모수 검정**을 진행하겠습니다.
+- H0: 리모델링 유/무에 따라 주택 **가격 차이가 없다.**
+- H1: 리모델링을 한 주택이 **가격이 더 높다. (단측검정)**
+
+<code style="color: red; font-size:18px;">Mann-Whitney U 검정 통계량: 18992.5000, p-value: 0.0075</code>
+
+- 비모수 검정을 진행했을 때 p-value 값이 낮으므로 **귀무가설을 기각**하고 대립가설을 채택할 수 있습니다.
+
+<p style="font-size: 22px; font-weight: bold; text-align: center; color: #ef4444;">즉, 오래된 주택은 리모델링을 했을 때 가격이 더 높다는 것을 알 수 있습니다.</p>
+
+
+## Row
+
+<p style="font-size: 2rem; font-weight: bold;">결론</p>
+
+<!-- <p style="font-size:22px; font-weight: bold;"></p> -->
+
+📊 통계적으로는 리모델링을 한 주택이 **조금 더 높은 가격**에 거래되는 경향이 있었습니다.  
+하지만 이는 어디까지나 **가격 측면에서의 경향성**일 뿐,  
+실제 리모델링 시 발생하는 **공사 비용, 시간, 하자 가능성** 등을 고려해야 합니다.  
+
+<br>
+
+따라서 고객에게는 **현재 주택의 상태, 예산, 목적**에 따라  
+리모델링 여부를 **함께 판단**할 수 있도록 도와주는 것이 더 적절합니다.
+
+
+
+
 
 
 
@@ -58,3 +406,4 @@ title: "고객 응대자료"
 # 특정 동네를 선호하는 고객 유형
 
 <p style="font-size: 2.5rem; font-weight: bold; text-align: center;">dd 응대하는 매뉴얼</p>
+

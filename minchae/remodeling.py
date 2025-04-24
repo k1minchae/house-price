@@ -391,7 +391,8 @@ plt.title("Q-Q Plot: 리모델링 X")
 plt.tight_layout()
 plt.show()
 
-
+old_remod = old_houses[old_houses['리모델링'] == 'O']['SalePrice']
+old_not_remod = old_houses[old_houses['리모델링'] == 'X']['SalePrice']
 result_remod = anderson(old_remod)
 
 print("[오래된 주택 - 리모델링 O]")
@@ -416,6 +417,12 @@ stat, pval = shapiro(old_not_remod)
 print(f"Shapiro-Wilk 검정 통계량: {stat:.4f}, p-value: {pval:.4f}")
 # Shapiro-Wilk 검정 통계량: 0.9769, p-value: 0.2633
 # 리모델링 안 한 주택은 정규성 만족
+
+
+
+old_remod = old_houses[old_houses['리모델링'] == 'O']['SalePrice']
+old_not_remod = old_houses[old_houses['리모델링'] == 'X']['SalePrice']
+result_remod = anderson(old_remod)
 
 # 맨휘트니 검정으로 단측검정 (리모델링 한 집이 더 비싼가?)
 stat, p = mannwhitneyu(old_remod, old_not_remod, alternative='greater')

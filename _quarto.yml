@@ -3,6 +3,7 @@ project:
   output-dir: docs
 website:
   title: "안성맞춤부동산"
+  search: false
   navbar:
     logo: assets/logo.png
     left:
@@ -12,6 +13,10 @@ website:
         href: customer/index.qmd
       - text: "신입 교육자료"
         href: study/index.qmd
+    right:
+      - icon: github
+        href: https://github.com/k1minchae/house-price
+        aria-label: GitHub
 format:
   dashboard:
     theme: materia
