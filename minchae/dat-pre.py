@@ -159,59 +159,85 @@ df['TotalArea']
 
 
 
-df = pd.read_csv("../soohy/df_cleaned.csv")
+
+df_cleaned = pd.read_csv("../soohy/df_cleaned.csv")
 
 
-import pandas as pd
+
 import plotly.graph_objects as go
+import numpy as np
 
-# 수치형 변수 리스트
-numeric_vars = ['GrLivArea', 'YearBuilt', 'TotalArea']
-x_var = 'TotalArea'
-y_var = 'SalePrice'
+# 공통 변수 리스트
+common_features = ['TotalArea', 'YearBuilt', 'GrLivArea', 'OverallQual', 'Total_sqr_footage']
+x_var = common_features[0]  # 기본 X축
 
-# Plotly figure 생성
+# 초기 회귀선 계산
+x = df_cleaned[x_var]
+y = df_cleaned['SalePrice']
+coef = np.polyfit(x, y, 1)  # 1차 회귀
+reg_line = coef[0] * x + coef[1]
+
+# Figure 생성
 fig = go.Figure()
 
-# 첫 산점도 trace
-fig.add_trace(
+# 산점도
+fig = fig.add_trace(
     go.Scatter(
-        x=df[x_var],
-        y=df[y_var],
+        x=x, y=y,
         mode='markers',
-        marker=dict(color='skyblue', size=10,
-                    line=dict(width=1, color='DarkSlateGrey')),
-        name=f'{x_var} vs {y_var}'
+        marker=dict(color='steelblue', size=8, line=dict(width=1, color='DarkSlateGrey')),
+        name='Data'
     )
 )
 
-# 레이아웃 업데이트
-fig.update_layout(
-    title='데이터 변수 선택 산점도',
+# 회귀선
+fig = fig.add_trace(
+    go.Scatter(
+        x=x,
+        y=reg_line,
+        mode='lines',
+        line=dict(color='red', width=2),
+        name='Regression Line'
+    )
+)
+
+# 드롭다운 버튼 설정
+buttons = []
+for feature in common_features:
+    x = df_cleaned[feature]
+    y = df_cleaned['SalePrice']
+    coef = np.polyfit(x, y, 1)
+    reg_line = coef[0] * x + coef[1]
+    buttons.append(
+        dict(
+            label=feature,
+            method='update',
+            args=[
+                {'x': [x, x], 'y': [y, reg_line]},
+                {'xaxis.title': feature,
+                 'title': f'{feature} vs SalePrice'}
+            ],
+        )
+    )
+
+# 레이아웃 설정
+fig = fig.update_layout(
+    title=f'{x_var} vs SalePrice',
     template='plotly_white',
-    width=700,
-    height=800,
+    width=1000,
+    height=600,
     xaxis_title=x_var,
-    yaxis_title=y_var,  # SalePrice 고정
-    margin=dict(t=100, b=300),
+    yaxis_title='SalePrice',
     updatemenus=[
         dict(
-            buttons=[
-                dict(label=col, method='update',
-                     args=[{'x': [df[col]]},
-                           {'xaxis.title': col}])
-                for col in numeric_vars
-            ],
+            buttons=buttons,
             direction='down',
             showactive=True,
-            x=0.2,
-            xanchor='left',
-            y=-0.3,
-            yanchor='bottom'
+            x=0.5,
+            xanchor='center',
+            y=1.15,
+            yanchor='top'
         )
-    ],
-    annotations=[
-        dict(text="X 변수 선택:", x=0.05, y=-0.28, xref="paper", yref="paper", showarrow=False)
     ]
 )
 
