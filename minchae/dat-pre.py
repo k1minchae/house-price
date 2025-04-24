@@ -157,69 +157,62 @@ plt.show()
 
 df['TotalArea']
 
+
+
+df = pd.read_csv("../soohy/df_cleaned.csv")
+
+
 import pandas as pd
 import plotly.graph_objects as go
 
 # 수치형 변수 리스트
-numeric_vars = ['GrLivArea', 'YearBuilt', 
-                'TotalArea']
-# 기본 x, y 변수
+numeric_vars = ['GrLivArea', 'YearBuilt', 'TotalArea']
 x_var = 'TotalArea'
 y_var = 'SalePrice'
+
 # Plotly figure 생성
 fig = go.Figure()
+
 # 첫 산점도 trace
 fig.add_trace(
     go.Scatter(
         x=df[x_var],
         y=df[y_var],
         mode='markers',
-        marker=dict(color='skyblue', 
-                    size=10,
+        marker=dict(color='skyblue', size=10,
                     line=dict(width=1, color='DarkSlateGrey')),
-        # text=df['species'],
-        name=f'{x_var} vs {y_var}')
+        name=f'{x_var} vs {y_var}'
+    )
 )
+
 # 레이아웃 업데이트
 fig.update_layout(
     title='데이터 변수 선택 산점도',
     template='plotly_white',
     width=700,
-    height=600,
+    height=800,
     xaxis_title=x_var,
-    yaxis_title=y_var,
-    margin=dict(t=100, b=180),  # 하단 여백 더 확보!
-    updatemenus=[       # 여기가 핵심 !!
-        dict(
-            buttons=[       # x축변수 선택 버튼
-                dict(label=col, method='update',
-                     args=[{'x': [df[col]]}, {'xaxis.title': col}])
-                for col in numeric_vars
-            ],
-            direction='down',
-            showactive=True,
-            x=0.2,          # 버튼위치
-            xanchor='left',
-            y=-0.3,
-            yanchor='bottom'
-        ),
+    yaxis_title=y_var,  # SalePrice 고정
+    margin=dict(t=100, b=300),
+    updatemenus=[
         dict(
             buttons=[
                 dict(label=col, method='update',
-                     args=[{'y': [df[col]]}, {'yaxis.title': col}])
+                     args=[{'x': [df[col]]},
+                           {'xaxis.title': col}])
                 for col in numeric_vars
             ],
             direction='down',
             showactive=True,
-            x=0.7,
+            x=0.2,
             xanchor='left',
             y=-0.3,
             yanchor='bottom'
         )
     ],
     annotations=[
-        dict(text="X 변수 선택:", x=0.05, y=-0.28, xref="paper", yref="paper", showarrow=False),
-        dict(text="Y 변수 선택:", x=0.6, y=-0.28, xref="paper", yref="paper", showarrow=False)
+        dict(text="X 변수 선택:", x=0.05, y=-0.28, xref="paper", yref="paper", showarrow=False)
     ]
 )
+
 fig.show()
