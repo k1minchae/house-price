@@ -168,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         
       </div>
     </div>
-<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-section-2" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#section-2" data-scrolling="false" href="#section-2" aria-controls="section-2" aria-selected="true"><span class="nav-link-text">3</span></a></li></ul></div></div>
+<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-데이터-설명" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#데이터-설명" data-scrolling="false" href="#데이터-설명" aria-controls="데이터-설명" aria-selected="true"><span class="nav-link-text">데이터 설명</span></a></li><li class="nav-item" role="presentation"><a id="tab-section-1" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#section-1" data-scrolling="false" href="#section-1" aria-controls="section-1" aria-selected="false"><span class="nav-link-text">3</span></a></li></ul></div></div>
 </nav>
 </header></header>
 <!-- content -->
@@ -177,13 +177,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
 <!-- main -->
 
-<div class="bslib-grid-item html-fill-item tab-content bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, max-content) minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
-<div class="bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
-grid-auto-rows: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
-<div style="max-height: 600px !important; width:100% !important; display: flex !important; justify-content: space-around !important;" class="html-fill-item html-fill-container">
-<div style="overflow-y:auto; width:30%; height:100%;" class="html-fill-item html-fill-container">
+<div class="bslib-grid-item html-fill-item tab-content bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div id="데이터-설명" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-데이터-설명">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container tab-content">
+<div style="max-height: 1000px !important; width:100% !important; display: flex !important; justify-content: space-around !important; flex-direction: row !important;" class="html-fill-item html-fill-container">
+<div style="overflow-y:auto; width:25%; height:100%;" class="html-fill-item html-fill-container">
 <h3>
 데이터 불러오기
 </h3>
@@ -247,7 +247,7 @@ dtype: int64</code></pre>
 <li>확인 결과 <strong>결측치가 상당히 많은</strong> 것을 알 수 있습니다.</li>
 <li>Kaggle Data 설명을 참고하여 <code style="color:red;">NaN</code>값이 왜이렇게 많은지 살펴봤더니,</li>
 </ul>
-<p>
+<p style="margin-bottom: 2rem;">
 <code style="color:red;">NaN</code>값이 <strong>‘없음’</strong>을 나타내는 데이터가 많았습니다.
 </p>
 <table class="caption-top table">
@@ -324,11 +324,139 @@ dtype: int64</code></pre>
 <li>위 표에 들어있는 데이터는 <code style="color:red;">NaN</code> 값이 <strong>‘없음’</strong> 을 나타냅니다.</li>
 <li>그래서, 저희는 해당 데이터를 결측치로 인식하지 않고 <strong>’없다’라는 의미를 명확히</strong> 하고자 했습니다.</li>
 </ul>
+<br>
+<hr>
+<ul>
+<li>또한, 리모델링 연도가 건축 연도보다 빠른 경우가 있습니다.</li>
+</ul>
+<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="sourceCode cell-code html-fill-item html-fill-container" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 리모델링 연도가 지어진 연도보다 빠른 경우 결측치로 판단</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">'YearRemodAdd'</span>] <span class="op">&lt;</span> df[<span class="st">'YearBuilt'</span>]] <span class="co"># 1개</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div style="overflow-y:auto; width:30%; height:100%;" class="html-fill-item html-fill-container">
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<ul>
+<li>저희는 해당 데이터를 정확하지 않다고 판단하여 제거했습니다.</li>
+</ul>
+</div>
+<div style="overflow-y:auto; width:30%; max-height:100%; padding-left: 1rem;" class="html-fill-item html-fill-container">
 <h3>
-결측치 처리(1)
+결측치 처리
 </h3>
+<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="sourceCode cell-code html-fill-item html-fill-container" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nan 이 없음 을 나타내는 컬럼들</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>nan_ <span class="op">=</span> [<span class="st">'BsmtCond'</span>, <span class="st">'BsmtFinType2'</span>, <span class="st">'BsmtExposure'</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">'BsmtFinType1'</span>, <span class="st">'FireplaceQu'</span>, <span class="st">'GarageType'</span>, </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">'GarageFinish'</span>, <span class="st">'GarageQual'</span>, <span class="st">'GarageCond'</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">'PoolQC'</span>, <span class="st">'MasVnrType'</span>, <span class="st">'Fence'</span>, <span class="st">'MiscFeature'</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>          <span class="st">'Alley'</span>, <span class="st">'BsmtQual'</span>]</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>load_df[<span class="st">'LotFrontage'</span>].fillna(<span class="dv">0</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>load_df[<span class="st">'GarageYrBlt'</span>].fillna(<span class="dv">0</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>load_df[nan_] <span class="op">=</span> load_df[nan_].fillna(<span class="st">"없음"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 결측치 재확인</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(load_df.isna().<span class="bu">sum</span>()[load_df.isna().<span class="bu">sum</span>() <span class="op">&gt;</span> <span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout html-fill-item html-fill-container">
+<pre><code>MasVnrArea      14
+BsmtFinSF1       1
+BsmtFinSF2       1
+BsmtUnfSF        1
+TotalBsmtSF      1
+Electrical       1
+BsmtFullBath     2
+BsmtHalfBath     2
+GarageCars       1
+GarageArea       1
+GeoRefNo        20
+Prop_Addr       20
+Latitude        97
+Longitude       97
+dtype: int64</code></pre>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<ul>
+<li><strong>‘없음’</strong>이라는 의미를 가진 데이터를 채우고 나니 결측치가 확연히 줄어든 것을 볼 수 있습니다.</li>
+<li>하지만, 여전히 <strong>위도와 경도</strong>는 결측치가 많습니다.</li>
+<li>주소는 있는데, <strong>위도/경도 정보만 없는 데이터가 77개</strong>가 있습니다.</li>
+<li>저희는 이 데이터를 살리기 위해 주소를 통해 위도와 경도를 추출하기로 했습니다.</li>
+</ul>
+<hr>
+<div class="card cell html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="sourceCode cell-code html-fill-item html-fill-container" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> geopy.geocoders <span class="im">import</span> Nominatim</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>geolocator <span class="op">=</span> Nominatim(user_agent<span class="op">=</span><span class="st">"ames_geocoder"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 위도/경도 컬럼 생성</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>filtered[<span class="st">'위도_보정'</span>] <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>filtered[<span class="st">'경도_보정'</span>] <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 주소 기반 위도/경도 검색</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>find <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>not_find <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, row <span class="kw">in</span> filtered.iterrows():</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 주소 + 도시 이름으로 검색 정확도 향상</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        full_address <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>row[<span class="st">'Prop_Addr'</span>]<span class="sc">}</span><span class="ss">, Ames, Iowa"</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        location <span class="op">=</span> geolocator.geocode(full_address)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 주소 찾은 경우</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> location:</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>            filtered.at[idx, <span class="st">'위도_보정'</span>] <span class="op">=</span> location.latitude</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>            filtered.at[idx, <span class="st">'경도_보정'</span>] <span class="op">=</span> location.longitude</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"[O] 주소 찾음: </span><span class="sc">{</span>full_address<span class="sc">}</span><span class="ss"> → 위도: </span><span class="sc">{</span>location<span class="sc">.</span>latitude<span class="sc">}</span><span class="ss">, 경도: </span><span class="sc">{</span>location<span class="sc">.</span>longitude<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>            find <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 주소 못 찾은 경우</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"[X] 주소 찾을 수 없음: </span><span class="sc">{</span>full_address<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>            not_find <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"[!] 오류 발생 at </span><span class="sc">{</span>row[<span class="st">'주소'</span>]<span class="sc">}</span><span class="ss"> → </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>        not_find <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="dv">1</span>)  <span class="co"># API 과부하 방지</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 기존 df에 위도/경도 덮어쓰기</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>load_df.loc[filtered.index, <span class="st">'Latitude'</span>] <span class="op">=</span> filtered[<span class="st">'위도_보정'</span>]</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>load_df.loc[filtered.index, <span class="st">'Longitude'</span>] <span class="op">=</span> filtered[<span class="st">'경도_보정'</span>]</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co"># 주소 찾은 개수: 42, 찾지 못한 개수: 35</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"주소 찾은 개수: </span><span class="sc">{</span>find<span class="sc">}</span><span class="ss">, 찾지 못한 개수: </span><span class="sc">{</span>not_find<span class="sc">}</span><span class="ss">"</span>)    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+<ul>
+<li><code style="color:red;">geopy.geocoders</code>는 주소를 위도/경도로 변환해주는 라이브러리 입니다.</li>
+<li>지오코딩: 주소를 위도/경도로 변환</li>
+<li>지오코딩을 가능하게 해주는 라이브러리 입니다.</li>
+<li><code style="color:red;">pip install geopy</code> 를 통해 설치할 수 있습니다.</li>
+<li>해당 라이브러리를 통해 42개의 데이터의 위도/경도 정보를 얻을 수 있었습니다.</li>
+</ul>
+</div>
+</div>
+<div id="section-1" class="dashboard-page html-fill-item html-fill-container tab-pane grid-skip" data-orientation="rows" aria-labelledby="tab-section-1">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: ; grid-auto-columns: minmax(0, 1fr);">
+
+
 </div>
 </div>
 </div>
@@ -339,16 +467,13 @@ dtype: int64</code></pre>
     </span>
 </bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
 </div>
-<div id="section-2" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-section-2">
-<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: ; grid-auto-columns: minmax(0, 1fr);">
-
-
-<div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden html-fill-item html-fill-container">
+</div>
+<div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden">
 
 </div>
 </div>
 </div>
-</div>
+
 
 
 <script id="quarto-html-after-body" type="application/javascript">
@@ -768,7 +893,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-</div> <!-- /content -->
+ <!-- /content -->
 
 <script type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (_event) {
