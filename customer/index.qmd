@@ -325,7 +325,7 @@ plt.show()
 
 ```{python}
 from IPython.display import IFrame
-IFrame(src='../assets/map_single_top5.html', width='100%', height='600px')
+IFrame(src='../assets/map1_single_top5(1).html', width='100%', height='600px')
 ```
 
 ## 2인 가구 top5
