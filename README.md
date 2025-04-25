@@ -4,7 +4,7 @@
 
 Ames House Price Data를 활용하여 대시보드를 제작하는 팀 프로젝트입니다.
 
-[>프로젝트 대시보드 바로가기 링크]("https://k1minchae.github.io/house-price/")
+[프로젝트 대시보드 바로가기 링크](https://k1minchae.github.io/house-price/)
 
 <br>
 
