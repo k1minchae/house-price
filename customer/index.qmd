@@ -323,6 +323,8 @@ plt.show()
 ## 1인 가구 top5
 <p style="font-size:22px; font-weight: bold;">1인 가정 Top5  </p>
 
+## 
+
 ```{python}
 from IPython.display import IFrame
 IFrame(src='../assets/map1_single_top5(1).html', width='100%', height='600px')
@@ -340,6 +342,7 @@ IFrame(src='../assets/map_couple_top5.html', width='100%', height='600px')
 ## 자녀 있는 가족 top5 
 <p style="font-size:22px; font-weight: bold;">자녀 동반 가정 Top5 </p>
 
+##
 ```{python}
 from IPython.display import IFrame
 IFrame(src='../assets/map_family_top5.html', width='100%', height='600px')
